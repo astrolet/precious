@@ -2,7 +2,6 @@
 
 import sys
 import json
-import yaml
 from pprint import pprint
 
 import swisseph as swe
@@ -52,8 +51,6 @@ if __name__ == "__main__":
           replace[swe.get_planet_name(key + offset)] = val
         e[what] = replace
       pprint(e)
-    elif re["out"] == "yaml":
-      print yaml.safe_dump(e) #, default_flow_style=False, canonical=True, encoding='utf-8'
     else:
       # json is the default
       print json.JSONEncoder().encode(e)
