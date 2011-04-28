@@ -1,0 +1,32 @@
+.DS_Store
+log
+*~
+.#*
+.hgignore
+.hg/*
+.svn/*
+
+# Node
+node_modules
+npm-debug.log
+.lock-wscript
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+build
+swe.py/build
+swe.py/src/*.a
+swe.py/src/*.o
+
+# Tools
+.settings.xml

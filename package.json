@@ -1,0 +1,38 @@
+{ "name": "precious"
+, "description": "a python ephemeris for eden"
+, "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
+, "version": "0.0.1-1"
+, "homepage": "http://astrolin.com/to/precious"
+, "repository":
+  { "type": "git"
+  , "url": "git://github.com/astrolet/precious.git"
+  }
+, "bugs":
+  { "mail": "support@astrolet.net"
+  , "web" : "https://github.com/astrolet/precious/issues"
+  }
+, "author": "Orlin M Bozhinov <orlin@astrolet.net> (http://soundsapiens.com)"
+, "contributors": []
+, "directories": { "doc": "./doc" }
+, "dependencies": {}
+, "devDependencies": {}
+, "scripts":
+  { "install" : "python ./swe.py/setup.py install"
+  , "postinstall": "sh ./scripts/install-message.sh"
+  }
+, "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
+, "engines" : { "node" : "0.4 || 0.5" }
+, "licenses":
+  [ { "type": "Unlicense"
+    , "url" : "http://unlicense.org/"
+    }
+    ,
+    { "type": "GPL"
+    , "url" : "http://github.com/astrolet/eden/raw/master/LICENSE"
+    }
+    ,
+    { "type": "Swiss Ephemeris"
+    , "url" : "http://github.com/astrolet/eden/raw/master/LICENSE"
+    }
+  ]
+}
