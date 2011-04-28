@@ -1,7 +1,11 @@
 Precious
 ========
 
-This is a node package distribution of [pyswisseph](http://pypi.python.org/pypi/pyswisseph).  [Eden](http://www.astrolin.com/to/eden) depends on it.  More to come...
+This is a node package distribution of [pyswisseph](http://pypi.python.org/pypi/pyswisseph).
+
+[Eden](http://www.astrolin.com/to/eden) depends on it.
+
+More to come...
 
 Install
 -------
