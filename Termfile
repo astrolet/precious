@@ -1,0 +1,18 @@
+before { run 'cd PRECIOUS_PATH' }
+
+tab :name => "$ Precious", :selected => true do
+  run "clear"
+  run "ls -a"
+end
+
+tab :name => "Precious serve docs ", :settings => "Grass" do
+  run "bundle exec serve docs"
+end
+
+tab :name => "Precious LiveReload ", :settings => "Red Sands" do
+  run "bundle exec livereload"
+end
+
+tab :name => "Precious Assets ", :settings => "Red Sands" do
+  run "cake assets:watch"
+end

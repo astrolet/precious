@@ -1,0 +1,13 @@
+# default extensions: .html .css .js .png .gif .jpg .php .php5 .py .rb .erb
+
+# exclude files with NAMES matching this mask
+config.exclusions << '~*'
+# exclude files with PATHS matching this mask (if the mask contains a slash)
+config.exclusions << '/node_modules/*'
+
+# reload the whole page when .js changes?
+config.apply_js_live = true
+# reload the whole page when .css changes?
+config.apply_css_live = true
+
+config.grace_period = 0.05
