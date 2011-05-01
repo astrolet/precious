@@ -10,7 +10,7 @@ tab :name => "Precious serve docs ", :settings => "Grass" do
 end
 
 tab :name => "Precious LiveReload ", :settings => "Red Sands" do
-  run "bundle exec livereload"
+  run "bundle exec livereload docs"
 end
 
 tab :name => "Precious Assets ", :settings => "Red Sands" do
