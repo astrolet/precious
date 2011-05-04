@@ -1,7 +1,7 @@
 { "name": "precious"
-, "description": "a python ephemeris for eden"
+, "description": "a minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.0.1-3"
+, "version": "0.0.1-4"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
@@ -15,13 +15,15 @@
 , "contributors": []
 , "directories":
   { "bin": "./bin"
-  , "doc": "./doc"
+  , "man": "./man"
   }
 , "dependencies": { "gravity": "*" }
 , "devDependencies":
-  { "eyes": "*"
+  { "coffee-script": "~1.1.0"
+  , "eyes": "*"
   , "watch-tree": "*"
   , "docco": "*"
+  , "async": "~0.1.8"
   }
 , "scripts":
   { "install" : "python ./swe.py/setup.py install"

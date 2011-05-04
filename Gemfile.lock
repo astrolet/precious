@@ -17,6 +17,7 @@ GEM
       text-format (= 1.0.0)
       text-hyphen (= 1.0.0)
     highline (1.5.2)
+    hpricot (0.8.4)
     i18n (0.4.2)
     json_pure (1.5.1)
     launchy (0.3.7)
@@ -26,10 +27,16 @@ GEM
       em-dir-watcher (>= 0.1)
       em-websocket (>= 0.1.2)
       ruby-json (>= 1.1.2)
+    mustache (0.99.3)
     rack (1.2.2)
     rake (0.8.7)
     rb-appscript (0.6.1)
     rb-fsevent (0.4.0)
+    rdiscount (1.6.8)
+    ronn (0.7.3)
+      hpricot (>= 0.8.2)
+      mustache (>= 0.7.0)
+      rdiscount (>= 1.5.8)
     ruby-json (1.1.2)
     serve (1.0.0)
       activesupport (~> 3.0.1)
@@ -56,6 +63,7 @@ PLATFORMS
 DEPENDENCIES
   livereload (>= 1.6)
   rb-fsevent
+  ronn
   serve
   terminitor
   thin

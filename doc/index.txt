@@ -1,0 +1,12 @@
+# manuals
+precious(1)         precious.1
+precious-json(7)    json.7
+
+# annotations
+precious-py(1)      annotations/bin/precious
+
+# external manuals
+JSON(7)             http://www.json.org/
+eden(1)             http://astrolin.com/to/eden
+gravity(6)          http://astrolin.com/to/sin
+ISO-8601(7)         http://en.wikipedia.org/wiki/ISO_8601
