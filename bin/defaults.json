@@ -1,0 +1,8 @@
+{ "out": "json"
+, "data": "node_modules/gravity/data"
+, "ecliptic": [0, 3]
+, "things": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 15]
+, "minors": [136199, 7066, 50000, 90377, 20000, 128]
+, "system": "K"
+, "geo": {"lat": null, "lon": null}
+}

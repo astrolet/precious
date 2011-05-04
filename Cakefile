@@ -24,20 +24,14 @@ runCommand = (name, args) ->
     proc.stdout.on 'data', (buffer) -> console.log buffer.toString()
     proc.on 'exit', (status) -> process.exit(1) if status != 0
 
-docsInit = (callback) ->
-  series [
-    (sh "rm -rf #{docs}")
-    (sh "mkdir -p #{docs}/bin")
-  ], (err) -> throw err if err
-
 
 task 'assets:watch', 'Watch source files and build docs', (options) ->
 
-  watchPython = ->
+  watchStuff = (callback) ->
     watch_rate = 100 #ms
     watch_info =
       1:
-        path: "bin"
+        path: "lib"
         options:
           'match': '.+\.py'
         events: ["filePreexisted", "fileCreated", "fileModified"]
@@ -57,8 +51,9 @@ task 'assets:watch', 'Watch source files and build docs', (options) ->
           else console.log "unrecognized file type of #{what}"
 
   series [
-    docsInit
-    watchPython()
+    (sh "rm -rf #{docs}/")
+    (sh "mkdir -p #{docs}/lib")
+    watchStuff
   ], (err) -> throw err if err
 
 
@@ -72,6 +67,7 @@ task 'man', "Build manuals", ->
       exec "ronn --pipe --roff #{source} > #{target}", (err) ->
         throw err if err
 
+
 task 'pages', "Build pages", ->
 
   buildMan = (callback) ->
@@ -84,9 +80,9 @@ task 'pages', "Build pages", ->
 
   buildAnnotations = (callback) ->
     series [
-      docsInit
-      (runCommand "pycco", ["-d", "docs/bin", "bin/precious.py"])
-      (sh "cp docs/bin/* pages/annotations/bin")
+      (sh "docco bin/*.coffee")
+      (sh "pycco -d docs/lib lib/*.py")
+      (sh "cp -r docs pages/annotations")
     ], callback
 
   build = (callback) ->
@@ -94,9 +90,9 @@ task 'pages', "Build pages", ->
 
   series [
     (sh "rm -rf pages/*")
-    (sh "mkdir -p pages/annotations/bin")
     build
   ], (err) -> throw err if err
+
 
 task 'pages:publish', "Publish pages", ->
 

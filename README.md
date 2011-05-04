@@ -30,4 +30,4 @@ This is [Unlicensed](http://unlicense.org) (free and unencumbered public domain 
 
 ## SEE ALSO
 
-precious(1), precious-py(1), precious-json(7), gravity(6), eden(1)
+precious(1), precious-coffee(1), precious-json(7), ephemeris-py(3), gravity(6), eden(1)

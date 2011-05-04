@@ -15,9 +15,14 @@
 , "contributors": []
 , "directories":
   { "bin": "./bin"
+  , "lib": "./lib"
   , "man": "./man"
   }
-, "dependencies": { "gravity": "*" }
+, "dependencies":
+  { "cjson": "~0.0.3"
+  , "massagist": "*"
+  , "gravity": "*"
+  }
 , "devDependencies":
   { "coffee-script": "~1.1.0"
   , "eyes": "*"
@@ -29,6 +34,7 @@
   { "install" : "python ./swe.py/setup.py install"
   , "postinstall": "sh ./scripts/install-message.sh"
   }
+, "bin": { "precious" : "./cli.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
 , "engines" : { "node" : "0.4 || 0.5" }
 , "licenses":

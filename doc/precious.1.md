@@ -11,4 +11,4 @@ Anything less we couldn't do astrology with.
 
 ## SEE ALSO
 
-precious-py(1), precious-json(7), gravity(6)
+precious-json(7), gravity(6), ephemeris-py(3)

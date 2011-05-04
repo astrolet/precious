@@ -3,7 +3,8 @@ precious(1)         precious.1
 precious-json(7)    json.7
 
 # annotations
-precious-py(1)      annotations/bin/precious
+precious-coffee(1)   annotations/precious
+ephemeris-py(3)      annotations/lib/ephemeris
 
 # external manuals
 JSON(7)             http://www.json.org/
