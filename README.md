@@ -14,6 +14,14 @@ More to come...
 
 With the [npm](http://npmjs.org/) prerequisite, do `npm install precious`.
 
+### DEPENDENCIES
+
+* node
+* npm
+* python
+* gcc
+* gravity
+
 
 ## LICENSE
 
