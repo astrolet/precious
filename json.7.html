@@ -62,6 +62,7 @@
     <a href="#NAME">NAME</a>
     <a href="#DESCRIPTION">DESCRIPTION</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
+    <a href="#NAVIGATE">NAVIGATE</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -84,7 +85,7 @@
 <pre><code>{ "data": "node_modules/gravity/data"
 , "out": "json"
 , "stuff": [ [0, 3], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11], [] ]
-, "time": "1974-06-30T23:45Z"
+, "utc": null
 }
 </code></pre>
 
@@ -104,17 +105,21 @@
 
 <p>The kind of stuff to be returned, or null, or empty array(s) [] - mean all the same default equivalent.  The first array <code>[0, 3]</code> respectively yields ecliptic position and speed for each item of interest.  These map directly to results of the <code>swe.calc_ut</code> function.  The second array contains the main kind of things - returned with key of 1.  The third array contains the minor kind of things - offset by 10,000 and returned with key of 2.</p>
 
-<h4 id="time">time</h4>
+<h4 id="utc">utc</h4>
 
-<p>A value of null for <em>time</em> - means the current moment will be used.  Otherwise provide UTC in <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a> format.  Finally and besides convenience, an array of time fragments to be passed on directly to the <code>swe.utc_to_jd</code> function.</p>
+<p>Undefined (or null) <em>utc</em> time - means the current moment will be used.  Otherwise provide a string in <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a> format.</p>
+
+<h4 id="ut">ut</h4>
+
+<p>Besides the <em>utc</em> semi-convenience, this <em>ut</em> array of time fragments will be passed on directly to the <code>swe.utc_to_jd</code> function (as its arguments).  It takes precedence over the any <em>utc</em> value that it is otherwise derived from.  Such option exists in case an intermediate conversion is not wanted.</p>
 
 <h4 id="geo">geo</h4>
 
 <p>A value of null for <em>geo</em> location or its <em>lat</em> / <em>lon</em> coordinates (i.e. <code>"geo": {"lat": null, "lon": null}</code>) - means there will be no angles (e.g. Asc / Mc) returned.</p>
 
-<h4 id="system">system</h4>
+<h4 id="houses">houses</h4>
 
-<p>A value of null for house <em>system</em> - means we are not interested in the houses.  None will be returned, even if the prerequisite geo coordinates are provided.</p>
+<p>A value of false for the <em>houses</em> means we are not interested in any cusps, rendering any house system irrelevant (for the particular request).  None will be returned, even if the prerequisite geo coordinates are provided.  Check the swiss ephemeris manual for a list of valid house system codes.</p>
 
 <h3 id="RESPONSE">RESPONSE</h3>
 
@@ -140,7 +145,11 @@
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
-<p><a href="http://www.json.org/" class="man-ref">JSON<span class="s">(7)</span></a>, <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a></p>
+<p><a href="precious.1.html" class="man-ref">precious<span class="s">(1)</span></a>, <a href="http://www.json.org/" class="man-ref">JSON<span class="s">(7)</span></a>, <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a></p>
+
+<h2 id="NAVIGATE">NAVIGATE</h2>
+
+<p><a href="http://astrolet.github.com/precious" class="man-ref">Index<span class="s">(7)</span></a>, <a href="http://astrolin.com/to/precious" class="man-ref">Home<span class="s">(7)</span></a></p>
 
 
   <ol class='man-decor man-foot man foot'>
