@@ -89,6 +89,7 @@ task 'pages', "Build pages", ->
     parallel [buildMan, buildAnnotations], callback
 
   series [
+    (sh "if [ ! -d pages ] ; then mkdir pages ; fi") # mkdir pages only if it doesn't exist
     (sh "rm -rf pages/*")
     build
   ], (err) -> throw err if err
