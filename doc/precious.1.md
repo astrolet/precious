@@ -12,3 +12,7 @@ Anything less we couldn't do astrology with.
 ## SEE ALSO
 
 precious-json(7), gravity(6), ephemeris-py(3)
+
+## NAVIGATE
+
+Index(7), Home(7)

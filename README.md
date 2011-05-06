@@ -10,6 +10,15 @@ Node package distribution of [pyswisseph](http://pypi.python.org/pypi/pyswisseph
 More to come...
 
 
+## EXAMPLES
+
+With specific time, and somewhat more readable output:
+
+    precious '{"time": "1974-06-30T21:45Z", "out": "pprint"}'
+
+Modify the bin/defaults.json configuration according to preference.  See precious-json(7) and eden(1) for further / friendlier options.
+
+
 ## INSTALL
 
 With the [npm](http://npmjs.org/) prerequisite, do `npm install precious`.
@@ -31,3 +40,8 @@ This is [Unlicensed](http://unlicense.org) (free and unencumbered public domain 
 ## SEE ALSO
 
 precious(1), precious-coffee(1), precious-json(7), ephemeris-py(3), gravity(6), eden(1)
+
+
+## NAVIGATE
+
+Home(7)

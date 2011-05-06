@@ -19,7 +19,7 @@ A precious sample of valid json input:
 { "data": "node_modules/gravity/data"
 , "out": "json"
 , "stuff": [ [0, 3], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11], [] ]
-, "time": "1974\-06\-30T23:45Z"
+, "utc": null
 }
 .
 .fi
@@ -39,13 +39,16 @@ We get "json" by default anyway (same as null)\. A bit more human\-readable outp
 The kind of stuff to be returned, or null, or empty array(s) [] \- mean all the same default equivalent\. The first array \fB[0, 3]\fR respectively yields ecliptic position and speed for each item of interest\. These map directly to results of the \fBswe\.calc_ut\fR function\. The second array contains the main kind of things \- returned with key of 1\. The third array contains the minor kind of things \- offset by 10,000 and returned with key of 2\.
 .
 .P
-A value of null for \fItime\fR \- means the current moment will be used\. Otherwise provide UTC in ISO\-8601(7) format\. Finally and besides convenience, an array of time fragments to be passed on directly to the \fBswe\.utc_to_jd\fR function\.
+Undefined (or null) \fIutc\fR time \- means the current moment will be used\. Otherwise provide a string in ISO\-8601(7) format\.
+.
+.P
+Besides the \fIutc\fR semi\-convenience, this \fIut\fR array of time fragments will be passed on directly to the \fBswe\.utc_to_jd\fR function (as its arguments)\. It takes precedence over the any \fIutc\fR value that it is otherwise derived from\. Such option exists in case an intermediate conversion is not wanted\.
 .
 .P
 A value of null for \fIgeo\fR location or its \fIlat\fR / \fIlon\fR coordinates (i\.e\. \fB"geo": {"lat": null, "lon": null}\fR) \- means there will be no angles (e\.g\. Asc / Mc) returned\.
 .
 .P
-A value of null for house \fIsystem\fR \- means we are not interested in the houses\. None will be returned, even if the prerequisite geo coordinates are provided\.
+A value of false for the \fIhouses\fR means we are not interested in any cusps, rendering any house system irrelevant (for the particular request)\. None will be returned, even if the prerequisite geo coordinates are provided\. Check the swiss ephemeris manual for a list of valid house system codes\.
 .
 .SS "RESPONSE"
 The corresponding sample of precious output:
@@ -76,4 +79,7 @@ The corresponding sample of precious output:
 .IP "" 0
 .
 .SH "SEE ALSO"
-JSON(7), ISO\-8601(7)
+precious(1), JSON(7), ISO\-8601(7)
+.
+.SH "NAVIGATE"
+Index(7), Home(7)

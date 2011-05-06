@@ -11,7 +11,7 @@ A precious sample of valid json input:
     { "data": "node_modules/gravity/data"
     , "out": "json"
     , "stuff": [ [0, 3], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11], [] ]
-    , "time": "1974-06-30T23:45Z"
+    , "utc": null
     }
 
 ### REQUEST
@@ -30,17 +30,21 @@ We get "json" by default anyway (same as null).  A bit more human-readable outpu
 
 The kind of stuff to be returned, or null, or empty array(s) [] - mean all the same default equivalent.  The first array `[0, 3]` respectively yields ecliptic position and speed for each item of interest.  These map directly to results of the `swe.calc_ut` function.  The second array contains the main kind of things - returned with key of 1.  The third array contains the minor kind of things - offset by 10,000 and returned with key of 2.
 
-#### time
+#### utc
 
-A value of null for _time_ - means the current moment will be used.  Otherwise provide UTC in ISO-8601(7) format.  Finally and besides convenience, an array of time fragments to be passed on directly to the `swe.utc_to_jd` function.
+Undefined (or null) _utc_ time - means the current moment will be used.  Otherwise provide a string in ISO-8601(7) format.
+
+#### ut
+
+Besides the _utc_ semi-convenience, this _ut_ array of time fragments will be passed on directly to the `swe.utc_to_jd` function (as its arguments).  It takes precedence over the any _utc_ value that it is otherwise derived from.  Such option exists in case an intermediate conversion is not wanted.
 
 #### geo
 
 A value of null for _geo_ location or its _lat_ / _lon_ coordinates (i.e. `"geo": {"lat": null, "lon": null}`) - means there will be no angles (e.g. Asc / Mc) returned.
 
-#### system
+#### houses
 
-A value of null for house _system_ - means we are not interested in the houses.  None will be returned, even if the prerequisite geo coordinates are provided.
+A value of false for the _houses_ means we are not interested in any cusps, rendering any house system irrelevant (for the particular request).  None will be returned, even if the prerequisite geo coordinates are provided.  Check the swiss ephemeris manual for a list of valid house system codes.
 
 
 ### RESPONSE
@@ -67,4 +71,9 @@ The corresponding sample of precious output:
 
 ## SEE ALSO
 
-JSON(7), ISO-8601(7)
+precious(1), JSON(7), ISO-8601(7)
+
+
+## NAVIGATE
+
+Index(7), Home(7)

@@ -11,6 +11,7 @@
 util    = require('util')
 cjson   = require('cjson')
 _       = require("massagist")._
+ut      = require("lin").ut
 exec    = require('child_process').exec
 
 # The starting point - i.e. defaults.
@@ -25,17 +26,8 @@ if arguments.length > 0
 unless input.data.match /^\//
   input.data = "#{__dirname}/../#{input.data}"
 
-# No time means now.
-unless input.ut?
-  iso8601Format = /^(\d{4})-(\d{2})-(\d{2})((([T ](\d{2}):(\d{2})(:(\d{2})(\.(\d+))?)?)?)?)?(([-+])(\d{2}):(\d{2}))?(Z)?$/
-  t = (new Date Date.now()).toISOString().match(iso8601Format)
-  input.ut = [ Number(t[1])
-             , Number(t[2])
-             , Number(t[3])
-             , Number(t[7])
-             , Number(t[8])
-             , Number("#{t[10]}.#{t[12]}")
-             ]
+# Unless input.ut is set (unlikely), converts input.utc (optional) to it.  No input.utc means _now_.
+input.ut = ut.c(input.utc) unless input.ut?
 
 # Call ephemeris.py
 child = exec "#{__dirname}/../lib/ephemeris.py '#{JSON.stringify(input)}'", (error, stdout, stderr) ->

@@ -7,6 +7,8 @@ precious-coffee(1)   annotations/precious
 ephemeris-py(3)      annotations/lib/ephemeris
 
 # external manuals
+Index(7)            http://astrolet.github.com/precious
+Home(7)             http://astrolin.com/to/precious
 JSON(7)             http://www.json.org/
 eden(1)             http://astrolin.com/to/eden
 gravity(6)          http://astrolin.com/to/sin
