@@ -21,7 +21,7 @@
 , "dependencies":
   { "cjson": "~0.0.3"
   , "massagist": "*"
-  , "lin": "*"
+  , "lin": ">= 0.0.1-4"
   , "gravity": "*"
   }
 , "devDependencies":
