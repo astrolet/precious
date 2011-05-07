@@ -23,7 +23,7 @@ else:
 # Rarely used, pprint is imported only upon such request for output.
 # It also substitutes swe.get_planet_name - can be handy on occasion.
 
-if re["out"] == "pprint":
+if "out" in re and re["out"] == "pprint":
   from pprint import pprint
 
 
@@ -45,8 +45,7 @@ if __name__ == "__main__":
                       re["ut"][3],
                       re["ut"][4],
                       re["ut"][5],
-                      1 #re["ut"][6]
-                      )
+                      re["ut"][6])
     # <!---
     # e["jd-ut1"] = swe.jdut1_to_utc(t[1], 1)
     # --->
@@ -60,29 +59,48 @@ if __name__ == "__main__":
     #
 
     for o in [{"what": "1", "offset": 0}, {"what": "2", "offset": 10000}]:
-      for w in re["stuff"][int(o["what"])]:
-        result = swe.calc_ut(t[1], (w + o["offset"]))
-        output = {}
-        for out in re["stuff"][0]:
-          output[out] = result[out]
-        e[o["what"]][w] = output
+      iterate = re["stuff"][int(o["what"])]
+      if iterate:
+        for w in iterate:
+          result = swe.calc_ut(t[1], (w + o["offset"]))
+          output = {}
+          for out in re["stuff"][0]:
+            output[out] = result[out]
+          e[o["what"]][w] = output
+      else:
+        del e[o["what"]]
 
     # The angles & houses are possible only if given geo location.
-    if re["geo"]["lat"] and re["geo"]["lon"]:
+    # Insistence of latitude and longitude being a float instance.
+    if ("geo" in re
+         and "lat" in re["geo"]
+         and "lon" in re["geo"]
+         and isinstance(re["geo"]["lat"], float)
+         and isinstance(re["geo"]["lon"], float)):
       e["4"], e["3"] = swe.houses(t[1],
                                   float(re["geo"]["lat"]),
                                   float(re["geo"]["lon"]),
-                                  str(re["houses"]))
+                                  str(re["houses"] or "W"))
+      # The Whole Sign default wasn't asked for.
+      # None (null) or false means no houses wanted.
+      if not re["houses"]:
+        del e["4"]
+    else:
+      del e["3"]
+      del e["4"]
 
-    # Print standard output.
-    if re["out"] == "print":
+    # Print to STDOUT.
+    # JSON is the default (not even checked).
+    out = re["out"] if "out" in re else "json"
+    if out == "print":
       print(e)
-    elif re["out"] == "pprint":
+    elif out == "pprint":
       for (what, offset) in {"1": 0, "2": 10000}.iteritems():
         replace = {}
-        for (key, val) in e[what].iteritems():
-          replace[str(key) + '-' + swe.get_planet_name(key + offset)] = val
-        e[what] = replace
+        if what in e:
+          for (key, val) in e[what].iteritems():
+            replace[str(key) + '-' + swe.get_planet_name(key + offset)] = val
+          e[what] = replace
       pprint(e)
     else:
       print json.JSONEncoder().encode(e)

@@ -14,7 +14,7 @@ More to come...
 
 With specific time, and somewhat more readable output:
 
-    precious '{"time": "1974-06-30T21:45Z", "out": "pprint"}'
+    cli.js '{"utc": "1974-06-30T21:45Z", "geo": {"lat": 43.2166667, "lon": 27.9166667}, "out": "pprint"}'
 
 Modify the bin/defaults.json configuration according to preference.  See precious-json(7) and eden(1) for further / friendlier options.
 
