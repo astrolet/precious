@@ -35,7 +35,7 @@ if __name__ == "__main__":
     swe.set_ephe_path(re["data"])
 
     # This is a minimal e[phemeris].
-    e = {"1": {}, "2": {}, "3": {}, "4": {}}
+    e = {"1": {}, "2": {}, "3": [], "4": []}
 
     # Is using the Gregorian calendar flag correct?
     # If calendar type is conditional, is it easier to determine here (with the help of swe)?
@@ -71,12 +71,13 @@ if __name__ == "__main__":
         del e[o["what"]]
 
     # The angles & houses are possible only if given geo location.
-    # Insistence of latitude and longitude being a float instance.
+    # For that, the latitude and longitude must set - to float, or
+    # be able to convert to float (e.g. from string or perhaps int).
     if ("geo" in re
          and "lat" in re["geo"]
          and "lon" in re["geo"]
-         and isinstance(re["geo"]["lat"], float)
-         and isinstance(re["geo"]["lon"], float)):
+         and re["geo"]["lat"]
+         and re["geo"]["lon"]):
       e["4"], e["3"] = swe.houses(t[1],
                                   float(re["geo"]["lat"]),
                                   float(re["geo"]["lon"]),
