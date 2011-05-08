@@ -80,14 +80,14 @@
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
-<p>A precious sample of valid json input:</p>
+<p>A precious sample of valid json input.</p>
 
-<pre><code>{ "data": "node_modules/gravity/data"
-, "out": "json"
-, "stuff": [ [0, 3], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11], [] ]
-, "utc": null
+<pre><code>{ "utc": "1974-06-30T21:45:00.000Z"
+, "stuff": [[0], [0, 1], null]
 }
 </code></pre>
+
+<p>This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would be found, given a moment of time.</p>
 
 <h3 id="REQUEST">REQUEST</h3>
 
@@ -103,44 +103,39 @@
 
 <h4 id="stuff">stuff</h4>
 
-<p>The kind of stuff to be returned, or null, or empty array(s) [] - mean all the same default equivalent.  The first array <code>[0, 3]</code> respectively yields ecliptic position and speed for each item of interest.  These map directly to results of the <code>swe.calc_ut</code> function.  The second array contains the main kind of things - returned with key of 1.  The third array contains the minor kind of things - offset by 10,000 and returned with key of 2.</p>
+<p>The kind of stuff to be returned, or null, or empty array(s) [] - mean all the same default equivalent.  The first array <code>[0, 3]</code> respectively yields ecliptic position and speed for each item of interest.  These map directly to results of the <code>swe.calc_ut</code> function.  The second array contains the main kind of things - returned with key of '1'.  The third array contains the minor kind of things - offset by 10,000 and returned with key of '2'.</p>
 
 <h4 id="utc">utc</h4>
 
-<p>Undefined (or null) <em>utc</em> time - means the current moment will be used.  Otherwise provide a string in <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a> format.</p>
+<p>Undefined (or null) <em>utc</em> time - means the current moment will be used.  Otherwise provide a string in <a href="http://en.wikipedia.org/wiki/ISO_8601" class="man-ref">ISO-8601<span class="s">(7)</span></a> format (which must end with a Z).  Seconds are optional, plus even more optional precision after a decimal.  The default is 3 digit precision, i.e. milliseconds.</p>
 
 <h4 id="ut">ut</h4>
 
-<p>Besides the <em>utc</em> semi-convenience, this <em>ut</em> array of time fragments will be passed on directly to the <code>swe.utc_to_jd</code> function (as its arguments).  It takes precedence over the any <em>utc</em> value that it is otherwise derived from.  Such option exists in case an intermediate conversion is not wanted.</p>
+<p>Besides the <em>utc</em> semi-convenience, this <em>ut</em> array of time fragments will be passed on directly to the <code>swe.utc_to_jd</code> function (as its arguments).  It takes precedence over any <em>utc</em> value that it is otherwise derived from.  Such option exists in case an intermediate conversion is not wanted.</p>
 
 <h4 id="geo">geo</h4>
 
-<p>A value of null for <em>geo</em> location or its <em>lat</em> / <em>lon</em> coordinates (i.e. <code>"geo": {"lat": null, "lon": null}</code>) - means there will be no angles (e.g. Asc / Mc) returned.</p>
+<p>Given <em>geo</em> location with its <em>lat</em> / <em>lon</em> coordinates such as <code>"geo": { "lat": 43.2166667, "lon": 27.9166667 }</code> means there can and will be angles (e.g. Asc / Mc) keyed as '3'.  These come from the <code>swe.houses</code> function, however there may or may not be house cusps in the final results output - read about the next option.</p>
 
 <h4 id="houses">houses</h4>
 
-<p>A value of false for the <em>houses</em> means we are not interested in any cusps, rendering any house system irrelevant (for the particular request).  None will be returned, even if the prerequisite geo coordinates are provided.  Check the swiss ephemeris manual for a list of valid house system codes.</p>
+<p>A value of false for the <em>houses</em> means we are not interested in any cusps, rendering any house system irrelevant (for the particular request).  None will be returned, even if the prerequisite geo coordinates are provided.  Check the swiss ephemeris manual for a list of valid house system codes.  Anyway, the 12 cusps array would be keyed as '4'.</p>
+
+<h4 id="extra">extra</h4>
+
+<p>Asks for extra info (to be keyed as '0'), including the following:</p>
+
+<ul>
+<li>'input': copy of the request object</li>
+<li>'timing': ['start-time', '<var>end-time</var>']</li>
+</ul>
+
 
 <h3 id="RESPONSE">RESPONSE</h3>
 
 <p>The corresponding sample of precious output:</p>
 
-<pre><code>{
-    1: {
-        0: { 0: 98.70827783123845, 3: 0.9532022042652956 },
-        1: { 0: 238.13984880619816, 3: 12.452087297655709 },
-        2: { 0: 98.60114469380143, 3: -0.6003120017761042 },
-        3: { 0: 65.812762301102, 3: 1.1840328495003745 },
-        4: { 0: 133.42642172932844, 3: 0.616988988136803 },
-        5: { 0: 347.7929441223906, 3: 0.02179812116697949 },
-        6: { 0: 98.3799968014031, 3: 0.13007751871185486 },
-        7: { 0: 203.65922951629008, 3: -0.000969922057072429 },
-        8: { 0: 247.43838201042857, 3: -0.02209121163048053 },
-        9: { 0: 184.1376254881621, 3: 0.009023772953667774 },
-        11: { 0: 259.402942463929, 3: 0.02027545162955067 }
-    },
-    2: {}
-}
+<pre><code>{"1": {"0": {"0": 98.70827783123845}, "1": {"0": 238.13984880619816}}}
 </code></pre>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>

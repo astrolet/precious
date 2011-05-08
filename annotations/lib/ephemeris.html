@@ -68,7 +68,7 @@ which also offers extra output options.</p>
 It also substitutes swe.get_planet_name - can be handy on occasion.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre><div class="highlight"><pre><span class="k">if</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;out&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;pprint&quot;</span><span class="p">:</span>
+        <div class='highlight'><pre><div class="highlight"><pre><span class="k">if</span> <span class="s">&quot;out&quot;</span> <span class="ow">in</span> <span class="n">re</span> <span class="ow">and</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;out&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;pprint&quot;</span><span class="p">:</span>
   <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 
 
@@ -94,7 +94,7 @@ It also substitutes swe.get_planet_name - can be handy on occasion.</p>
         <p>This is a minimal e[phemeris].</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre><div class="highlight"><pre>    <span class="n">e</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;3&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;4&quot;</span><span class="p">:</span> <span class="p">{}}</span></pre></div></pre></div>
+        <div class='highlight'><pre><div class="highlight"><pre>    <span class="n">e</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;3&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s">&quot;4&quot;</span><span class="p">:</span> <span class="p">[]}</span></pre></div></pre></div>
       </td>
     </tr><tr id='section-6'>
       <td class=docs>
@@ -111,8 +111,7 @@ If calendar type is conditional, is it easier to determine here (with the help o
                       <span class="n">re</span><span class="p">[</span><span class="s">&quot;ut&quot;</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span>
                       <span class="n">re</span><span class="p">[</span><span class="s">&quot;ut&quot;</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span>
                       <span class="n">re</span><span class="p">[</span><span class="s">&quot;ut&quot;</span><span class="p">][</span><span class="mi">5</span><span class="p">],</span>
-                      <span class="mi">1</span> <span class="c">#re[&quot;ut&quot;][6]</span>
-                      <span class="p">)</span></pre></div></pre></div>
+                      <span class="n">re</span><span class="p">[</span><span class="s">&quot;ut&quot;</span><span class="p">][</span><span class="mi">6</span><span class="p">])</span></pre></div></pre></div>
       </td>
     </tr><tr id='section-7'>
       <td class=docs>
@@ -133,51 +132,79 @@ e["jd-ut1"] = swe.jdut1_to_utc(t[1], 1)
       </td>
       <td class=code>
         <div class='highlight'><pre><div class="highlight"><pre>    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="p">[{</span><span class="s">&quot;what&quot;</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="s">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;what&quot;</span><span class="p">:</span> <span class="s">&quot;2&quot;</span><span class="p">,</span> <span class="s">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}]:</span>
-      <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;stuff&quot;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">])]:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">swe</span><span class="o">.</span><span class="n">calc_ut</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="n">o</span><span class="p">[</span><span class="s">&quot;offset&quot;</span><span class="p">]))</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;stuff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
-          <span class="n">output</span><span class="p">[</span><span class="n">out</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">out</span><span class="p">]</span>
-        <span class="n">e</span><span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">]][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span></pre></div></pre></div>
+      <span class="n">iterate</span> <span class="o">=</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;stuff&quot;</span><span class="p">][</span><span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">])]</span>
+      <span class="k">if</span> <span class="n">iterate</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">iterate</span><span class="p">:</span>
+          <span class="n">result</span> <span class="o">=</span> <span class="n">swe</span><span class="o">.</span><span class="n">calc_ut</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="n">o</span><span class="p">[</span><span class="s">&quot;offset&quot;</span><span class="p">]))</span>
+          <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
+          <span class="k">for</span> <span class="n">out</span> <span class="ow">in</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;stuff&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">out</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">out</span><span class="p">]</span>
+          <span class="n">e</span><span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">]][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">output</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">]]</span></pre></div></pre></div>
       </td>
     </tr><tr id='section-8'>
       <td class=docs>
         <div class="octowrap">
           <a class="octothorpe" href="#section-8">#</a>
         </div>
-        <p>The angles &amp; houses are possible only if given geo location.</p>
+        <p>The angles &amp; houses are possible only if given geo location.
+For that, the latitude and longitude must set - to float, or
+be able to convert to float (e.g. from string or perhaps int).</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre><div class="highlight"><pre>    <span class="k">if</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lat&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lon&quot;</span><span class="p">]:</span>
+        <div class='highlight'><pre><div class="highlight"><pre>    <span class="k">if</span> <span class="p">(</span><span class="s">&quot;geo&quot;</span> <span class="ow">in</span> <span class="n">re</span>
+         <span class="ow">and</span> <span class="s">&quot;lat&quot;</span> <span class="ow">in</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">]</span>
+         <span class="ow">and</span> <span class="s">&quot;lon&quot;</span> <span class="ow">in</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">]</span>
+         <span class="ow">and</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lat&quot;</span><span class="p">]</span>
+         <span class="ow">and</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lon&quot;</span><span class="p">]):</span>
       <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">],</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">swe</span><span class="o">.</span><span class="n">houses</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                   <span class="nb">float</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lat&quot;</span><span class="p">]),</span>
                                   <span class="nb">float</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;geo&quot;</span><span class="p">][</span><span class="s">&quot;lon&quot;</span><span class="p">]),</span>
-                                  <span class="nb">str</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]))</span></pre></div></pre></div>
+                                  <span class="nb">str</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&quot;W&quot;</span><span class="p">))</span></pre></div></pre></div>
       </td>
     </tr><tr id='section-9'>
       <td class=docs>
         <div class="octowrap">
           <a class="octothorpe" href="#section-9">#</a>
         </div>
-        <p>Print standard output.</p>
+        <p>The Whole Sign default wasn't asked for.
+None (null) or false means no houses wanted.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre><div class="highlight"><pre>    <span class="k">if</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;out&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;print&quot;</span><span class="p">:</span>
-      <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;out&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;pprint&quot;</span><span class="p">:</span>
-      <span class="k">for</span> <span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-        <span class="n">replace</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="n">what</span><span class="p">]</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-          <span class="n">replace</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">swe</span><span class="o">.</span><span class="n">get_planet_name</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)]</span> <span class="o">=</span> <span class="n">val</span>
-        <span class="n">e</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace</span>
-      <span class="n">pprint</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <div class='highlight'><pre><div class="highlight"><pre>      <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]:</span>
+        <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></pre></div></pre></div>
+      <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;3&quot;</span><span class="p">]</span>
+      <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">]</span></pre></div></pre></div>
       </td>
     </tr><tr id='section-10'>
       <td class=docs>
         <div class="octowrap">
           <a class="octothorpe" href="#section-10">#</a>
+        </div>
+        <p>Print to STDOUT.
+JSON is the default (not even checked).</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre><div class="highlight"><pre>    <span class="n">out</span> <span class="o">=</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;out&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="s">&quot;out&quot;</span> <span class="ow">in</span> <span class="n">re</span> <span class="k">else</span> <span class="s">&quot;json&quot;</span>
+    <span class="k">if</span> <span class="n">out</span> <span class="o">==</span> <span class="s">&quot;print&quot;</span><span class="p">:</span>
+      <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">out</span> <span class="o">==</span> <span class="s">&quot;pprint&quot;</span><span class="p">:</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">what</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">}</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="n">replace</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">what</span> <span class="ow">in</span> <span class="n">e</span><span class="p">:</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">e</span><span class="p">[</span><span class="n">what</span><span class="p">]</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">replace</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">swe</span><span class="o">.</span><span class="n">get_planet_name</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)]</span> <span class="o">=</span> <span class="n">val</span>
+          <span class="n">e</span><span class="p">[</span><span class="n">what</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace</span>
+      <span class="n">pprint</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></pre></div></pre></div>
+      </td>
+    </tr><tr id='section-11'>
+      <td class=docs>
+        <div class="octowrap">
+          <a class="octothorpe" href="#section-11">#</a>
         </div>
         <p>Necessary when called from Node / Eden.</p>
       </td>
