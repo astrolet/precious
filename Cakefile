@@ -7,12 +7,24 @@ inspect = require('eyes').inspector({stream: null, pretty: false, styles: {all: 
 watchTree = require('watch-tree').watchTree
 {series, parallel} = require 'async'
 
+# ANSI Terminal Colors.
+bold  = "\033[0;1m"
+red   = "\033[0;31m"
+green = "\033[0;32m"
+reset = "\033[0m"
+
+
+# Utility functions
+
+pleaseWait = ->
+  console.log "\n#{bold}this may take a while#{green} ...\n"
 
 handleError = (err) ->
   if err
     console.log "\n\033[1;36m=>\033[1;37m Remember you need to `npm install` the package.json devDependencies and also `bundle install`.\033[0;37m\n"
     console.log err.stack
 
+# execute some command quietly (without stdout)
 sh = (command) -> (k) -> exec command, k
 
 # Modified from https://gist.github.com/920698
@@ -22,7 +34,27 @@ runCommand = (name, args) ->
     proc.stdout.on 'data', (buffer) -> console.log buffer.toString()
     proc.on 'exit', (status) -> process.exit(1) if status != 0
 
+# shorthand to runCommand with
+command = (c, cb) ->
+  runCommand "sh", ["-c", c]
+  cb
 
+
+# First-time setup.  Pygments is installed through pycco,
+# or through other projects that use docco as well.
+# It's probably overdone...  A reminder of prerequisites, for development.
+task 'install', "Run once: npm, bundler, pycco, etc.", ->
+  pleaseWait()
+  command "
+    curl http://npmjs.org/install.sh | sh
+     && npm install
+     && gem install bundler
+     && bundle install
+     && sudo easy_install pycco
+    "
+
+
+# There is a common (among various projects) workflow issue with this task...
 task 'assets:watch', 'Broken: watch source files and build docs', (options) ->
 
   watchStuff = (callback) ->

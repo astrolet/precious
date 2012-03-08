@@ -31,16 +31,23 @@ With the [npm](http://npmjs.org/) prerequisite, do `npm install -g precious`.  T
 
 * node
 * npm
-* python
 * gcc
+* python
+* pycco
 * gravity
+
+There is a `cake install` task that is somewhat useful.  It assumes that
+Python, a C compiler and Node.js are already installed.
 
 
 ## CAVEATS
 
-Precious isn't meant for Windows.  After Node gets to a stable v6 (v5 is for Windows compatibility), such contribution would be great.  Another one is we would have to distribute precompiled swisseph / pyswisseph.  NPM already makes that possible.
+It's unknown how the project should be setup for Windows development / use.
+Contribution of such instructions would be great to have.
 
-Some day, it is preferable to have Node.js bindings directly to the Swiss Ephemeris, without going through Python or FFI.  This is mostly for performance gain, of-course...
+Some day, it would be preferable to have Node.js bindings directly to
+the Swiss Ephemeris, without going through Python or FFI.
+This is mostly for performance gain, of-course...
 
 
 ## LICENSE
