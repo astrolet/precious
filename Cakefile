@@ -50,7 +50,7 @@ task 'install', "Run once: npm, bundler, pycco, etc.", ->
      && npm install
      && gem install bundler
      && bundle install
-     && sudo easy_install pycco
+     && easy_install pycco
     "
 
 
