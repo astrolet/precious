@@ -9,7 +9,7 @@
   }
 , "bugs":
   { "mail": "support@astrolet.net"
-  , "web" : "https://github.com/astrolet/precious/issues"
+  , "url" : "https://www.pivotaltracker.com/projects/203533"
   }
 , "author": "Orlin M Bozhinov <orlin@astrolet.net> (http://soundsapiens.com)"
 , "contributors": []
@@ -19,17 +19,17 @@
   , "man": "./man"
   }
 , "dependencies":
-  { "cjson": "~0.0.3"
+  { "cjson": "*"
   , "massagist": "*"
-  , "lin": ">= 0.0.1-4"
+  , "lin": "*"
   , "gravity": "*"
   }
 , "devDependencies":
-  { "coffee-script": "~1.1.0"
+  { "coffee-script": "*"
   , "eyes": "*"
   , "watch-tree": "*"
   , "docco": "*"
-  , "async": "~0.1.8"
+  , "async": "*"
   }
 , "scripts":
   { "install" : "python ./swe.py/setup.py install"
@@ -37,7 +37,7 @@
   }
 , "bin": { "precious" : "./cli.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
-, "engines" : { "node" : "0.4 || 0.5" }
+, "engines" : { "node" : "0.6.x", "npm": "1.1.x" }
 , "licenses":
   [ { "type": "Unlicense"
     , "url" : "http://unlicense.org/"
