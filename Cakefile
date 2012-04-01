@@ -103,9 +103,12 @@ task 'pages', "Build pages", ->
   buildMan = (callback) ->
     series [
       (sh "cp README.md doc/index.md")
+      (sh 'echo "# UNLICENSE\n## LICENSE\n\n" > doc/UNLICENSE.md' )
+      (sh "cat UNLICENSE >> doc/UNLICENSE.md")
       (sh "ronn -stoc -5 doc/*.md")
       (sh "mv doc/*.html pages/")
       (sh "rm doc/index.md")
+      (sh "rm doc/UNLICENSE.md")
     ], callback
 
   buildAnnotations = (callback) ->

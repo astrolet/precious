@@ -3,7 +3,8 @@ precious -- A Minimum kind of Ephemeris
 
 ## DESCRIPTION
 
-Node package distribution of [pyswisseph](http://pypi.python.org/pypi/pyswisseph).
+Node package distribution of
+[pyswisseph](http://pypi.python.org/pypi/pyswisseph).
 
 [Eden](http://www.astrolin.com/to/eden) depends on it.
 
@@ -20,12 +21,15 @@ Or data for right now, specific location, and with whole sign houses:
 
     cli.js '{"geo": {"lat": 43.2166667, "lon": 27.9166667}, "houses": "W"}'
 
-Modify the bin/defaults.json configuration according to preference.  See precious-json(7) and eden(1) for further / friendlier options.
+Modify the bin/defaults.json configuration according to preference.
+See precious-json(7) and eden(1) for further / friendlier options.
 
 
 ## INSTALL
 
-With the [npm](http://npmjs.org/) prerequisite, do `npm install -g precious`.  The `-g` for global, means the `precious` command can be run regardless of current directory.
+With the [npm](http://npmjs.org/) prerequisite, do `npm install -g precious`.
+The `-g` for global, means the `precious` command can be run
+regardless of what the current directory is.
 
 ### DEPENDENCIES
 
@@ -47,17 +51,22 @@ Contribution of such instructions would be great to have.
 
 Some day, it would be preferable to have Node.js bindings directly to
 the Swiss Ephemeris, without going through Python or FFI.
-This is mostly for performance gain, of-course...
+[Emscripten](http://emscripten.org) stands out as a likely next step.
 
 
 ## LICENSE
 
-This is [Unlicensed](http://unlicense.org) (free and unencumbered public domain software), except for LICENSE applying to the copy of [pyswisseph](http://pypi.python.org/pypi/pyswisseph) with [Swiss Ephemeris](http://www.astro.com/swisseph) source and its conditions (located in swe.py/src).
+This is [Unlicensed](http://astrolet.github.com/precious/UNLICENSE.html) (free
+and unencumbered public domain software), except for LICENSE applying to the
+copy of [pyswisseph](http://pypi.python.org/pypi/pyswisseph)
+with [Swiss Ephemeris](http://www.astro.com/swisseph) source
+and its conditions (located in swe.py/src).
 
 
 ## SEE ALSO
 
-precious(1), precious-coffee(1), precious-json(7), ephemeris-py(3), gravity(6), eden(1)
+precious(1), precious-coffee(1), precious-json(7), ephemeris-py(3), gravity(6),
+eden(1)
 
 
 ## NAVIGATE
