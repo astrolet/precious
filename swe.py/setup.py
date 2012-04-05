@@ -59,9 +59,9 @@ if 'build' in sys.argv or 'install' in sys.argv:
 
 swemodule = Extension(
     'swisseph',
-    include_dirs = ['src', 'swephelp'],
     libraries = ['swe'],
     library_dirs = ['src'],
+    include_dirs = ['src', 'swephelp'],
     extra_compile_args= ['-std=gnu99'],
     sources = [
         'pyswisseph.c',

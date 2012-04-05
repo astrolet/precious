@@ -40,9 +40,10 @@ command = (c, cb) ->
   cb
 
 
+# Install / reminder of prerequisites (for development).
 # First-time setup.  Pygments is installed through pycco,
 # or through other projects that use docco as well.
-# It's probably overdone...  A reminder of prerequisites, for development.
+# It's probably overdone...  Unlikely to have node without npm.
 task 'install', "Run once: npm, bundler, pycco, etc.", ->
   pleaseWait()
   command "
