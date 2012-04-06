@@ -33,7 +33,7 @@
   }
 , "scripts":
   { "install" : "python ./swe.py/setup.py install"
-  , "postinstall": "sh ./scripts/install-message.sh"
+  , "postinstall": "sh ./bin/post-install.sh"
   }
 , "bin": { "precious" : "./cli.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
