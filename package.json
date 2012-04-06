@@ -34,7 +34,7 @@
   { "install" : "python ./swe.py/setup.py install"
   , "postinstall": "coffee ./bin/post-install.coffee"
   }
-, "bin": { "precious" : "./bin/precious.coffee" }
+, "bin": { "precious" : "./bin/precious.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
 , "engines" : { "node" : "0.6.x", "npm": "1.1.x" }
 , "licenses":
