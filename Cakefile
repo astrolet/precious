@@ -4,7 +4,6 @@ docs = "#{__dirname}/docs"
 {basename, join} = require 'path'
 {exec, spawn} = require 'child_process'
 inspect = require('eyes').inspector({stream: null, pretty: false, styles: {all: 'magenta'}})
-watchTree = require('watch-tree').watchTree
 {series, parallel} = require 'async'
 
 # ANSI Terminal Colors.
@@ -56,17 +55,15 @@ task 'install', "Run once: npm, bundler, pycco, etc.", ->
 
 
 # Build manuals / gh-pages almost exactly like https://github.com/josh/nack does
-
 task 'man', "Build manuals", ->
   fs.readdir "doc/", (err, files) ->
     for file in files when /\.md/.test file
       source = join "doc", file
       target = join "man", basename source, ".md"
-      exec "ronn --pipe --roff #{source} > #{target}", (err) ->
-        throw err if err
+      command "ronn --pipe --roff #{source} > #{target}"
 
 
-task 'pages', "Build pages", ->
+task 'pages', "Build pages / documents", ->
 
   buildMan = (callback) ->
     series [
@@ -97,7 +94,7 @@ task 'pages', "Build pages", ->
   ], (err) -> throw err if err
 
 
-task 'pages:publish', "Publish pages", ->
+task 'pages:publish', "Build pages and publish to gh-pages", ->
 
   checkoutBranch = (callback) ->
     series [
