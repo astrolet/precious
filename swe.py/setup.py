@@ -48,6 +48,15 @@ from distutils.core import setup, Extension
 # Pyswisseph version
 VERSION = '1.77.00-0'
 
+# The following helps with building, whatever the path.
+# Build libswe, change installation dirs.
+if 'build' in sys.argv or 'install' in sys.argv:
+    instdir = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(os.path.join(instdir, 'src'))
+    os.system('make clean')
+    os.system('make libswe.a')
+    os.chdir(instdir)
+
 # Extension
 swemodule = Extension(
     'swisseph',
