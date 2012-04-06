@@ -13,7 +13,7 @@
 # send email to swisseph@astro.ch
 #
 
-CFLAGS = -g -O9 -Wall -pedantic -fPIC 	# for Linux and other gcc systems
+CFLAGS = -g -O9 -Wall -fPIC 	# for Linux and other gcc systems
 OP=$(CFLAGS)  
 CC=cc	#for Linux
 
@@ -24,7 +24,7 @@ CC=cc	#for Linux
 	$(CC) -c $(OP) $<     
 
 SWEOBJ = swedate.o swehouse.o swejpl.o swemmoon.o swemplan.o swepcalc.o sweph.o\
-	swepdate.o swephlib.o swecl.o swehel.o 
+	swepdate.o swephlib.o swecl.o swehel.o
 
 swetest: swetest.o libswe.a
 	$(CC) $(OP) -o swetest swetest.o -L. -lswe -lm
@@ -48,6 +48,7 @@ clean:
 swecl.o: swejpl.h sweodef.h swephexp.h swedll.h sweph.h swephlib.h
 sweclips.o: sweodef.h swephexp.h swedll.h
 swedate.o: swephexp.h sweodef.h swedll.h
+swehel.o: swephexp.h sweodef.h swedll.h
 swehouse.o: swephexp.h sweodef.h swedll.h swephlib.h swehouse.h
 swejpl.o: swephexp.h sweodef.h swedll.h sweph.h swejpl.h
 swemini.o: swephexp.h sweodef.h swedll.h

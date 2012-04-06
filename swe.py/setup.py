@@ -3,7 +3,7 @@
 
 #   This file is part of Pyswisseph.
 #
-#   Copyright (c) 2007-2009 Stanislas Marquis <stnsls@gmail.com>
+#   Copyright (c) 2007-2011 Stanislas Marquis <stnsls@gmail.com>
 #
 #   Pyswisseph is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -18,11 +18,11 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Pyswisseph.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Python extension to AstroDienst's Swiss Ephemeris library.
+"""Python extension to AstroDienst Swiss Ephemeris library.
 
 Swiss Ephemeris homepage: http://www.astro.com/swisseph/
 
-Now Python 3 compatible.
+Compatible with Python 2.x and 3.x.
 
 Usage example:
 
@@ -38,29 +38,19 @@ Usage example:
 0.098474291148756998
 >>> help(swe)
 
-Installation: ``# python setup.py install``
-
-Debian/Ubuntu packages: http://www.openastro.org/
+Standard installation (unixes): ``# python setup.py install``
 
 """
 
 import os.path, sys
 from distutils.core import setup, Extension
 
-VERSION = '1.76.00-1'
+# Pyswisseph version
+VERSION = '1.77.00-0'
 
-# This build libswe
-if 'build' in sys.argv or 'install' in sys.argv:
-    instdir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.join(instdir, 'src'))
-    os.system('make clean')
-    os.system('make libswe.a')
-    os.chdir(instdir)
-
+# Extension
 swemodule = Extension(
     'swisseph',
-    libraries = ['swe'],
-    library_dirs = ['src'],
     include_dirs = ['src', 'swephelp'],
     extra_compile_args= ['-std=gnu99'],
     sources = [
@@ -70,7 +60,18 @@ swemodule = Extension(
         'swephelp/swhsearch.c',
         'swephelp/swhraman.c',
         'swephelp/swhgeo.c',
-        'swephelp/swhutil.c'
+        'swephelp/swhutil.c',
+        'src/swecl.c',
+        'src/swedate.c',
+        'src/swehel.c',
+        'src/swehouse.c',
+        'src/swejpl.c',
+        'src/swemmoon.c',
+        'src/swemplan.c',
+        #swemptab.c
+        'src/swepcalc.c',
+        'src/sweph.c',
+        'src/swephlib.c'
         ]
     )
 
@@ -98,3 +99,6 @@ setup(
     keywords = 'Astrology Ephemeris Swisseph',
     ext_modules = [swemodule]
     )
+
+# vi: set ai et sw=4:
+
