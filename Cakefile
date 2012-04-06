@@ -55,39 +55,6 @@ task 'install', "Run once: npm, bundler, pycco, etc.", ->
     "
 
 
-# There is a common (among various projects) workflow issue with this task...
-task 'assets:watch', 'Broken: watch source files and build docs', (options) ->
-
-  watchStuff = (callback) ->
-    watch_rate = 100 #ms
-    watch_info =
-      1:
-        path: "bin"
-        options:
-          'match': '.+\.py'
-        events: ["filePreexisted", "fileCreated", "fileModified"]
-        callback: -> console.log "you can't call me"
-
-    # NOTE: it would be nice if the watch_info[n].callback could be called
-    # ... and if we knew which event fired it - perhaps there is a way?
-
-    watcher = {}
-    for item, stuff of watch_info
-      stuff.options['sample-rate'] = watch_rate
-      for event in stuff.events
-        watcher["#{item}-#{event}"] = watchTree(stuff.path, stuff.options)
-        watcher["#{item}-#{event}"].on event, (what, stats) ->
-          console.log what + ' - is being documented (due to some event), stats: ' + inspect(stats)
-          if context = what.match /(.*)\/[^\/]+\.py$/ then runCommand 'pycco', ['-d', "#{docs}/#{context[1]}", what]
-          else console.log "unrecognized file type of #{what}"
-
-  series [
-    (sh "rm -rf #{docs}/")
-    (sh "mkdir -p #{docs}/bin")
-    watchStuff
-  ], (err) -> throw err if err
-
-
 # Build manuals / gh-pages almost exactly like https://github.com/josh/nack does
 
 task 'man', "Build manuals", ->

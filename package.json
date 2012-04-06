@@ -18,15 +18,14 @@
   , "man": "./man"
   }
 , "dependencies":
-  { "cjson": "*"
-  , "massagist": "*"
+  { "coffee-script": "*"
   , "lin": "*"
+  , "cjson": "*"
   , "gravity": "*"
+  , "massagist": "*"
   }
 , "devDependencies":
-  { "coffee-script": "*"
-  , "eyes": "*"
-  , "watch-tree": "*"
+  { "eyes": "*"
   , "docco": "*"
   , "async": "*"
   }
