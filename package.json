@@ -15,7 +15,6 @@
 , "contributors": []
 , "directories":
   { "bin": "./bin"
-  , "lib": "./lib"
   , "man": "./man"
   }
 , "dependencies":
@@ -35,7 +34,7 @@
   { "install" : "python ./swe.py/setup.py install"
   , "postinstall": "coffee ./bin/post-install.coffee"
   }
-, "bin": { "precious" : "./cli.js" }
+, "bin": { "precious" : "./bin/precious.coffee" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
 , "engines" : { "node" : "0.6.x", "npm": "1.1.x" }
 , "licenses":

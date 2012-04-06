@@ -62,7 +62,7 @@ task 'assets:watch', 'Broken: watch source files and build docs', (options) ->
     watch_rate = 100 #ms
     watch_info =
       1:
-        path: "lib"
+        path: "bin"
         options:
           'match': '.+\.py'
         events: ["filePreexisted", "fileCreated", "fileModified"]
@@ -83,7 +83,7 @@ task 'assets:watch', 'Broken: watch source files and build docs', (options) ->
 
   series [
     (sh "rm -rf #{docs}/")
-    (sh "mkdir -p #{docs}/lib")
+    (sh "mkdir -p #{docs}/bin")
     watchStuff
   ], (err) -> throw err if err
 
@@ -114,8 +114,9 @@ task 'pages', "Build pages", ->
 
   buildAnnotations = (callback) ->
     series [
+      (sh "rm -rf docs")
       (sh "docco bin/*.coffee")
-      (sh "pycco -d docs/lib lib/*.py")
+      (sh "pycco -d docs/python bin/*.py")
       (sh "cp -r docs pages/annotations")
     ], callback
 

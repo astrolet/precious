@@ -30,7 +30,7 @@ unless input.data.match /^\//
 input.ut = ut.c(input.utc) unless input.ut?
 
 # Call ephemeris.py
-child = exec "#{__dirname}/../lib/ephemeris.py '#{JSON.stringify(input)}'", (error, stdout, stderr) ->
+child = exec "#{__dirname}/../bin/ephemeris.py '#{JSON.stringify(input)}'", (error, stdout, stderr) ->
     if error?
       console.log 'Exec error: \n' + error
     else
