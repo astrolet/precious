@@ -33,7 +33,7 @@
   }
 , "scripts":
   { "install" : "python ./swe.py/setup.py install"
-  , "postinstall": "sh ./bin/post-install.sh"
+  , "postinstall": "coffee ./bin/post-install.coffee"
   }
 , "bin": { "precious" : "./cli.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]

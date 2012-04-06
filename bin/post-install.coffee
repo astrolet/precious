@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env coffee
 
-cat <<MESSAGE
-
+console.log "
+\n
 Thanks for installing Precious.
-
+\n\n
 Read LICENSE (full copy found in swe.py/src) before use.
-
-MESSAGE
+\n
+"
