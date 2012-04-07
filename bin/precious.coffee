@@ -49,17 +49,31 @@ fetch = (what) ->
   input = convenient json.parse what
 
   # The call.
-  child = exec "#{__dirname}/ephemeris.py '#{JSON.stringify(input)}'",
+  exec "#{__dirname}/ephemeris.py '#{JSON.stringify(input)}'",
     (error, stdout, stderr) ->
-      if error?
-        console.error 'Exec error: \n' + error
+      if error
+        console.error 'Got error from exec of child_process.\n', error
+        process.exit(1)
       else
-        util.print '\n' + stdout + '\n'
+        util.print stdout
 
 
-# JSON arguments or defaults.json (the latter is just a test).
+# Expects `<json>` string or `-i <file>` arguments.
 arguments = process.argv.splice(2)
-if arguments.length > 0 then fetch arguments[0]
-else require('fs').readFile "#{__dirname}/defaults.json", "utf8", (err, data) ->
-  if err then throw err else fetch data
+if arguments.length > 0
+  if arguments[0] is '-i'
+    unless arguments[1]?
+      console.error "Usage: precious -i <relative-file-path>"
+      process.exit(1)
+    require('fs').readFile "./#{arguments[1]}", "utf8", (err, data) ->
+      if err
+        console.error "
+An error has ocurred.  Please double-check the file & path."
+        console.error err
+        process.exit(1)
+      else fetch data
+  else fetch arguments[0]
+else
+  console.error "Usage: precious <{[precious-json-input]}>"
+  process.exit(1)
 
