@@ -1,7 +1,7 @@
 /*
     This file is part of Pyswisseph.
 
-    Copyright (c) 2007-2009 Stanislas Marquis <smarquis@chaosorigin.com>
+    Copyright (c) 2007-2011 Stanislas Marquis <smarquis@chaosorigin.com>
 
     Pyswisseph is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,32 +25,38 @@ Homepage: http://pyswisseph.chaosorigin.com/
 Swisseph authors: Alois Treindl, Dieter Koch.
 Swisseph homepage: http://www.astro.com/swisseph
 
-Swisseph version: 1.76.00
-Last revision: 18.02.2010
+Swisseph version: 1.77.00
+Last revision: 08.09.2011
 
 */
 
-#define PYSWISSEPH_VERSION      20100218
+#define PYSWISSEPH_VERSION      20110908
 
-/* Set default argument for set_ephe_path function */
-#ifdef WIN32 /* Windows, not too sure... */
-#define DFTSET_EPHE_PATH        "C:\swisseph"
-#else /* unixes */
-#define DFTSET_EPHE_PATH        "/usr/share/swisseph:/usr/local/share/swisseph"
+/* Set the default argument for set_ephe_path function */
+#ifndef PYSWE_DEFAULT_EPHE_PATH
+#ifdef WIN32
+#define PYSWE_DEFAULT_EPHE_PATH     "C:\\swisseph"
+#else
+#define PYSWE_DEFAULT_EPHE_PATH     "/usr/share/swisseph:/usr/local/share/swisseph"
+#endif
+#endif /* PYSWE_DEFAULT_EPHE_PATH */
+
+/* Wether to automaticly set ephemeris path on module import */
+#ifndef PYSWE_AUTO_SET_EPHE_PATH
+#define PYSWE_AUTO_SET_EPHE_PATH    1
 #endif
 
-/* Automaticly set ephemeris path on module import. (Un)def if (not) needed. */
-#define AUTOSET_EPHE_PATH
-
-/* Undef this to compile only swisseph functions */
-#define USE_SWEPHELP
+/* Wether to build swephelp functions */
+#ifndef PYSWE_USE_SWEPHELP
+#define PYSWE_USE_SWEPHELP      1
+#endif
 
 /* Dont modify below */
 
 #include <Python.h>
 #include <swephexp.h>
 
-#ifdef USE_SWEPHELP
+#if PYSWE_USE_SWEPHELP
 #include <swephelp.h>
 #endif
 
@@ -70,12 +76,12 @@ static PyObject * pyswe_Error; /* Module exception type */
 /* swisseph.set_ephe_path */
 static char pyswe_set_ephe_path__doc__[] =
 "Set ephemeris files path.\n\n"
-"Args: str path=\"" DFTSET_EPHE_PATH "\"\n"
+"Args: str path=\"" PYSWE_DEFAULT_EPHE_PATH "\"\n"
 "Return: None";
 
 static PyObject * pyswe_set_ephe_path FUNCARGS_KEYWDS
 {
-    char *path = DFTSET_EPHE_PATH;
+    char *path = PYSWE_DEFAULT_EPHE_PATH;
     static char *kwlist[] = {"path", NULL};
     if (!PyArg_ParseTupleAndKeywords(args, keywds, "|s", kwlist, &path))
         return NULL;
@@ -1266,9 +1272,9 @@ static PyObject * pyswe_azalt FUNCARGS_KEYWDS
 {
     double jd, geo[3], xin[3], press = 0.0, temp = 0.0, xaz[3];
     int flag = SE_ECL2HOR;
-    xin[2] = 0.0;
     static char *kwlist[] = {"julday", "lon", "lat", "hei",
         "x", "y", "z", "press", "temp", "flag", NULL};
+    xin[2] = 0.0;
     if (!PyArg_ParseTupleAndKeywords(args, keywds, "dddddd|dddi", kwlist,
         &jd, &geo[0], &geo[1], &geo[2], &xin[0], &xin[1], &xin[2], &press,
         &temp, &flag))
@@ -1662,7 +1668,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking longitude
+        /* checking longitude */
         if (PyFloat_Check(o4))
         {
             geopos[0] = PyFloat_AsDouble(o4);
@@ -1684,7 +1690,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking latitude
+        /* checking latitude */
         if (PyFloat_Check(o5))
         {
             geopos[1] = PyFloat_AsDouble(o5);
@@ -1706,7 +1712,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking altitude
+        /* checking altitude */
         if (PyFloat_Check(o6))
         {
             geopos[2] = PyFloat_AsDouble(o6);
@@ -1750,7 +1756,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // atmospheric pressure
+        /* atmospheric pressure */
         if (PyFloat_Check(o4))
         {
             atmo[0] = PyFloat_AsDouble(o4);
@@ -1772,7 +1778,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // atmospheric temperature
+        /* atmospheric temperature */
         if (PyFloat_Check(o5))
         {
             atmo[1] = PyFloat_AsDouble(o5);
@@ -1794,7 +1800,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // humidity
+        /* humidity */
         if (PyFloat_Check(o6))
         {
             atmo[2] = PyFloat_AsDouble(o6);
@@ -1816,7 +1822,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // Meteorological range
+        /* meteorological range */
         if (PyFloat_Check(o7))
         {
             atmo[3] = PyFloat_AsDouble(o7);
@@ -1863,7 +1869,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // observer age
+        /* observer age */
         if (PyFloat_Check(o4))
         {
             observ[0] = PyFloat_AsDouble(o4);
@@ -1886,7 +1892,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // snellen ratio
+        /* snellen ratio */
         if (PyFloat_Check(o5))
         {
             observ[1] = PyFloat_AsDouble(o5);
@@ -1909,7 +1915,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // mono/binocular
+        /* mono/binocular */
         if (PyFloat_Check(o6))
         {
             observ[2] = PyFloat_AsDouble(o6);
@@ -1932,7 +1938,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // telescope magnification
+        /* telescope magnification */
         if (PyFloat_Check(o7))
         {
             observ[3] = PyFloat_AsDouble(o7);
@@ -1955,7 +1961,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // optical aperture
+        /* optical aperture */
         if (PyFloat_Check(o8))
         {
             observ[4] = PyFloat_AsDouble(o8);
@@ -1978,7 +1984,7 @@ static PyObject * pyswe_heliacal_ut FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // optical transmission
+        /* optical transmission */
         if (PyFloat_Check(o9))
         {
             observ[5] = PyFloat_AsDouble(o9);
@@ -2053,7 +2059,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking longitude
+        /* checking longitude */
         if (PyFloat_Check(o4))
         {
             geopos[0] = PyFloat_AsDouble(o4);
@@ -2075,7 +2081,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking latitude
+        /* checking latitude */
         if (PyFloat_Check(o5))
         {
             geopos[1] = PyFloat_AsDouble(o5);
@@ -2097,7 +2103,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // checking altitude
+        /* checking altitude */
         if (PyFloat_Check(o6))
         {
             geopos[2] = PyFloat_AsDouble(o6);
@@ -2141,7 +2147,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // atmospheric pressure
+        /* atmospheric pressure */
         if (PyFloat_Check(o4))
         {
             atmo[0] = PyFloat_AsDouble(o4);
@@ -2163,7 +2169,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // atmospheric temperature
+        /* atmospheric temperature */
         if (PyFloat_Check(o5))
         {
             atmo[1] = PyFloat_AsDouble(o5);
@@ -2185,7 +2191,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // humidity
+        /* humidity */
         if (PyFloat_Check(o6))
         {
             atmo[2] = PyFloat_AsDouble(o6);
@@ -2207,7 +2213,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // Meteorological range
+        /* meteorological range */
         if (PyFloat_Check(o7))
         {
             atmo[3] = PyFloat_AsDouble(o7);
@@ -2254,7 +2260,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // observer age
+        /* observer age */
         if (PyFloat_Check(o4))
         {
             observ[0] = PyFloat_AsDouble(o4);
@@ -2277,7 +2283,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // snellen ratio
+        /* snellen ratio */
         if (PyFloat_Check(o5))
         {
             observ[1] = PyFloat_AsDouble(o5);
@@ -2300,7 +2306,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // mono/binocular
+        /* mono/binocular */
         if (PyFloat_Check(o6))
         {
             observ[2] = PyFloat_AsDouble(o6);
@@ -2323,7 +2329,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // telescope magnification
+        /* telescope magnification */
         if (PyFloat_Check(o7))
         {
             observ[3] = PyFloat_AsDouble(o7);
@@ -2346,7 +2352,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // optical aperture
+        /* optical aperture */
         if (PyFloat_Check(o8))
         {
             observ[4] = PyFloat_AsDouble(o8);
@@ -2369,7 +2375,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
             return NULL;
         }
 
-        // optical transmission
+        /* optical transmission */
         if (PyFloat_Check(o9))
         {
             observ[5] = PyFloat_AsDouble(o9);
@@ -2409,7 +2415,7 @@ static PyObject * pyswe_vis_limit_mag FUNCARGS_KEYWDS
     }
 }
 
-#ifdef USE_SWEPHELP
+#if PYSWE_USE_SWEPHELP
 /* *** Specific pyswisseph functions. ***
 
 All names begin with an underscore. They are not part of the original swisseph,
@@ -3252,11 +3258,11 @@ static char pyswe__lord__doc__[] =
 
 static PyObject * pyswe__lord FUNCARGS_KEYWDS
 {
-    int sign;
+    int sign, i;
     static char *kwlist[] = {"sign", NULL};
     if (!PyArg_ParseTupleAndKeywords(args, keywds, "i", kwlist, &sign))
         return NULL;
-    int i = swh_lord(sign);
+    i = swh_lord(sign);
     if (i == -1)
     {
         PyErr_SetString(pyswe_Error, "swisseph._lord: Invalid sign number");
@@ -3475,11 +3481,11 @@ static char pyswe__ochchabala__doc__[] =
 static PyObject * pyswe__ochchabala FUNCARGS_KEYWDS
 {
     int ipl;
-    double lon;
+    double lon, d;
     static char *kwlist[] = {"pl", "longitude", NULL};
     if (!PyArg_ParseTupleAndKeywords(args, keywds, "id", kwlist, &ipl, &lon))
         return NULL;
-    double d = swh_ochchabala(ipl, lon);
+    d = swh_ochchabala(ipl, lon);
     if (d == -1)
     {
         PyErr_SetString(pyswe_Error, "swisseph._ochchabala: Invalid planet");
@@ -3527,7 +3533,7 @@ static PyObject * pyswe__trylock FUNCARGS_SELF
 }
 
 #endif /* SWH_USE_THREADS */
-#endif /* USE_SWEPHELP */
+#endif /* PYSWE_USE_SWEPHELP */
 
 /* Methods */
 static struct PyMethodDef pyswe_methods[] = {
@@ -3674,7 +3680,7 @@ static struct PyMethodDef pyswe_methods[] = {
     {"vis_limit_mag", (PyCFunction) pyswe_vis_limit_mag,
         METH_VARARGS|METH_KEYWORDS, pyswe_vis_limit_mag__doc__},
 
-#ifdef USE_SWEPHELP
+#if PYSWE_USE_SWEPHELP
     /* pyswisseph/swephelp functions. */
     {"_jdnow", (PyCFunction) pyswe__jdnow,
         METH_NOARGS, pyswe__jdnow__doc__},
@@ -3758,15 +3764,15 @@ static struct PyMethodDef pyswe_methods[] = {
     {"_trylock", (PyCFunction) pyswe__trylock,
         METH_VARARGS|METH_KEYWORDS, pyswe__trylock__doc__},
 #endif /* SWH_USE_THREADS */
-#endif /* USE_SWEPHELP */
+#endif /* PYSWE_USE_SWEPHELP */
     {NULL, (PyCFunction) NULL, 0, NULL}
 };
 
 static char pyswe_module_documentation[] =
-"Python extension to AstroDienst's Swiss Ephemeris library.\n"
-#ifdef AUTOSET_EPHE_PATH
+"Python extension to AstroDienst Swiss Ephemeris library.\n"
+#if PYSWE_AUTO_SET_EPHE_PATH
 "Import of this extension module does automagicaly set the ephemeris path"
-" to \"" DFTSET_EPHE_PATH "\".\n"
+" to \"" PYSWE_DEFAULT_EPHE_PATH "\".\n"
 #endif
 "Extended documentation can be found on AstroDienst website.\n\n"
 "Pyswisseph homepage: http://pyswisseph.chaosorigin.com/\n"
@@ -3790,6 +3796,7 @@ PyMODINIT_FUNC initswisseph(void)
 #endif
 {
     PyObject *m;
+    char buf[10];
 
 #if PY_MAJOR_VERSION >= 3
     m = PyModule_Create(&pyswe_module);
@@ -3981,7 +3988,7 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddStringConstant(m, "ASTNAMFILE", "seasnam.txt");
     PyModule_AddStringConstant(m, "FICTFILE", "seorbel.txt");
 
-    PyModule_AddStringConstant(m, "EPHE_PATH", ".:/users/ephe2/:/users/ephe/");
+    PyModule_AddStringConstant(m, "EPHE_PATH", SE_EPHE_PATH);
 
     PyModule_AddIntConstant(m, "SPLIT_DEG_ROUND_SEC", SE_SPLIT_DEG_ROUND_SEC);
     PyModule_AddIntConstant(m, "SPLIT_DEG_ROUND_MIN", SE_SPLIT_DEG_ROUND_MIN);
@@ -4000,7 +4007,6 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddIntConstant(m, "COSMICAL_SETTING", SE_COSMICAL_SETTING);
     PyModule_AddIntConstant(m, "ACRONYCHAL_SETTING", SE_ACRONYCHAL_SETTING);
 
-
     PyModule_AddIntConstant(m, "HELFLAG_LONG_SEARCH", SE_HELFLAG_LONG_SEARCH);
     PyModule_AddIntConstant(m, "HELFLAG_HIGH_PRECISION", SE_HELFLAG_HIGH_PRECISION);
     PyModule_AddIntConstant(m, "HELFLAG_OPTICAL_PARAMS", SE_HELFLAG_OPTICAL_PARAMS);
@@ -4011,14 +4017,14 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddIntConstant(m, "HELFLAG_AVKIND_MIN7", SE_HELFLAG_AVKIND_MIN7);
     PyModule_AddIntConstant(m, "HELFLAG_AVKIND_MIN9", SE_HELFLAG_AVKIND_MIN9);
     PyModule_AddIntConstant(m, "HELFLAG_AVKIND", SE_HELFLAG_AVKIND);
-    PyModule_AddIntConstant(m, "TJD_INVALID", TJD_INVALID);
+    PyModule_AddObject(m, "TJD_INVALID", Py_BuildValue("f", TJD_INVALID));
     PyModule_AddIntConstant(m, "SIMULATE_VICTORVB", SIMULATE_VICTORVB);
 
     PyModule_AddIntConstant(m, "PHOTOPIC_FLAG", SE_PHOTOPIC_FLAG);
     PyModule_AddIntConstant(m, "SCOTOPIC_FLAG", SE_SCOTOPIC_FLAG);
     PyModule_AddIntConstant(m, "MIXEDOPIC_FLAG", SE_MIXEDOPIC_FLAG);
 
-#ifdef USE_SWEPHELP
+#if PYSWE_USE_SWEPHELP
     /* *** Additional constants -- not swiss ephemeris ***/
 
     /* Aspects */
@@ -4063,18 +4069,18 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddIntConstant(m, "AQUARIUS", SWH_AQUARIUS);
     PyModule_AddIntConstant(m, "PISCES", SWH_PISCES);
 
-    PyModule_AddIntConstant(m, "MESHA", SWH_ARIES);
-    PyModule_AddIntConstant(m, "VRISHABA", SWH_TAURUS);
-    PyModule_AddIntConstant(m, "MITHUNA", SWH_GEMINI);
-    PyModule_AddIntConstant(m, "KATAKA", SWH_CANCER);
-    PyModule_AddIntConstant(m, "SIMHA", SWH_LEO);
-    PyModule_AddIntConstant(m, "KANYA", SWH_VIRGO);
-    PyModule_AddIntConstant(m, "THULA", SWH_LIBRA);
-    PyModule_AddIntConstant(m, "VRISHIKA", SWH_SCORPIO);
-    PyModule_AddIntConstant(m, "DHANUS", SWH_SAGITTARIUS);
-    PyModule_AddIntConstant(m, "MAKARA", SWH_CAPRICORN);
-    PyModule_AddIntConstant(m, "KUMBHA", SWH_AQUARIUS);
-    PyModule_AddIntConstant(m, "MEENA", SWH_PISCES);
+    PyModule_AddIntConstant(m, "MESHA", SWH_MESHA);
+    PyModule_AddIntConstant(m, "VRISHABA", SWH_VRISHABA);
+    PyModule_AddIntConstant(m, "MITHUNA", SWH_MITHUNA);
+    PyModule_AddIntConstant(m, "KATAKA", SWH_KATAKA);
+    PyModule_AddIntConstant(m, "SIMHA", SWH_SIMHA);
+    PyModule_AddIntConstant(m, "KANYA", SWH_KANYA);
+    PyModule_AddIntConstant(m, "THULA", SWH_THULA);
+    PyModule_AddIntConstant(m, "VRISHIKA", SWH_VRISHIKA);
+    PyModule_AddIntConstant(m, "DHANUS", SWH_DHANUS);
+    PyModule_AddIntConstant(m, "MAKARA", SWH_MAKARA);
+    PyModule_AddIntConstant(m, "KUMBHA", SWH_KUMBHA);
+    PyModule_AddIntConstant(m, "MEENA", SWH_MEENA);
 
     /* Planets */
     PyModule_AddIntConstant(m, "RAVI", SWH_RAVI);
@@ -4087,15 +4093,15 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddIntConstant(m, "RAHU", SWH_RAHU);
     PyModule_AddIntConstant(m, "KETU", SWH_KETU);
 
-    PyModule_AddIntConstant(m, "SURYA", SWH_RAVI);
-    PyModule_AddIntConstant(m, "SOMA", SWH_CHANDRA);
-    PyModule_AddIntConstant(m, "SOUMYA", SWH_BUDHA);
-    PyModule_AddIntConstant(m, "BHARGAVA", SWH_SUKRA);
-    PyModule_AddIntConstant(m, "ANGARAKA", SWH_KUJA);
-    PyModule_AddIntConstant(m, "BRIHASPATI", SWH_GURU);
-    PyModule_AddIntConstant(m, "MANDA", SWH_SANI);
-    PyModule_AddIntConstant(m, "THAMA", SWH_RAHU);
-    PyModule_AddIntConstant(m, "SIKHI", SWH_KETU);
+    PyModule_AddIntConstant(m, "SURYA", SWH_SURYA);
+    PyModule_AddIntConstant(m, "SOMA", SWH_SOMA);
+    PyModule_AddIntConstant(m, "SOUMYA", SWH_SOUMYA);
+    PyModule_AddIntConstant(m, "BHARGAVA", SWH_BHARGAVA);
+    PyModule_AddIntConstant(m, "ANGARAKA", SWH_ANGARAKA);
+    PyModule_AddIntConstant(m, "BRIHASPATI", SWH_BRIHASPATI);
+    PyModule_AddIntConstant(m, "MANDA", SWH_MANDA);
+    PyModule_AddIntConstant(m, "THAMA", SWH_THAMA);
+    PyModule_AddIntConstant(m, "SIKHI", SWH_SIKHI);
 
     /* Nakshatras */
     PyModule_AddIntConstant(m, "ASWINI", SWH_ASWINI);
@@ -4126,21 +4132,22 @@ PyMODINIT_FUNC initswisseph(void)
     PyModule_AddIntConstant(m, "UTTARABHADRA", SWH_UTTARABHADRA);
     PyModule_AddIntConstant(m, "REVATHI", SWH_REVATHI);
 
-#endif /* USE_SWEPHELP */
+#endif /* PYSWE_USE_SWEPHELP */
 
     PyModule_AddIntConstant(m, "__version__", PYSWISSEPH_VERSION);
-    char buf[10];
     PyModule_AddStringConstant(m, "version", swe_version(buf));
 
     if (PyErr_Occurred())
         Py_FatalError("Can't initialize module swisseph!");
 
-#ifdef AUTOSET_EPHE_PATH
+#if PYSWE_AUTO_SET_EPHE_PATH
     /* Automaticly set ephemeris path on module import */
-    swe_set_ephe_path(DFTSET_EPHE_PATH);
-#endif /* AUTOSET_EPHE_PATH */
+    swe_set_ephe_path(PYSWE_DEFAULT_EPHE_PATH);
+#endif /* PYSWE_AUTO_SET_EPHE_PATH */
 
 #if PY_MAJOR_VERSION >= 3
     return m;
 #endif
 }
+
+/* vi: set ai et sw=4 sts=4: */

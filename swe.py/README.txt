@@ -1,8 +1,9 @@
 Pyswisseph Readme
 -----------------
 
-This directory contains the source of Python extension to the Swiss Ephemeris,
-along with the swisseph source itself, created by AstroDienst.
+This directory contains the source of the Python extension to the Swiss
+Ephemeris (pyswisseph), along with the swisseph source itself, created by
+AstroDienst.
 
   - Homepage: http://pyswisseph.chaosorigin.com/
   - Python Package Index: http://pypi.python.org/pypi/pyswisseph/
@@ -14,17 +15,15 @@ For python version 2.x or 3.x
   - To install in sites-packages: « python setup.py install »
   - To build extension only: « python setup.py build »
 
-64 bits platforms
------------------
+Windows
+-------
 
-Compilation on 64 bits platform will not work with the original swisseph
-makefiles, unless you add -fPIC to the compilation flags.
-
-The swisseph shipped with this package has an updated Makefile that should
-work.
+Under Windows, it is recommended to use MSVC 2010 or MinGW, with help of
+the CMake build system, to build the module. See the 'cmake' directory.
 
 Licensing
 ---------
+
 Either GNU Public License v2 or later, or Swiss Ephemeris Professional License.
 
 The choice must be made before the software developer distributes software
@@ -45,6 +44,7 @@ http://www.astro.com/swisseph/
 
 Contact
 -------
+
 Any feedback about pyswisseph is welcome:
 Stanislas Marquis <stnsls@gmail.com>
 

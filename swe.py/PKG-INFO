@@ -1,17 +1,17 @@
 Metadata-Version: 1.0
 Name: pyswisseph
-Version: 1.76.00-1
+Version: 1.77.00-0
 Summary: Python extension to the Swiss Ephemeris
 Home-page: http://pyswisseph.chaosorigin.com/
 Author: S.Marquis
 Author-email: stnsls@gmail.com
 License: UNKNOWN
 Download-URL: http://pypi.python.org/pypi/pyswisseph
-Description: Python extension to AstroDienst's Swiss Ephemeris library.
+Description: Python extension to AstroDienst Swiss Ephemeris library.
         
         Swiss Ephemeris homepage: http://www.astro.com/swisseph/
         
-        Now Python 3 compatible.
+        Compatible with Python 2.x and 3.x.
         
         Usage example:
         
@@ -27,9 +27,7 @@ Description: Python extension to AstroDienst's Swiss Ephemeris library.
         0.098474291148756998
         >>> help(swe)
         
-        Installation: ``# python setup.py install``
-        
-        Debian/Ubuntu packages: http://www.openastro.org/
+        Standard installation (unixes): ``# python setup.py install``
         
         
 Keywords: Astrology Ephemeris Swisseph

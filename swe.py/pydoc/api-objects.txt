@@ -283,6 +283,7 @@ swisseph.WALDEMATH	swisseph-module.html#WALDEMATH
 swisseph.FLG_SPEED	swisseph-module.html#FLG_SPEED
 swisseph.BIUNDECILE	swisseph-module.html#BIUNDECILE
 swisseph.pheno_ut	swisseph-module.html#pheno_ut
+swisseph.__package__	swisseph-module.html#__package__
 swisseph._revjul	swisseph-module.html#_revjul
 swisseph.PROSERPINA	swisseph-module.html#PROSERPINA
 swisseph.HELIACAL_RISING	swisseph-module.html#HELIACAL_RISING

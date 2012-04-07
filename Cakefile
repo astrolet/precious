@@ -4,7 +4,6 @@ docs = "#{__dirname}/docs"
 {basename, join} = require 'path'
 {exec, spawn} = require 'child_process'
 inspect = require('eyes').inspector({stream: null, pretty: false, styles: {all: 'magenta'}})
-watchTree = require('watch-tree').watchTree
 {series, parallel} = require 'async'
 
 # ANSI Terminal Colors.
@@ -40,9 +39,10 @@ command = (c, cb) ->
   cb
 
 
+# Install / reminder of prerequisites (for development).
 # First-time setup.  Pygments is installed through pycco,
 # or through other projects that use docco as well.
-# It's probably overdone...  A reminder of prerequisites, for development.
+# It's probably overdone...  Unlikely to have node without npm.
 task 'install', "Run once: npm, bundler, pycco, etc.", ->
   pleaseWait()
   command "
@@ -54,54 +54,20 @@ task 'install', "Run once: npm, bundler, pycco, etc.", ->
     "
 
 
-# There is a common (among various projects) workflow issue with this task...
-task 'assets:watch', 'Broken: watch source files and build docs', (options) ->
-
-  watchStuff = (callback) ->
-    watch_rate = 100 #ms
-    watch_info =
-      1:
-        path: "lib"
-        options:
-          'match': '.+\.py'
-        events: ["filePreexisted", "fileCreated", "fileModified"]
-        callback: -> console.log "you can't call me"
-
-    # NOTE: it would be nice if the watch_info[n].callback could be called
-    # ... and if we knew which event fired it - perhaps there is a way?
-
-    watcher = {}
-    for item, stuff of watch_info
-      stuff.options['sample-rate'] = watch_rate
-      for event in stuff.events
-        watcher["#{item}-#{event}"] = watchTree(stuff.path, stuff.options)
-        watcher["#{item}-#{event}"].on event, (what, stats) ->
-          console.log what + ' - is being documented (due to some event), stats: ' + inspect(stats)
-          if context = what.match /(.*)\/[^\/]+\.py$/ then runCommand 'pycco', ['-d', "#{docs}/#{context[1]}", what]
-          else console.log "unrecognized file type of #{what}"
-
-  series [
-    (sh "rm -rf #{docs}/")
-    (sh "mkdir -p #{docs}/lib")
-    watchStuff
-  ], (err) -> throw err if err
-
-
 # Build manuals / gh-pages almost exactly like https://github.com/josh/nack does
-
-task 'man', "Build manuals", ->
+task 'man', "Build unix man pages", ->
   fs.readdir "doc/", (err, files) ->
     for file in files when /\.md/.test file
       source = join "doc", file
       target = join "man", basename source, ".md"
-      exec "ronn --pipe --roff #{source} > #{target}", (err) ->
-        throw err if err
+      command "ronn --pipe --roff #{source} > #{target}"
 
 
-task 'pages', "Build pages", ->
+task 'pages', "Build pages / documents as well", ->
 
   buildMan = (callback) ->
     series [
+      (sh "cake man")
       (sh "cp README.md doc/index.md")
       (sh 'echo "# UNLICENSE\n## LICENSE\n\n" > doc/UNLICENSE.md' )
       (sh "cat UNLICENSE >> doc/UNLICENSE.md")
@@ -113,8 +79,9 @@ task 'pages', "Build pages", ->
 
   buildAnnotations = (callback) ->
     series [
+      (sh "rm -rf docs")
       (sh "docco bin/*.coffee")
-      (sh "pycco -d docs/lib lib/*.py")
+      (sh "pycco -d docs/python bin/*.py")
       (sh "cp -r docs pages/annotations")
     ], callback
 
@@ -128,7 +95,7 @@ task 'pages', "Build pages", ->
   ], (err) -> throw err if err
 
 
-task 'pages:publish', "Publish pages", ->
+task 'pages:publish', "Build pages and publish to gh-pages", ->
 
   checkoutBranch = (callback) ->
     series [

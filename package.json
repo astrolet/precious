@@ -15,27 +15,24 @@
 , "contributors": []
 , "directories":
   { "bin": "./bin"
-  , "lib": "./lib"
   , "man": "./man"
   }
 , "dependencies":
-  { "cjson": "*"
-  , "massagist": "*"
-  , "lin": "*"
+  { "coffee-script": "*"
   , "gravity": "*"
+  , "jsonify": "*"
+  , "lin": "*"
   }
 , "devDependencies":
-  { "coffee-script": "*"
-  , "eyes": "*"
-  , "watch-tree": "*"
+  { "eyes": "*"
   , "docco": "*"
   , "async": "*"
   }
 , "scripts":
   { "install" : "python ./swe.py/setup.py install"
-  , "postinstall": "sh ./scripts/install-message.sh"
+  , "postinstall": "coffee ./bin/post-install.coffee"
   }
-, "bin": { "precious" : "./cli.js" }
+, "bin": { "precious" : "./bin/precious.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
 , "engines" : { "node" : "0.6.x", "npm": "1.1.x" }
 , "licenses":
