@@ -15,10 +15,11 @@ exec   = require('child_process').exec
 util   = require('util')
 
 
-# Note the extra parse / stringify just for a couple of trifles.
-# It isn't the most efficient way to do it, but it does offer convenience.
-fetch = (what) ->
-  input = json.parse what
+# Fill in the input with convenient niceties / default settings.
+convenient = (input) ->
+
+  # Location of the ephemeris data, unless explicitly elsewhere.
+  input.data ?= "node_modules/gravity/data"
 
   # Insist the data path be absolute - relative means relative to precious.
   unless input.data?.match /^\//
@@ -27,6 +28,25 @@ fetch = (what) ->
   # Unless input.ut is set (unlikely), converts input.utc (optional) to it.
   # No input.utc does _now_.
   input.ut = ut.c(input.utc) unless input.ut?
+
+  # In case nothing specific is asked for.
+  # Get the planets - longitude and speed.
+  input.stuff ?= [
+      [0, 3]
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      []
+    ]
+
+  # No houses, unless both geo-coordinates and house system preference given.
+  input.houses ?= false
+
+  input
+
+
+# Note the extra parse / stringify just for the sake of easy defaults.
+# It isn't the most efficient way to do it, but it does offer convenience.
+fetch = (what) ->
+  input = convenient json.parse what
 
   # The call.
   child = exec "#{__dirname}/ephemeris.py '#{JSON.stringify(input)}'",
