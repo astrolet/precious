@@ -91,14 +91,19 @@
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p>With specific time, and somewhat more readable output:</p>
+<p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
 
-<pre><code>cli.js '{"utc": "1974-06-30T21:45Z", "out": "pprint", "extra": true}'
+<pre><code>precious {}
 </code></pre>
 
-<p>Or data for right now, specific location, and with whole sign houses:</p>
+<p>With specific time, "pprint" for a bit more readable output + names:</p>
 
-<pre><code>cli.js '{"geo": {"lat": 43.2166667, "lon": 27.9166667}, "houses": "W"}'
+<pre><code>precious '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+</code></pre>
+
+<p>No "utc" for <em>right now</em>, it also fetches the angles, given geo-location:</p>
+
+<pre><code>precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 </code></pre>
 
 <p>Modify the bin/defaults.json configuration according to preference.
@@ -144,7 +149,7 @@ and its conditions (located in swe.py/src).</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
-<p><a href="precious.1.html" class="man-ref">precious<span class="s">(1)</span></a>, <a href="annotations/precious.html" class="man-ref">precious-coffee<span class="s">(1)</span></a>, <a href="json.7.html" class="man-ref">precious-json<span class="s">(7)</span></a>, <a href="annotations/lib/ephemeris.html" class="man-ref">ephemeris-py<span class="s">(3)</span></a>, <a href="http://astrolet.github.com/sin" class="man-ref">gravity<span class="s">(6)</span></a>,
+<p><a href="precious.1.html" class="man-ref">precious<span class="s">(1)</span></a>, <a href="annotations/precious.html" class="man-ref">precious-coffee<span class="s">(1)</span></a>, <a href="json.7.html" class="man-ref">precious-json<span class="s">(7)</span></a>, <a href="annotations/python/ephemeris.html" class="man-ref">ephemeris-py<span class="s">(3)</span></a>, <a href="http://astrolet.github.com/sin" class="man-ref">gravity<span class="s">(6)</span></a>,
 <a href="http://astrolet.github.com/eden/eden.1.html" class="man-ref">eden<span class="s">(1)</span></a></p>
 
 <h2 id="NAVIGATE">NAVIGATE</h2>
