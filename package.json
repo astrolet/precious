@@ -19,10 +19,9 @@
   }
 , "dependencies":
   { "coffee-script": "*"
-  , "lin": "*"
-  , "cjson": "*"
   , "gravity": "*"
-  , "massagist": "*"
+  , "jsonify": "*"
+  , "lin": "*"
   }
 , "devDependencies":
   { "eyes": "*"
