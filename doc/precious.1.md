@@ -3,7 +3,14 @@ precious(1) -- a minimum kind of ephemeris
 
 ## SYNOPSIS
 
-`precious` [<input.json>]
+`precious` runs `man precious` (which is this help)
+
+`precious json` - a synonym for `man precious-json`
+
+`precious <'{input}'>` json input, even if just {}
+
+`precious -i <file>` a json file (relative path)
+
 
 ## DESCRIPTION
 

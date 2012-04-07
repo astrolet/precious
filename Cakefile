@@ -55,7 +55,7 @@ task 'install', "Run once: npm, bundler, pycco, etc.", ->
 
 
 # Build manuals / gh-pages almost exactly like https://github.com/josh/nack does
-task 'man', "Build manuals", ->
+task 'man', "Build unix man pages", ->
   fs.readdir "doc/", (err, files) ->
     for file in files when /\.md/.test file
       source = join "doc", file
@@ -63,10 +63,11 @@ task 'man', "Build manuals", ->
       command "ronn --pipe --roff #{source} > #{target}"
 
 
-task 'pages', "Build pages / documents", ->
+task 'pages', "Build pages / documents as well", ->
 
   buildMan = (callback) ->
     series [
+      (sh "cake man")
       (sh "cp README.md doc/index.md")
       (sh 'echo "# UNLICENSE\n## LICENSE\n\n" > doc/UNLICENSE.md' )
       (sh "cat UNLICENSE >> doc/UNLICENSE.md")

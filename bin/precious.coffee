@@ -15,6 +15,17 @@ exec   = require('child_process').exec
 util   = require('util')
 
 
+# There are several man pages, reused for help.
+man = (page) ->
+  exec "man #{page}", (err, out) ->
+    if err
+      console.error "Can't get: `man #{page}`."
+      console.error "Go to http://astrolet.github.com/precious/ for help."
+      process.exit(1)
+    else
+      console.log out
+
+
 # Fill in the input with convenient niceties / default settings.
 convenient = (input) ->
 
@@ -59,11 +70,12 @@ fetch = (what) ->
 
 
 # Expects `<json>` string or `-i <file>` arguments.
+# Does help with man pages for precious, precious-json.
 arguments = process.argv.splice(2)
 if arguments.length > 0
   if arguments[0] is '-i'
     unless arguments[1]?
-      console.error "Usage: precious -i <relative-file-path>"
+      console.error "Usage: precious -i <file>"
       process.exit(1)
     require('fs').readFile "./#{arguments[1]}", "utf8", (err, data) ->
       if err
@@ -72,8 +84,7 @@ An error has ocurred.  Please double-check the file & path."
         console.error err
         process.exit(1)
       else fetch data
+  else if arguments[0] is "json" then man "precious-json"
   else fetch arguments[0]
-else
-  console.error "Usage: precious <{[precious-json-input]}>"
-  process.exit(1)
+else man "precious"
 
