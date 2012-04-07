@@ -1,12 +1,17 @@
 #!/usr/bin/env coffee
 
-# This is a convenience script.  Use eden(1) for greater convenience.
+# This is a convenience script.
+# Use [eden(1)](http://astrolet.github.com/eden/eden.1.html) for
+# greater convenience.
 #
 # It takes a string of json, and calls precious.py with it.
 # Only one argument expected.
 # Anything extra is ignored.
-# See `man precious-json` for format details.
-# Anything less (i.e. nothing) means defaults.json will be used.
+# Run `precious json` or visit
+# [precious-json(7)](http://astrolet.github.com/precious/json.7.html)
+# for format details.  The latter (web documentation) is better.
+# Anything less (i.e. nothing) means the [convenient](#section-5)
+# defaults will be used.
 
 # What's required.
 ut     = require('lin').ut
