@@ -27,9 +27,9 @@ logs
 results
 
 build
-swe.py/build
-swe.py/src/*.a
-swe.py/src/*.o
+swe/build
+swe/src/*.a
+swe/src/*.o
 
 # Tools
 .settings.xml

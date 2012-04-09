@@ -62,7 +62,7 @@ This is [Unlicensed](http://astrolet.github.com/precious/UNLICENSE.html) (free
 and unencumbered public domain software), except for LICENSE applying to the
 copy of [pyswisseph](http://pypi.python.org/pypi/pyswisseph)
 with [Swiss Ephemeris](http://www.astro.com/swisseph) source
-and its conditions (located in swe.py/src).
+and its conditions (located in swe/src).
 
 
 ## SEE ALSO

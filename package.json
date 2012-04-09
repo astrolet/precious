@@ -29,7 +29,7 @@
   , "async": "*"
   }
 , "scripts":
-  { "install" : "python ./swe.py/setup.py install"
+  { "install" : "python ./swe/setup.py install"
   , "postinstall": "coffee ./bin/post-install.coffee"
   }
 , "bin": { "precious" : "./bin/precious.js" }
