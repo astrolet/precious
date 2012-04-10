@@ -17,6 +17,7 @@
   { "bin": "./bin"
   , "man": "./man"
   }
+, "main": "index"
 , "dependencies":
   { "coffee-script": "*"
   , "gravity": "*"
