@@ -61,7 +61,12 @@ convenient = (input) ->
 # This is the call.
 # Note the extra parse / stringify just for the sake of easy defaults.
 # It isn't the most efficient way to do it, but it does offer convenience.
-fetch = (what) -> ephemeris convenient json.parse what
+fetch = (what) ->
+  stream = ephemeris convenient json.parse what
+  stream.stderr.on 'data', (error) ->
+    console.error 'Spawned child_process stderr -- ' + error
+    process.exit(1)
+  stream.stdout.pipe process.stdout
 
 
 # Processing of command-line arguments.  Minimal on purpose.
