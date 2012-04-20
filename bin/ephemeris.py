@@ -4,7 +4,14 @@
 # More easily invoked with [Eden](http://astrolin.com/to/eden),
 # which also offers extra output options.
 
-import sys
+# Borrowed from http://stackoverflow.com/a/6098238 - insert this directory
+# to the sys.path front - imports the local swisseph rather than any other
+# that may be otherwise installed on the system (for better predictability).
+import os, sys, inspect
+ot = os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0])
+if ot not in sys.path:
+  sys.path.insert(0, ot)
+
 import json
 import swisseph as swe
 

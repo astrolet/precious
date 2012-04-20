@@ -13,16 +13,15 @@
 # Anything less (i.e. nothing) means the [convenient](#section-5)
 # defaults will be used.
 
-# What's required.
-ut     = require('lin').ut
-json   = require('jsonify')
-exec   = require('child_process').exec
-util   = require('util')
+# What is - required.
+ut        = require('lin').ut
+json      = require('jsonify')
+ephemeris = require('./ephemeris')
 
 
 # There are several man pages, reused for help.
 man = (page) ->
-  exec "man #{page}", (err, out) ->
+  require('child_process').exec "man #{page}", (err, out) ->
     if err
       console.error "Can't get: `man #{page}`."
       console.error "Go to http://astrolet.github.com/precious/ for help."
@@ -59,22 +58,19 @@ convenient = (input) ->
   input
 
 
+# This is the call.
 # Note the extra parse / stringify just for the sake of easy defaults.
 # It isn't the most efficient way to do it, but it does offer convenience.
 fetch = (what) ->
-  input = convenient json.parse what
-
-  # The call.
-  exec "#{__dirname}/ephemeris.py '#{JSON.stringify(input)}'",
-    (error, stdout, stderr) ->
-      if error
-        console.error 'Got error from exec of child_process.\n', error
-        process.exit(1)
-      else
-        util.print stdout
+  stream = ephemeris convenient json.parse what
+  stream.stderr.on 'data', (error) ->
+    console.error 'Spawned child_process stderr -- ' + error
+    process.exit(1)
+  stream.stdout.pipe process.stdout
 
 
-# Expects `<json>` string or `-i <file>` arguments.
+# Processing of command-line arguments.  Minimal on purpose.
+# Expects `<json>` string or `-i <file>`.
 # Does help with man pages for precious, precious-json.
 arguments = process.argv.splice(2)
 if arguments.length > 0

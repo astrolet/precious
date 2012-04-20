@@ -30,6 +30,7 @@ build
 swe/build
 swe/src/*.a
 swe/src/*.o
+bin/swisseph.so
 
 # Tools
 .settings.xml
