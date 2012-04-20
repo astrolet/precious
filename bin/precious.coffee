@@ -14,7 +14,7 @@
 # defaults will be used.
 
 # What is - required.
-ut        = require('lin').ut
+ut        = require('upon').ut
 json      = require('jsonify')
 ephemeris = require('./ephemeris')
 

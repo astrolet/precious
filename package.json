@@ -20,9 +20,9 @@
 , "main": "index"
 , "dependencies":
   { "coffee-script": "*"
+  , "upon": "*"
   , "gravity": "*"
   , "jsonify": "*"
-  , "lin": "*"
   }
 , "devDependencies":
   { "eyes": "*"
