@@ -1,5 +1,5 @@
-precious -- A Minimum kind of Ephemeris
-=======================================
+# precious -- the minimum kind of ephemeris
+
 
 ## DESCRIPTION
 
