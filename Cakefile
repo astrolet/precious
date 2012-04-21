@@ -68,7 +68,7 @@ task 'update', "latest node modules & ruby gems - the lazy way", ->
   ], (err) -> throw err if err
 
 
-# It's the local police at the root of chartra.
+# It's the local police at the project's root.
 # Catches outdated modules that `cake outdated` doesn't report (major versions).
 task 'police', "checks npm package & dependencies with `police -l .`", ->
   command "police -l ."
