@@ -69,23 +69,23 @@ fetch = (what) ->
   stream.stdout.pipe process.stdout
 
 
-# Processing of command-line arguments.  Minimal on purpose.
+# Processing of command-line args.  Minimal on purpose.
 # Expects `<json>` string or `-i <file>`.
 # Does help with man pages for precious, precious-json.
-arguments = process.argv.splice(2)
-if arguments.length > 0
-  if arguments[0] is '-i'
-    unless arguments[1]?
+args = process.argv.splice(2)
+if args.length > 0
+  if args[0] is '-i'
+    unless args[1]?
       console.error "Usage: precious -i <file>"
       process.exit(1)
-    require('fs').readFile "./#{arguments[1]}", "utf8", (err, data) ->
+    require('fs').readFile "./#{args[1]}", "utf8", (err, data) ->
       if err
         console.error "
 An error has ocurred.  Please double-check the file & path."
         console.error err
         process.exit(1)
       else fetch data
-  else if arguments[0] is "json" then man "precious-json"
-  else fetch arguments[0]
+  else if args[0] is "json" then man "precious-json"
+  else fetch args[0]
 else man "precious"
 
