@@ -1,7 +1,7 @@
 { "name": "precious"
-, "description": "a minimum kind of ephemeris"
+, "description": "the minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.0.1-5"
+, "version": "0.1.0"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
@@ -15,27 +15,27 @@
 , "contributors": []
 , "directories":
   { "bin": "./bin"
-  , "lib": "./lib"
   , "man": "./man"
   }
+, "main": "index"
 , "dependencies":
-  { "cjson": "*"
-  , "massagist": "*"
-  , "lin": "*"
+  { "coffee-script": "*"
+  , "upon": "*"
   , "gravity": "*"
+  , "jsonify": "*"
   }
 , "devDependencies":
-  { "coffee-script": "*"
-  , "eyes": "*"
-  , "watch-tree": "*"
+  { "eyes": "*"
+  , "ronn": "*"
   , "docco": "*"
   , "async": "*"
+  , "police": "*"
   }
 , "scripts":
-  { "install" : "python ./swe.py/setup.py install"
-  , "postinstall": "sh ./scripts/install-message.sh"
+  { "install" : "python ./swe/setup.py build --build-lib ../bin"
+  , "postinstall": "coffee ./bin/post-install.coffee"
   }
-, "bin": { "precious" : "./cli.js" }
+, "bin": { "precious" : "./bin/precious.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]
 , "engines" : { "node" : "0.6.x", "npm": "1.1.x" }
 , "licenses":

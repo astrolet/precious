@@ -1,5 +1,5 @@
-precious -- A Minimum kind of Ephemeris
-=======================================
+# precious -- the minimum kind of ephemeris
+
 
 ## DESCRIPTION
 
@@ -12,14 +12,16 @@ More to come...
 
 
 ## EXAMPLES
+As lazy as possible, fetch ephemeris data with the convenient defaults:
+    precious {}
 
-With specific time, and somewhat more readable output:
+With specific time, "pprint" for a bit more readable output + names:
 
-    cli.js '{"utc": "1974-06-30T21:45Z", "out": "pprint", "extra": true}'
+    precious '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
 
-Or data for right now, specific location, and with whole sign houses:
+No "utc" for *right now*, it also fetches the angles, given geo-location:
 
-    cli.js '{"geo": {"lat": 43.2166667, "lon": 27.9166667}, "houses": "W"}'
+    precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 
 Modify the bin/defaults.json configuration according to preference.
 See precious-json(7) and eden(1) for further / friendlier options.
@@ -60,7 +62,7 @@ This is [Unlicensed](http://astrolet.github.com/precious/UNLICENSE.html) (free
 and unencumbered public domain software), except for LICENSE applying to the
 copy of [pyswisseph](http://pypi.python.org/pypi/pyswisseph)
 with [Swiss Ephemeris](http://www.astro.com/swisseph) source
-and its conditions (located in swe.py/src).
+and its conditions (located in swe/src).
 
 
 ## SEE ALSO
