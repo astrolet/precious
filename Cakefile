@@ -3,24 +3,22 @@ docs = "#{__dirname}/docs"
 
 {basename, join} = require 'path'
 {exec, spawn} = require 'child_process'
-inspect = require('eyes').inspector({stream: null, pretty: false, styles: {all: 'magenta'}})
 {series, parallel} = require 'async'
-
-# ANSI Terminal Colors.
-bold  = "\033[0;1m"
-red   = "\033[0;31m"
-green = "\033[0;32m"
-reset = "\033[0m"
+inspect = require('eyes').inspector
+  stream: null
+  pretty: false
+  styles:
+    all: 'magenta'
 
 
 # Utility functions
 
 pleaseWait = ->
-  console.log "\n#{bold}this may take a while#{green} ...\n"
+  console.log "\nThis may take a while...\n"
 
 handleError = (err) ->
   if err
-    console.log "\n\033[1;36m=>\033[1;37m Remember you need to `npm install` the package.json devDependencies and also `bundle install`.\033[0;37m\n"
+    console.log "\nUnexpected error!\nHave you done `cake install`?\n"
     console.log err.stack
 
 # execute some command quietly (without stdout)
@@ -42,16 +40,38 @@ command = (c, cb) ->
 # Install / reminder of prerequisites (for development).
 # First-time setup.  Pygments is installed through pycco,
 # or through other projects that use docco as well.
-# It's probably overdone...  Unlikely to have node without npm.
 task 'install', "Run once: npm, bundler, pycco, etc.", ->
   pleaseWait()
   command "
-    curl http://npmjs.org/install.sh | sh
-     && npm install
+    npm install
      && gem install bundler
      && bundle install
      && easy_install pycco
     "
+
+
+# Check if any node_modules or gems have become outdated.
+task 'outdated', "is all up-to-date?", ->
+  pleaseWait()
+  parallel [
+    command "npm outdated"
+    command "gem outdated"
+  ], (err) -> throw err if err
+
+
+# Usually follows `cake outdated`.
+task 'update', "latest node modules & ruby gems - the lazy way", ->
+  pleaseWait()
+  parallel [
+    command "npm update"
+    command "bundle update"
+  ], (err) -> throw err if err
+
+
+# It's the local police at the root of chartra.
+# Catches outdated modules that `cake outdated` doesn't report (major versions).
+task 'police', "checks npm package & dependencies with `police -l .`", ->
+  command "police -l ."
 
 
 # Build manuals / gh-pages almost exactly like https://github.com/josh/nack does
@@ -60,7 +80,8 @@ task 'man', "Build unix man pages", ->
     for file in files when /\.md/.test file
       source = join "doc", file
       target = join "man", basename source, ".md"
-      command "ronn --pipe --roff #{source} > #{target}"
+      exec "ronn --pipe --roff #{source} > #{target}", (err) ->
+        throw err if err
 
 
 task 'pages', "Build pages / documents as well", ->

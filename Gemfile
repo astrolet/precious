@@ -1,10 +1,10 @@
+# `gem install bundler && bundle install`
+
 source :rubygems
 
+gem "git"
+gem "bcat"
 gem "ronn"
-gem "thin"
-gem "serve"
-gem "livereload", ">=1.6" # for some reason, bundle installs 1.4
-gem "rb-fsevent"
-gem "terminitor"
 gem "git-smart"
+gem "travis-lint"
 

@@ -26,8 +26,10 @@
   }
 , "devDependencies":
   { "eyes": "*"
+  , "ronn": "*"
   , "docco": "*"
   , "async": "*"
+  , "police": "*"
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
