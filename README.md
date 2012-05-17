@@ -5,10 +5,45 @@
 
 Node package distribution of
 [pyswisseph](http://pypi.python.org/pypi/pyswisseph).
+Python is just the current method for calling the Swiss Ephemeris.
+It has been handy for a rapid prototype / bootstrapping.
+Direct JavaScript bindings are preferable and will eventually be implemented.
+At that point, the Python code is to be ported and retired.
+This module's purpose is to make writing astrology apps on _Node.JS_
+both possible and straightforward.
 
 [Eden](http://www.astrolin.com/to/eden) depends on it.
+As may other libs / interfaces too.
 
-More to come...
+Think of `precious` as a language-neutral, decoupled way to get data from
+the Swiss Ephemeris.  Or from any kind of ephemeris for that matter.
+For example someone may choose to implement a Moshier substitute, whether
+for the sake of using a different license or whatever the reason.
+
+In reality, while it may some day offer varying ephemeris choice,
+people are likely to prefer the Swiss Ephemeris anyway.
+Furthermore, while it can use various languages through child-process calls --
+the performing way would be JavaScript bindings, because it's intended
+exclusively for JavaScript use, CoffeScript and all such included of-course.
+It is really just an interface abstraction that affords some potential freedom.
+A way of making progress while keeping you options open.
+
+Precious is a precious-json(7) spec about (a limited subset of) what
+one may want from an ephemeris, so that requests for data
+can be decoupled from the implementation(s) that satisfy them.
+
+The reference implementation and the ephemeris are for the time being
+part of `precious` itself, however there is no reason they can't be external
+modules / dependencies, especially with regards to varying the
+choice of ephemeris or how it's to be called.
+
+The kind of ephemeris data provided, is currently rather simple and constrained.
+Configuration options will progressively be added to include
+other more interesting and necessary things.  So,
+precious will aim to satisfy a wider range of use-cases.
+It will, however, remain an opinionated subset of what an ephemeris can provide.
+Not everything that's possible is necessary, though be welcome to add
+anything you may wish to contribute for more specialized use-case enablement.
 
 
 ## EXAMPLES
