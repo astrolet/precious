@@ -34,15 +34,32 @@ More easily invoked with <a href="http://astrolin.com/to/eden">Eden</a>,
 which also offers extra output options.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">swisseph</span> <span class="kn">as</span> <span class="nn">swe</span></pre></div>
+      <div class="highlight"><pre></pre></div>
     </div>
   </div>
   <div class='clearall'></div><div class='section' id='section-2'>
     <div class='docs'>
       <div class='octowrap'>
         <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>Borrowed from http://stackoverflow.com/a/6098238 - insert this directory
+to the sys.path front - imports the local swisseph rather than any other
+that may be otherwise installed on the system (for better predictability).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">inspect</span>
+<span class="n">ot</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()))[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">ot</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+  <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ot</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">swisseph</span> <span class="kn">as</span> <span class="nn">swe</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
       </div>
       <p>Expects json as the first and only argument, containing instructions about what is needed.</p>
     </div>
@@ -58,10 +75,10 @@ which also offers extra output options.</p>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-3'>
+  <div class='clearall'></div><div class='section' id='section-4'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-3'>#</a>
+        <a class='octothorpe' href='#section-4'>#</a>
       </div>
       <p>Rarely used, pprint is imported only upon such request for output.
 It also substitutes swe.get_planet_name - can be handy on occasion.</p>
@@ -74,10 +91,10 @@ It also substitutes swe.get_planet_name - can be handy on occasion.</p>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-4'>
+  <div class='clearall'></div><div class='section' id='section-5'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-4'>#</a>
+        <a class='octothorpe' href='#section-5'>#</a>
       </div>
       <p>The data files, which may not be in the
 <a href="https://github.com/astrolet/sin">sin repo</a> /
@@ -87,10 +104,10 @@ It also substitutes swe.get_planet_name - can be handy on occasion.</p>
       <div class="highlight"><pre>    <span class="n">swe</span><span class="o">.</span><span class="n">set_ephe_path</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;data&quot;</span><span class="p">])</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-5'>
+  <div class='clearall'></div><div class='section' id='section-6'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-5'>#</a>
+        <a class='octothorpe' href='#section-6'>#</a>
       </div>
       <p>This is a minimal e[phemeris].</p>
     </div>
@@ -98,10 +115,10 @@ It also substitutes swe.get_planet_name - can be handy on occasion.</p>
       <div class="highlight"><pre>    <span class="n">e</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;1&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;2&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s">&quot;3&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s">&quot;4&quot;</span><span class="p">:</span> <span class="p">[]}</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-6'>
+  <div class='clearall'></div><div class='section' id='section-7'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-6'>#</a>
+        <a class='octothorpe' href='#section-7'>#</a>
       </div>
       <p>Is using the Gregorian calendar flag correct?
 If calendar type is conditional, is it easier to determine here (with the help of swe)?</p>
@@ -116,10 +133,10 @@ If calendar type is conditional, is it easier to determine here (with the help o
                       <span class="n">re</span><span class="p">[</span><span class="s">&quot;ut&quot;</span><span class="p">][</span><span class="mi">6</span><span class="p">])</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-7'>
+  <div class='clearall'></div><div class='section' id='section-8'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-7'>#</a>
+        <a class='octothorpe' href='#section-8'>#</a>
       </div>
       <!---
 e["jd-ut1"] = swe.jdut1_to_utc(t[1], 1)
@@ -147,10 +164,10 @@ e["jd-ut1"] = swe.jdut1_to_utc(t[1], 1)
         <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s">&quot;what&quot;</span><span class="p">]]</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-8'>
+  <div class='clearall'></div><div class='section' id='section-9'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-8'>#</a>
+        <a class='octothorpe' href='#section-9'>#</a>
       </div>
       <p>The angles &amp; houses are possible only if given geo location.
 For that, the latitude and longitude must set - to float, or
@@ -168,10 +185,10 @@ be able to convert to float (e.g. from string or perhaps int).</p>
                                   <span class="nb">str</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s">&quot;W&quot;</span><span class="p">))</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-9'>
+  <div class='clearall'></div><div class='section' id='section-10'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-9'>#</a>
+        <a class='octothorpe' href='#section-10'>#</a>
       </div>
       <p>The Whole Sign default wasn't asked for.
 None (null) or false means no houses wanted.</p>
@@ -184,10 +201,10 @@ None (null) or false means no houses wanted.</p>
       <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">]</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-10'>
+  <div class='clearall'></div><div class='section' id='section-11'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-10'>#</a>
+        <a class='octothorpe' href='#section-11'>#</a>
       </div>
       <p>Print to STDOUT.
 JSON is the default (not even checked).</p>
@@ -208,10 +225,10 @@ JSON is the default (not even checked).</p>
       <span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></pre></div>
     </div>
   </div>
-  <div class='clearall'></div><div class='section' id='section-11'>
+  <div class='clearall'></div><div class='section' id='section-12'>
     <div class='docs'>
       <div class='octowrap'>
-        <a class='octothorpe' href='#section-11'>#</a>
+        <a class='octothorpe' href='#section-12'>#</a>
       </div>
       <p>Necessary when called from Node / Eden.</p>
     </div>
