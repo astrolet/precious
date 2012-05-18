@@ -4,10 +4,8 @@
 # Use [eden(1)](http://astrolet.github.com/eden/eden.1.html) for
 # greater convenience.
 #
-# It takes a string of json, and calls precious.py with it.
-# Only one argument expected.
-# Anything extra is ignored.
-# Run `precious json` or visit
+# It takes json in various ways and calls precious.py with it.
+# Run `precious -h json` or `man precious-json` or visit
 # [precious-json(7)](http://astrolet.github.com/precious/json.7.html)
 # for format details.  The latter (web documentation) is better.
 # Anything less (i.e. nothing) means the [convenient](#section-5)
@@ -17,17 +15,20 @@
 ut        = require('upon').ut
 json      = require('jsonify')
 ephemeris = require('./ephemeris')
+colors    = require('colors')
 
 
 # There are several man pages, reused for help.
-man = (page, status = 0) ->
+# Sometimes help is given together with a non-zero exit status, aka _error_.
+man = (page, status = 0, cb) ->
   require('child_process').exec "man #{page}", (err, out) ->
     if err
-      console.error "Can't get: `man #{page}`."
+      console.error "Can't get: `man #{page}`.".red
       console.error "Go to http://astrolet.github.com/precious/ for help."
       process.exit(1)
     else
-      console.log out
+      console.log "\n" + out
+      cb() if cb?
       process.exit(status)
 
 
@@ -65,7 +66,7 @@ convenient = (input) ->
 fetch = (what) ->
   stream = ephemeris convenient json.parse what
   stream.stderr.on 'data', (error) ->
-    console.error 'Spawned child_process stderr -- ' + error
+    console.error '\nSpawned child_process error.\n'.red + error
     process.exit(1)
   stream.stdout.pipe process.stdout
 
@@ -77,12 +78,12 @@ if args.length > 0 then switch args[0]
 
   when '-f', '--file'
     unless args[1]?
-      console.error "Usage: precious -f <file>"
+      console.error "Usage: precious -f <file>".red
       process.exit(1)
     require('fs').readFile "./#{args[1]}", "utf8", (err, data) ->
       if err
         console.error "
-An error has ocurred.  Please double-check the file & path."
+An error has ocurred.  Please double-check the file & path.".red
         console.error err
         process.exit(1)
       else fetch data
@@ -90,17 +91,16 @@ An error has ocurred.  Please double-check the file & path."
   when '-o', '--json'
     if args[1]? then fetch args[1]
     else
-      console.error "Usage: precious -o <json>"
-      console.error "No JSON provided, format instructions follow...\n"
-      man "precious-json", 1
+      console.error "\nNo JSON provided, format instructions follow...".red
+      man "precious-json", 1, ->
+        console.error "Usage: precious -o '<json>'\n".red
 
   when '-h', '--help'
     if args?[1] is "json" then man "precious-json"
     else man "precious"
 
-  else
-    console.error "Unclear usage, instructions follow...\n"
-    man "precious", 1
+  else man "precious", 1, ->
+    console.error "Usage confusion -- some help is above.\n".red
 
 
 # stream pipe expected as default

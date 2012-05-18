@@ -23,6 +23,7 @@
   , "upon": "*"
   , "gravity": "*"
   , "jsonify": "*"
+  , "colors": "*"
   }
 , "devDependencies":
   { "eyes": "*"
