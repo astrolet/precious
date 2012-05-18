@@ -20,7 +20,7 @@ ephemeris = require('./ephemeris')
 
 
 # There are several man pages, reused for help.
-man = (page) ->
+man = (page, status = 0) ->
   require('child_process').exec "man #{page}", (err, out) ->
     if err
       console.error "Can't get: `man #{page}`."
@@ -28,6 +28,7 @@ man = (page) ->
       process.exit(1)
     else
       console.log out
+      process.exit(status)
 
 
 # Fill in the input with convenient niceties / default settings.
@@ -70,13 +71,13 @@ fetch = (what) ->
 
 
 # Processing of command-line args.  Minimal on purpose.
-# Expects `<json>` string or `-i <file>`.
 # Does help with man pages for precious, precious-json.
 args = process.argv.splice(2)
-if args.length > 0
-  if args[0] is '-i'
+if args.length > 0 then switch args[0]
+
+  when '-f', '--file'
     unless args[1]?
-      console.error "Usage: precious -i <file>"
+      console.error "Usage: precious -f <file>"
       process.exit(1)
     require('fs').readFile "./#{args[1]}", "utf8", (err, data) ->
       if err
@@ -85,7 +86,27 @@ An error has ocurred.  Please double-check the file & path."
         console.error err
         process.exit(1)
       else fetch data
-  else if args[0] is "json" then man "precious-json"
-  else fetch args[0]
-else man "precious"
+
+  when '-o', '--json'
+    if args[1]? then fetch args[1]
+    else
+      console.error "Usage: precious -o <json>"
+      console.error "No JSON provided, format instructions follow...\n"
+      man "precious-json", 1
+
+  when '-h', '--help'
+    if args?[1] is "json" then man "precious-json"
+    else man "precious"
+
+  else
+    console.error "Unclear usage, instructions follow...\n"
+    man "precious", 1
+
+
+# stream pipe expected as default
+else
+  process.stdin.resume()
+  process.stdin.setEncoding("utf8")
+
+  process.stdin.on "data", (data) -> fetch data
 
