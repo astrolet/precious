@@ -14,6 +14,7 @@
 # What is - required.
 ut        = require('upon').ut
 json      = require('jsonify')
+JSONStream = require('JSONStream')
 ephemeris = require('./ephemeris')
 colors    = require('colors')
 
@@ -103,10 +104,15 @@ An error has ocurred.  Please double-check the file & path.".red
     console.error "Usage confusion -- some help is above.\n".red
 
 
-# stream pipe expected as default
+# Stream pipe expected as default.
 else
   process.stdin.resume()
   process.stdin.setEncoding("utf8")
 
-  process.stdin.on "data", (data) -> fetch data
+  # A good parser.
+  parser = JSONStream.parse /./
+  process.stdin.pipe parser
+
+  parser.on "data", (data) ->
+    (ephemeris convenient data).stdout.pipe process.stdout
 
