@@ -103,7 +103,7 @@ for the sake of using a different license or whatever the reason.</p>
 people are likely to prefer the Swiss Ephemeris anyway.
 Furthermore, while it can use various languages through child-process calls --
 the performing way would be JavaScript bindings, because it's intended
-exclusively for JavaScript use, CoffeScript and all such included of-course.
+exclusively for JavaScript use, of-course also CoffeeScript, etc.
 It is really just an interface abstraction that affords some potential freedom.
 A way of making progress while keeping you options open.</p>
 
@@ -114,7 +114,13 @@ can be decoupled from the implementation(s) that satisfy them.</p>
 <p>The reference implementation and the ephemeris are for the time being
 part of <code>precious</code> itself, however there is no reason they can't be external
 modules / dependencies, especially with regards to varying the
-choice of ephemeris or how it's to be called.</p>
+choice of ephemeris or how it's to be called.  There may also be a couple of
+ways to call the Swiss Ephemeris - either with bindings for Node or possibly
+compiling it to pure JavaScript with <a href="http://emscripten.org">Emscripten</a> for
+example.  The latter will offer the possibility to run practically anywhere.
+The former will obviously be preferable when using Node.  The following
+<a href="https://github.com/mivion/swisseph">swisseph</a> library is a promising
+candidate for doing just that.</p>
 
 <p>The kind of ephemeris data provided, is currently rather simple and constrained.
 Configuration options will progressively be added to include
@@ -141,8 +147,14 @@ anything you may wish to contribute for more specialized use-case enablement.</p
 <pre><code>precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 </code></pre>
 
-<p>Modify the bin/defaults.json configuration according to preference.
+<p>Copy / change <code>bin/example.json</code> to fit your own preference / use-case.
 See <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> and <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for further / friendlier options.</p>
+
+<p>Eden offers convenience and can be used either as a library or as cli interface.
+It also makes precious more useful and readable in many ways.
+Another reason to consider it is for generating <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> settings
+to be used for calling <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>, which is a precious module export,
+or else through the rather limited <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
 
 <h2 id="INSTALL">INSTALL</h2>
 
@@ -168,11 +180,14 @@ Python, a C compiler and Node.js are already installed.</p>
 <h2 id="CAVEATS">CAVEATS</h2>
 
 <p>It's unknown how the project should be setup for Windows development / use.
-Contribution of such instructions would be great to have.</p>
+Perhaps it just works flawlessly or with just a bit of extra setup effort?
+Verification / contribution of such instructions would be great to have.</p>
 
-<p>Some day, it would be preferable to have Node.js bindings directly to
-the Swiss Ephemeris, without going through Python or FFI.
-<a href="http://emscripten.org">Emscripten</a> stands out as a likely next step.</p>
+<p>Spawhing a process to run a Python script is kind of slow.
+Some day, it would be preferable to have Node.js bindings directly to
+the Swiss Ephemeris, without going through Python or FFI. Either this
+<a href="https://github.com/mivion/swisseph">swisseph</a> library or (maybe also)
+<a href="http://emscripten.org">Emscripten</a> stand out as possible next steps.</p>
 
 <h2 id="LICENSE">LICENSE</h2>
 
@@ -184,8 +199,8 @@ and its conditions (located in swe/src).</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
-<p><a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a>, <a class="man-ref" href="annotations/precious.html">precious-coffee<span class="s">(1)</span></a>, <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a>, <a class="man-ref" href="annotations/python/ephemeris.html">ephemeris-py<span class="s">(3)</span></a>, <a class="man-ref" href="http://astrolet.github.com/sin">gravity<span class="s">(6)</span></a>,
-<a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a></p>
+<p><a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a>, <a class="man-ref" href="annotations/precious.html">precious-coffee<span class="s">(1)</span></a>, <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a>, <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>,
+<a class="man-ref" href="annotations/python/ephemeris.html">ephemeris-py<span class="s">(3)</span></a>, <a class="man-ref" href="http://astrolet.github.com/sin">gravity<span class="s">(6)</span></a>, <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a></p>
 
 <h2 id="NAVIGATE">NAVIGATE</h2>
 
