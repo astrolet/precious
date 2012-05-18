@@ -3,8 +3,9 @@ precious(1)         precious.1
 precious-json(7)    json.7
 
 # annotations
-precious-coffee(1)   annotations/precious
-ephemeris-py(3)      annotations/python/ephemeris
+precious-coffee(1)  annotations/precious
+ephemeris(3)        annotations/ephemeris
+ephemeris-py(3)     annotations/python/ephemeris
 
 # external manuals
 Index(7)            http://astrolet.github.com/precious

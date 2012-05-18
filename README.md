@@ -24,7 +24,7 @@ In reality, while it may some day offer varying ephemeris choice,
 people are likely to prefer the Swiss Ephemeris anyway.
 Furthermore, while it can use various languages through child-process calls --
 the performing way would be JavaScript bindings, because it's intended
-exclusively for JavaScript use, CoffeScript and all such included of-course.
+exclusively for JavaScript use, of-course also CoffeeScript, etc.
 It is really just an interface abstraction that affords some potential freedom.
 A way of making progress while keeping you options open.
 
@@ -35,7 +35,13 @@ can be decoupled from the implementation(s) that satisfy them.
 The reference implementation and the ephemeris are for the time being
 part of `precious` itself, however there is no reason they can't be external
 modules / dependencies, especially with regards to varying the
-choice of ephemeris or how it's to be called.
+choice of ephemeris or how it's to be called.  There may also be a couple of
+ways to call the Swiss Ephemeris - either with bindings for Node or possibly
+compiling it to pure JavaScript with [Emscripten](http://emscripten.org) for
+example.  The latter will offer the possibility to run practically anywhere.
+The former will obviously be preferable when using Node.  The following
+[swisseph](https://github.com/mivion/swisseph) library is a promising
+candidate for doing just that.
 
 The kind of ephemeris data provided, is currently rather simple and constrained.
 Configuration options will progressively be added to include
@@ -58,8 +64,14 @@ No "utc" for *right now*, it also fetches the angles, given geo-location:
 
     precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 
-Modify the bin/defaults.json configuration according to preference.
+Copy / change `bin/example.json` to fit your own preference / use-case.
 See precious-json(7) and eden(1) for further / friendlier options.
+
+Eden offers convenience and can be used either as a library or as cli interface.
+It also makes precious more useful and readable in many ways.
+Another reason to consider it is for generating precious-json(7) settings
+to be used for calling ephemeris(3), which is a precious module export,
+or else through the rather limited precious(1) cli.
 
 
 ## INSTALL
@@ -84,11 +96,14 @@ Python, a C compiler and Node.js are already installed.
 ## CAVEATS
 
 It's unknown how the project should be setup for Windows development / use.
-Contribution of such instructions would be great to have.
+Perhaps it just works flawlessly or with just a bit of extra setup effort?
+Verification / contribution of such instructions would be great to have.
 
+Spawhing a process to run a Python script is kind of slow.
 Some day, it would be preferable to have Node.js bindings directly to
-the Swiss Ephemeris, without going through Python or FFI.
-[Emscripten](http://emscripten.org) stands out as a likely next step.
+the Swiss Ephemeris, without going through Python or FFI. Either this
+[swisseph](https://github.com/mivion/swisseph) library or (maybe also)
+[Emscripten](http://emscripten.org) stand out as possible next steps.
 
 
 ## LICENSE
@@ -102,8 +117,8 @@ and its conditions (located in swe/src).
 
 ## SEE ALSO
 
-precious(1), precious-coffee(1), precious-json(7), ephemeris-py(3), gravity(6),
-eden(1)
+precious(1), precious-coffee(1), precious-json(7), ephemeris(3),
+ephemeris-py(3), gravity(6), eden(1)
 
 
 ## NAVIGATE

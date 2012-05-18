@@ -1,5 +1,4 @@
-precious(1) -- a minimum kind of ephemeris
-==========================================
+# precious(1) -- a minimum kind of ephemeris
 
 ## SYNOPSIS
 
@@ -16,9 +15,12 @@ precious(1) -- a minimum kind of ephemeris
 
 Anything less we couldn't do astrology with.
 
+Use eden(1) for a better cli experience.
+
+
 ## SEE ALSO
 
-precious-json(7), gravity(6), ephemeris-py(3)
+precious-json(7), gravity(6), eden(1)
 
 ## NAVIGATE
 
