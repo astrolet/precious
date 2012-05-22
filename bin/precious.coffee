@@ -77,6 +77,21 @@ fetch = (what) ->
 args = process.argv.splice(2)
 if args.length > 0 then switch args[0]
 
+  # Stream pipe, unix style.
+  when '-s', '--stream'
+    process.stdin.resume()
+    process.stdin.setEncoding("utf8")
+
+    # A good parser.
+    parser = JSONStream.parse /./
+    process.stdin.pipe parser
+
+    parser.on "data", (data) ->
+      (ephemeris convenient data).stdout.pipe process.stdout
+
+
+  # The rest of the options are just for convenience / variety.
+
   when '-f', '--file'
     unless args[1]?
       console.error "Usage: precious -f <file>".red
@@ -101,18 +116,9 @@ An error has ocurred.  Please double-check the file & path.".red
     else man "precious"
 
   else man "precious", 1, ->
-    console.error "Usage confusion -- some help is above.\n".red
+    console.error "Usage confusion, see help above.\n".red
 
-
-# Stream pipe expected as default.
-else
-  process.stdin.resume()
-  process.stdin.setEncoding("utf8")
-
-  # A good parser.
-  parser = JSONStream.parse /./
-  process.stdin.pipe parser
-
-  parser.on "data", (data) ->
-    (ephemeris convenient data).stdout.pipe process.stdout
+# Another way to get help.
+# It's common to type a command by itself and expect some usage info.
+else man "precious"
 
