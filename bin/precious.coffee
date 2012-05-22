@@ -61,11 +61,13 @@ convenient = (input) ->
   input
 
 
-# This is the call.
-# Note the extra parse / stringify just for the sake of easy defaults.
-# It isn't the most efficient way to do it, but it does offer convenience.
+# This is the call.  Not too efficient for the sake of easy cli
+# defaults / convenience.  For something better use precious as a module lib.
+# Waiting for Node's new child_process streams interface, as well as
+# a second implementation method that will not spawn a process at all.
+# Will revist / refactor `fetch` then.
 fetch = (what) ->
-  stream = ephemeris convenient json.parse what
+  stream = ephemeris convenient what
   stream.stderr.on 'data', (error) ->
     console.error '\nSpawned child_process error.\n'.red + error
     process.exit(1)
@@ -86,12 +88,11 @@ if args.length > 0 then switch args[0]
     parser = JSONStream.parse /./
     process.stdin.pipe parser
 
-    parser.on "data", (data) ->
-      (ephemeris convenient data).stdout.pipe process.stdout
-
     parser.on "error", (err) ->
       console.error "Bad JSON, parser error: ".red + err.message
       process.exit(1)
+
+    parser.on "data", (data) -> fetch data
 
 
   # The rest of the options are just for convenience / variety.
@@ -106,10 +107,10 @@ if args.length > 0 then switch args[0]
 An error has ocurred.  Please double-check the file & path.".red
         console.error err
         process.exit(1)
-      else fetch data
+      else fetch json.parse data
 
   when '-o', '--object'
-    if args[1]? then fetch args[1]
+    if args[1]? then fetch json.parse args[1]
     else
       console.error "\nNo JSON provided, format instructions follow...".red
       man "precious-json", 1, ->
