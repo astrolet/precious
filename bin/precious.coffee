@@ -89,6 +89,10 @@ if args.length > 0 then switch args[0]
     parser.on "data", (data) ->
       (ephemeris convenient data).stdout.pipe process.stdout
 
+    parser.on "error", (err) ->
+      console.error "Bad JSON, parser error: ".red + err.message
+      process.exit(1)
+
 
   # The rest of the options are just for convenience / variety.
 
