@@ -108,7 +108,7 @@ An error has ocurred.  Please double-check the file & path.".red
         process.exit(1)
       else fetch data
 
-  when '-o', '--json'
+  when '-o', '--object'
     if args[1]? then fetch args[1]
     else
       console.error "\nNo JSON provided, format instructions follow...".red
