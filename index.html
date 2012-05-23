@@ -105,7 +105,7 @@ Furthermore, while it can use various languages through child-process calls --
 the performing way would be JavaScript bindings, because it's intended
 exclusively for JavaScript use, of-course also CoffeeScript, etc.
 It is really just an interface abstraction that affords some potential freedom.
-A way of making progress while keeping you options open.</p>
+A way of making progress while keeping your options open.</p>
 
 <p>Precious is a <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> spec about (a limited subset of) what
 one may want from an ephemeris, so that requests for data
@@ -134,17 +134,17 @@ anything you may wish to contribute for more specialized use-case enablement.</p
 
 <p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
 
-<pre><code>precious {}
+<pre><code>precious -o {}
 </code></pre>
 
 <p>With specific time, "pprint" for a bit more readable output + names:</p>
 
-<pre><code>precious '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+<pre><code>precious -o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
 </code></pre>
 
 <p>No "utc" for <em>right now</em>, it also fetches the angles, given geo-location:</p>
 
-<pre><code>precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
+<pre><code>precious -o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 </code></pre>
 
 <p>Copy / change <code>bin/example.json</code> to fit your own preference / use-case.

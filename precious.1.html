@@ -61,7 +61,8 @@
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
     <a href="#SYNOPSIS">SYNOPSIS</a>
-    <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#USAGE">USAGE</a>
+    <a href="#HELP">HELP</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
     <a href="#NAVIGATE">NAVIGATE</a>
   </div>
@@ -79,19 +80,55 @@
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p><code>precious</code> runs <code>man precious</code> (which is this help)</p>
-
-<p><code>precious json</code> - a synonym for <code>man precious-json</code></p>
-
-<p><code>precious &lt;'{input}'></code> json input, even if just {}</p>
-
-<p><code>precious -i &lt;file></code> a json file (relative path)</p>
-
-<h2 id="DESCRIPTION">DESCRIPTION</h2>
-
 <p>Anything less we couldn't do astrology with.</p>
 
 <p>Use <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for a better cli experience.</p>
+
+<h2 id="USAGE">USAGE</h2>
+
+<p>Running precious from the command line (instead of programming JavaScript)
+is not the most efficient nor the most convenient, though it's ok too.</p>
+
+<p>Some <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> must be provided in one of three ways:</p>
+
+<ol>
+<li><p><code>-s</code> or <code>--stream</code> input though unix pipes - all the rest can be covered
+with this approach too, see the double examples for equivalents.</p>
+
+<p>  eden precious | precious -s</p></li>
+<li><p><code>-f</code> or <code>--file</code> followed by a json file <code>&lt;path></code></p>
+
+<p> precious -f bin/example.json</p>
+
+<p> cat bin/example.json | precious -s</p></li>
+<li><p><code>-o</code> or <code>--object</code> given a json string <code>&lt;'input'></code>, even if just <code>{}</code></p>
+
+<p> precious -o {}</p>
+
+<p> echo {} | precious -s</p></li>
+</ol>
+
+
+<p>The streams way could do it all,
+with just a few extra characters typing.
+Though perhaps not using Windows.</p>
+
+<h2 id="HELP">HELP</h2>
+
+<p>This is also a man-page and can be read with any one of:</p>
+
+<pre><code>man precious
+precious [-h | --help]
+</code></pre>
+
+<p>Help for <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> is also available using these:</p>
+
+<pre><code>man precious-json
+precious [-h | --help] json
+</code></pre>
+
+<p>See <a class="man-ref" href="http://astrolet.github.com/precious">Index<span class="s">(7)</span></a> for the precious
+<a href="https://github.com/astrolet/precious#readme">README</a>.</p>
 
 <h2 id="SEE-ALSO">SEE ALSO</h2>
 
