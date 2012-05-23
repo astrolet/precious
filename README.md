@@ -26,7 +26,7 @@ Furthermore, while it can use various languages through child-process calls --
 the performing way would be JavaScript bindings, because it's intended
 exclusively for JavaScript use, of-course also CoffeeScript, etc.
 It is really just an interface abstraction that affords some potential freedom.
-A way of making progress while keeping you options open.
+A way of making progress while keeping your options open.
 
 Precious is a precious-json(7) spec about (a limited subset of) what
 one may want from an ephemeris, so that requests for data
@@ -54,15 +54,15 @@ anything you may wish to contribute for more specialized use-case enablement.
 
 ## EXAMPLES
 As lazy as possible, fetch ephemeris data with the convenient defaults:
-    precious {}
+    precious -o {}
 
 With specific time, "pprint" for a bit more readable output + names:
 
-    precious '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+    precious -o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
 
 No "utc" for *right now*, it also fetches the angles, given geo-location:
 
-    precious '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
+    precious -o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 
 Copy / change `bin/example.json` to fit your own preference / use-case.
 See precious-json(7) and eden(1) for further / friendlier options.
