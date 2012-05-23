@@ -92,7 +92,9 @@ if args.length > 0 then switch args[0]
       console.error "Bad JSON, parser error: ".red + err.message
       process.exit(1)
 
-    parser.on "data", (data) -> fetch data
+    parser.on "data", (data) ->
+      data ?= {} # because empty objects parse to undefined data
+      fetch data
 
 
   # The rest of the options are just for convenience / variety.
