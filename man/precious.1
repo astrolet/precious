@@ -7,22 +7,76 @@
 \fBprecious\fR \- a minimum kind of ephemeris
 .
 .SH "SYNOPSIS"
-\fBprecious\fR runs \fBman precious\fR (which is this help)
-.
-.P
-\fBprecious json\fR \- a synonym for \fBman precious\-json\fR
-.
-.P
-\fBprecious <\'{input}\'>\fR json input, even if just {}
-.
-.P
-\fBprecious \-i <file>\fR a json file (relative path)
-.
-.SH "DESCRIPTION"
 Anything less we couldn\'t do astrology with\.
 .
 .P
 Use eden(1) for a better cli experience\.
+.
+.SH "USAGE"
+Running precious from the command line (instead of programming JavaScript) is not the most efficient nor the most convenient, though it\'s ok too\.
+.
+.P
+Some precious\-json(7) must be provided in one of three ways:
+.
+.IP "1." 4
+\fB\-s\fR or \fB\-\-stream\fR input though unix pipes \- all the rest can be covered with this approach too, see the double examples for equivalents\.
+.
+.IP
+eden precious | precious \-s
+.
+.IP "2." 4
+\fB\-f\fR or \fB\-\-file\fR followed by a json file \fB<path>\fR
+.
+.IP
+precious \-f bin/example\.json
+.
+.IP
+cat bin/example\.json | precious \-s
+.
+.IP "3." 4
+\fB\-o\fR or \fB\-\-object\fR given a json string \fB<\'input\'>\fR, even if just \fB{}\fR
+.
+.IP
+precious \-o {}
+.
+.IP
+echo {} | precious \-s
+.
+.IP "" 0
+.
+.P
+The streams way could do it all, with just a few extra characters typing\. Though perhaps not using Windows\.
+.
+.SH "HELP"
+This is also a man\-page and can be read with any one of:
+.
+.IP "" 4
+.
+.nf
+
+man precious
+precious [\-h | \-\-help]
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Help for precious\-json(7) is also available using these:
+.
+.IP "" 4
+.
+.nf
+
+man precious\-json
+precious [\-h | \-\-help] json
+.
+.fi
+.
+.IP "" 0
+.
+.P
+See Index(7) for the precious README \fIhttps://github\.com/astrolet/precious#readme\fR\.
 .
 .SH "SEE ALSO"
 precious\-json(7), gravity(6), eden(1)
