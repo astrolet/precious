@@ -60,9 +60,9 @@
 
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
-    <a href="#DESCRIPTION">DESCRIPTION</a>
-    <a href="#SEE-ALSO">SEE ALSO</a>
-    <a href="#NAVIGATE">NAVIGATE</a>
+    <a href="#WHAT">WHAT</a>
+    <a href="#ALSO">ALSO</a>
+    <a href="#HOME">HOME</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -76,9 +76,11 @@
   <code>precious-json</code> - <span class="man-whatis">tells precious what is wanted</span>
 </p>
 
+<h2 id="WHAT">WHAT</h2>
+
 <p>Data format / expectations about what goes in and out of <code>precious</code>.</p>
 
-<h2 id="DESCRIPTION">DESCRIPTION</h2>
+<h3 id="e-g-">e.g.</h3>
 
 <p>A precious sample of valid json input.</p>
 
@@ -87,11 +89,13 @@
 }
 </code></pre>
 
-<p>This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would be found, given a moment of time.</p>
+<p>This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would
+be found, given a moment of time.</p>
 
-<h3 id="REQUEST">REQUEST</h3>
+<h3 id="In">In</h3>
 
-<p>Specification of the instructions or defaults that <code>precious</code> takes.</p>
+<p>Specification of the request / instructions (or defaults) - the <code>precious</code>
+can take.</p>
 
 <h4 id="data">data</h4>
 
@@ -99,7 +103,9 @@
 
 <h4 id="out">out</h4>
 
-<p>We get "json" by default anyway (same as null).  A bit more human-readable output is "pprint".  Even better is Eden's command line interface.</p>
+<p>We get "json" by default anyway (same as null).
+A bit more human-readable output is "pprint".
+Even better is Eden's command line interface.</p>
 
 <h4 id="stuff">stuff</h4>
 
@@ -131,25 +137,25 @@
 </ul>
 
 
-<h3 id="RESPONSE">RESPONSE</h3>
+<h3 id="Out">Out</h3>
 
-<p>The corresponding sample of precious output:</p>
+<p>The corresponding sample of precious response:</p>
 
 <pre><code>{"1": {"0": {"0": 98.70827783123845}, "1": {"0": 238.13984880619816}}}
 </code></pre>
 
-<h2 id="SEE-ALSO">SEE ALSO</h2>
+<h2 id="ALSO">ALSO</h2>
 
 <p><a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a>, <a class="man-ref" href="http://www.json.org/">JSON<span class="s">(7)</span></a>, <a class="man-ref" href="http://en.wikipedia.org/wiki/ISO_8601">ISO-8601<span class="s">(7)</span></a></p>
 
-<h2 id="NAVIGATE">NAVIGATE</h2>
+<h2 id="HOME">HOME</h2>
 
-<p><a class="man-ref" href="http://astrolet.github.com/precious">Index<span class="s">(7)</span></a>, <a class="man-ref" href="http://astrolin.com/to/precious">Home<span class="s">(7)</span></a></p>
+<p><a class="man-ref" href="http://astrolet.github.com/precious">Index<span class="s">(7)</span></a>, <a class="man-ref" href="http://astrolin.com/to/precious">Base<span class="s">(7)</span></a></p>
 
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>May 2011</li>
+    <li class='tc'>May 2012</li>
     <li class='tr'>precious-json(7)</li>
   </ol>
 

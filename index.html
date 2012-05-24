@@ -60,13 +60,13 @@
 
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
-    <a href="#DESCRIPTION">DESCRIPTION</a>
-    <a href="#EXAMPLES">EXAMPLES</a>
-    <a href="#INSTALL">INSTALL</a>
-    <a href="#CAVEATS">CAVEATS</a>
-    <a href="#LICENSE">LICENSE</a>
-    <a href="#SEE-ALSO">SEE ALSO</a>
-    <a href="#NAVIGATE">NAVIGATE</a>
+    <a href="#ABOUT">ABOUT</a>
+    <a href="#HOW">HOW</a>
+    <a href="#SETUP">SETUP</a>
+    <a href="#LACKS">LACKS</a>
+    <a href="#LAW">LAW</a>
+    <a href="#ALSO">ALSO</a>
+    <a href="#HOME">HOME</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -80,7 +80,7 @@
   <code>precious</code> - <span class="man-whatis">the minimum kind of ephemeris</span>
 </p>
 
-<h2 id="DESCRIPTION">DESCRIPTION</h2>
+<h2 id="ABOUT">ABOUT</h2>
 
 <p>Node package distribution of
 <a href="http://pypi.python.org/pypi/pyswisseph">pyswisseph</a>.
@@ -130,7 +130,7 @@ It will, however, remain an opinionated subset of what an ephemeris can provide.
 Not everything that's possible is necessary, though be welcome to add
 anything you may wish to contribute for more specialized use-case enablement.</p>
 
-<h2 id="EXAMPLES">EXAMPLES</h2>
+<h2 id="HOW">HOW</h2>
 
 <p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
 
@@ -156,13 +156,13 @@ Another reason to consider it is for generating <a class="man-ref" href="json.7.
 to be used for calling <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>, which is a precious module export,
 or else through the rather limited <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
 
-<h2 id="INSTALL">INSTALL</h2>
+<h2 id="SETUP">SETUP</h2>
 
 <p>With the <a href="http://npmjs.org/">npm</a> prerequisite, do <code>npm install -g precious</code>.
 The <code>-g</code> for global, means the <code>precious</code> command can be run
 regardless of what the current directory is.</p>
 
-<h3 id="DEPENDENCIES">DEPENDENCIES</h3>
+<h3 id="Dependencies-">Dependencies:</h3>
 
 <ul>
 <li>node</li>
@@ -177,19 +177,19 @@ regardless of what the current directory is.</p>
 <p>There is a <code>cake install</code> task that is somewhat useful.  It assumes that
 Python, a C compiler and Node.js are already installed.</p>
 
-<h2 id="CAVEATS">CAVEATS</h2>
+<h2 id="LACKS">LACKS</h2>
 
 <p>It's unknown how the project should be setup for Windows development / use.
 Perhaps it just works flawlessly or with just a bit of extra setup effort?
 Verification / contribution of such instructions would be great to have.</p>
 
-<p>Spawhing a process to run a Python script is kind of slow.
+<p>Spawning a process to run a Python script is kind of slow.
 Some day, it would be preferable to have Node.js bindings directly to
 the Swiss Ephemeris, without going through Python or FFI. Either this
 <a href="https://github.com/mivion/swisseph">swisseph</a> library or (maybe also)
 <a href="http://emscripten.org">Emscripten</a> stand out as possible next steps.</p>
 
-<h2 id="LICENSE">LICENSE</h2>
+<h2 id="LAW">LAW</h2>
 
 <p>This is <a href="http://astrolet.github.com/precious/UNLICENSE.html">Unlicensed</a> (free
 and unencumbered public domain software), except for LICENSE applying to the
@@ -197,14 +197,14 @@ copy of <a href="http://pypi.python.org/pypi/pyswisseph">pyswisseph</a>
 with <a href="http://www.astro.com/swisseph">Swiss Ephemeris</a> source
 and its conditions (located in swe/src).</p>
 
-<h2 id="SEE-ALSO">SEE ALSO</h2>
+<h2 id="ALSO">ALSO</h2>
 
 <p><a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a>, <a class="man-ref" href="annotations/precious.html">precious-coffee<span class="s">(1)</span></a>, <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a>, <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>,
 <a class="man-ref" href="annotations/python/ephemeris.html">ephemeris-py<span class="s">(3)</span></a>, <a class="man-ref" href="http://astrolet.github.com/sin">gravity<span class="s">(6)</span></a>, <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a></p>
 
-<h2 id="NAVIGATE">NAVIGATE</h2>
+<h2 id="HOME">HOME</h2>
 
-<p><a class="man-ref" href="http://astrolin.com/to/precious">Home<span class="s">(7)</span></a></p>
+<p><a class="man-ref" href="http://astrolin.com/to/precious">Base<span class="s">(7)</span></a></p>
 
 
   <ol class='man-decor man-foot man foot'>
