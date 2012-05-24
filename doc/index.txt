@@ -9,7 +9,7 @@ ephemeris-py(3)     annotations/python/ephemeris
 
 # external manuals
 Index(7)            http://astrolet.github.com/precious
-Home(7)             http://astrolin.com/to/precious
+Base(7)             http://astrolin.com/to/precious
 JSON(7)             http://www.json.org/
 eden(1)             http://astrolet.github.com/eden/eden.1.html
 gravity(6)          http://astrolet.github.com/sin

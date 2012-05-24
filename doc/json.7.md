@@ -1,10 +1,11 @@
-precious-json(7) -- tells precious what is wanted
-=================================================
+# precious-json(7) -- tells precious what is wanted
+
+
+## WHAT
 
 Data format / expectations about what goes in and out of `precious`.
 
-
-## DESCRIPTION
+### e.g.
 
 A precious sample of valid json input.
 
@@ -12,11 +13,13 @@ A precious sample of valid json input.
     , "stuff": [[0], [0, 1], null]
     }
 
-This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would be found, given a moment of time.
+This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would
+be found, given a moment of time.
 
-### REQUEST
+### In
 
-Specification of the instructions or defaults that `precious` takes.
+Specification of the request / instructions (or defaults) - the `precious`
+can take.
 
 #### data
 
@@ -24,7 +27,9 @@ A relative or absolute path to the Swiss Ephemeris data files.
 
 #### out
 
-We get "json" by default anyway (same as null).  A bit more human-readable output is "pprint".  Even better is Eden's command line interface.
+We get "json" by default anyway (same as null).
+A bit more human-readable output is "pprint".
+Even better is Eden's command line interface.
 
 #### stuff
 
@@ -54,18 +59,18 @@ Asks for extra info (to be keyed as '0'), including the following:
 * 'timing': ['start-time', '<end-time>']
 
 
-### RESPONSE
+### Out
 
-The corresponding sample of precious output:
+The corresponding sample of precious response:
 
     {"1": {"0": {"0": 98.70827783123845}, "1": {"0": 238.13984880619816}}}
 
 
-## SEE ALSO
+## ALSO
 
 precious(1), JSON(7), ISO-8601(7)
 
 
-## NAVIGATE
+## HOME
 
-Index(7), Home(7)
+Index(7), Base(7)

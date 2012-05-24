@@ -1,7 +1,7 @@
 # precious -- the minimum kind of ephemeris
 
 
-## DESCRIPTION
+## ABOUT
 
 Node package distribution of
 [pyswisseph](http://pypi.python.org/pypi/pyswisseph).
@@ -52,8 +52,10 @@ Not everything that's possible is necessary, though be welcome to add
 anything you may wish to contribute for more specialized use-case enablement.
 
 
-## EXAMPLES
+## HOW
+
 As lazy as possible, fetch ephemeris data with the convenient defaults:
+
     precious -o {}
 
 With specific time, "pprint" for a bit more readable output + names:
@@ -74,13 +76,13 @@ to be used for calling ephemeris(3), which is a precious module export,
 or else through the rather limited precious(1) cli.
 
 
-## INSTALL
+## SETUP
 
 With the [npm](http://npmjs.org/) prerequisite, do `npm install -g precious`.
 The `-g` for global, means the `precious` command can be run
 regardless of what the current directory is.
 
-### DEPENDENCIES
+### Dependencies:
 
 * node
 * npm
@@ -93,20 +95,20 @@ There is a `cake install` task that is somewhat useful.  It assumes that
 Python, a C compiler and Node.js are already installed.
 
 
-## CAVEATS
+## LACKS
 
 It's unknown how the project should be setup for Windows development / use.
 Perhaps it just works flawlessly or with just a bit of extra setup effort?
 Verification / contribution of such instructions would be great to have.
 
-Spawhing a process to run a Python script is kind of slow.
+Spawning a process to run a Python script is kind of slow.
 Some day, it would be preferable to have Node.js bindings directly to
 the Swiss Ephemeris, without going through Python or FFI. Either this
 [swisseph](https://github.com/mivion/swisseph) library or (maybe also)
 [Emscripten](http://emscripten.org) stand out as possible next steps.
 
 
-## LICENSE
+## LAW
 
 This is [Unlicensed](http://astrolet.github.com/precious/UNLICENSE.html) (free
 and unencumbered public domain software), except for LICENSE applying to the
@@ -115,12 +117,12 @@ with [Swiss Ephemeris](http://www.astro.com/swisseph) source
 and its conditions (located in swe/src).
 
 
-## SEE ALSO
+## ALSO
 
 precious(1), precious-coffee(1), precious-json(7), ephemeris(3),
 ephemeris-py(3), gravity(6), eden(1)
 
 
-## NAVIGATE
+## HOME
 
-Home(7)
+Base(7)

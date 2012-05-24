@@ -1,6 +1,7 @@
 # precious(1) -- a minimum kind of ephemeris
 
-## SYNOPSIS
+
+## ABOUT
 
 Anything less we couldn't do astrology with.
 
@@ -52,10 +53,10 @@ See Index(7) for the precious
 [README](https://github.com/astrolet/precious#readme).
 
 
-## SEE ALSO
+## ALSO
 
 precious-json(7), gravity(6), eden(1)
 
-## NAVIGATE
+## HOME
 
-Index(7), Home(7)
+Index(7), Base(7)
