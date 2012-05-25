@@ -1,3 +1,4 @@
+# [![Build Status](https://secure.travis-ci.org/astrolet/precious.png)](http://travis-ci.org/astrolet/precious)
 # precious -- the minimum kind of ephemeris
 
 
