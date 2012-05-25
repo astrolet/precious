@@ -1,0 +1,10 @@
+{ "vows":
+  { "alias":
+    { "silent": "--silent"
+    , "neutral": ""
+    , "verbose": "--spec"
+    }
+  , "paths": ["cli"]
+  , "extension": ".spec.coffee"
+  }
+}

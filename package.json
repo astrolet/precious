@@ -20,6 +20,7 @@
 , "main": "index"
 , "dependencies":
   { "coffee-script": "*"
+  , "underscore": "*"
   , "upon": "*"
   , "gravity": "*"
   , "jsonify": "*"
@@ -31,10 +32,13 @@
   , "docco": "*"
   , "async": "*"
   , "police": "*"
+  , "vows": "*"
+  , "cli-easy": "*"
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
   , "postinstall": "coffee ./bin/post-install.coffee"
+  , "test": "cake -s test"
   }
 , "bin": { "precious" : "./bin/precious.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]

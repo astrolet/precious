@@ -11,7 +11,6 @@
 # Anything less (i.e. nothing) means the [convenient](#section-5)
 # defaults will be used.
 
-# What is - required.
 ut        = require('upon').ut
 json      = require('jsonify')
 JSONStream = require('JSONStream')
