@@ -1,6 +1,10 @@
 CLIeasy = require('cli-easy')
-matches = require('./matches-async')
+doMatch = require('./matches-async')
 
+matches = {}
+doMatch.on "data", (data) -> matches = data
+doMatch.on "ready", ->
+  # console.log JSON.stringify matches
 
 CLIeasy.describe('precious')
   .use('precious')

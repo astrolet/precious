@@ -1,5 +1,8 @@
 exec     = require('child_process').exec
 parallel = require('async').parallel
+Stream   = require("stream").Stream
+
+module.exports = new Stream
 
 man = (page, cb) ->
   exec "man #{page}", (err, stdout, stderr) ->
@@ -17,6 +20,6 @@ parallel {
       cb null, pages
   # there could be other stuff to load in parallel to man-pages
 }, (err, matches) ->
-  # console.log matches
-  module.exports = matches
+  module.exports.emit "data", matches
+  module.exports.emit "ready"
 
