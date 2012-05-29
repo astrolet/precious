@@ -3,19 +3,20 @@
 # This is a convenience script.
 # Use [eden(1)](http://astrolet.github.com/eden/eden.1.html) for
 # greater convenience.
-#
+
 # It takes json in various ways and calls precious.py with it.
 # Run `precious -h json` or `man precious-json` or visit
 # [precious-json(7)](http://astrolet.github.com/precious/json.7.html)
 # for format details.  The latter (web documentation) is better.
-# Anything less (i.e. nothing) means the [convenient](#section-5)
+# Anything less, perhaps even nothing, means the [convenient](convenient.html)
 # defaults will be used.
 
-ut        = require('upon').ut
-json      = require('jsonify')
+
+json       = require('jsonify')
 JSONStream = require('JSONStream')
-ephemeris = require('../index').ephemeris
-colors    = require('colors')
+convenient = require('../index').convenient
+ephemeris  = require('../index').ephemeris
+colors     = require('colors')
 
 
 # There are several man pages, reused for help.
@@ -30,34 +31,6 @@ man = (page, status = 0, cb) ->
       console.log "\n" + out
       cb() if cb?
       process.exit(status)
-
-
-# Fill in the input with convenient niceties / default settings.
-convenient = (input) ->
-
-  # Location of the ephemeris data, unless explicitly elsewhere.
-  input.data ?= "node_modules/gravity/data"
-
-  # Insist the data path be absolute - relative means relative to precious.
-  unless input.data?.match /^\//
-    input.data = "#{__dirname}/../#{input.data}"
-
-  # Unless input.ut is set (unlikely), converts input.utc (optional) to it.
-  # No input.utc does _now_.
-  input.ut = ut.c(input.utc) unless input.ut?
-
-  # In case nothing specific is asked for.
-  # Get the planets - longitude and speed.
-  input.stuff ?= [
-      [0, 3]
-      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-      []
-    ]
-
-  # No houses, unless both geo-coordinates and house system preference given.
-  input.houses ?= false
-
-  input
 
 
 # This is the call.  Not too efficient for the sake of easy cli
