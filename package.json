@@ -32,6 +32,8 @@
   , "docco": "*"
   , "async": "*"
   , "police": "*"
+  , "mocha": "*"
+  , "should": "*"
   , "vows": "*"
   , "cli-easy": "*"
   }
