@@ -155,7 +155,7 @@ task 'pages', "Build pages / documents as well", ->
   buildAnnotations = (callback) ->
     series [
       (sh "rm -rf docs")
-      (sh "docco bin/*.coffee")
+      (sh "docco bin/*.coffee lib/*.coffee")
       (sh "pycco -d docs/python bin/*.py")
       (sh "cp -r docs pages/annotations")
     ], callback

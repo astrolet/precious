@@ -1,4 +1,4 @@
-ephemeris = require '../../bin/ephemeris'
+ephemeris = require('../../index').ephemeris
 
 describe "ephemeris", ->
 

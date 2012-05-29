@@ -14,7 +14,7 @@
 ut        = require('upon').ut
 json      = require('jsonify')
 JSONStream = require('JSONStream')
-ephemeris = require('./ephemeris')
+ephemeris = require('../index').ephemeris
 colors    = require('colors')
 
 
