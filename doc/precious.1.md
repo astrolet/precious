@@ -22,9 +22,9 @@ with this approach too, see the double examples for equivalents.
 
 2. `-f` or `--file` followed by a json file `<path>`
 
-    precious -f bin/example.json
+    precious -f test/io/for/example.json
 
-    cat bin/example.json | precious -s
+    cat test/io/for/example.json | precious -s
 
 3. `-o` or `--object` given a json string `<'input'>`, even if just `{}`
 
