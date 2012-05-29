@@ -18,7 +18,7 @@ Some precious-json(7) must be provided in one of three ways:
 1. `-s` or `--stream` input though unix pipes - all the rest can be covered
 with this approach too, see the double examples for equivalents.
 
-    eden precious | precious -s
+    eden pre | precious -s
 
 2. `-f` or `--file` followed by a json file `<path>`
 
