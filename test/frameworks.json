@@ -12,7 +12,7 @@
     , "neutral": ""
     , "verbose": "--spec"
     }
-  , "paths": ["cli-easy"]
+  , "paths": ["vows"]
   , "extension": ".spec.coffee"
   }
 }
