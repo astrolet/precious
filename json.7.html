@@ -61,6 +61,8 @@
   <div class='man-navigation' style='display:none'>
     <a href="#NAME">NAME</a>
     <a href="#WHAT">WHAT</a>
+    <a href="#-IN-">{IN}</a>
+    <a href="#-OUT-">{OUT}</a>
     <a href="#ALSO">ALSO</a>
     <a href="#HOME">HOME</a>
   </div>
@@ -82,7 +84,7 @@
 
 <h3 id="e-g-">e.g.</h3>
 
-<p>A precious sample of valid json input.</p>
+<p>A precious sample of valid json input / request:</p>
 
 <pre><code>{ "utc": "1974-06-30T21:45:00.000Z"
 , "stuff": [[0], [0, 1], null]
@@ -90,44 +92,48 @@
 </code></pre>
 
 <p>This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would
-be found, given a moment of time.</p>
+be found, given a moment of time.  And here is
+The corresponding sample of precious output / response:</p>
 
-<h3 id="In">In</h3>
+<pre><code>{"1": {"0": {"0": 98.70827783123845}, "1": {"0": 238.13984880619816}}}
+</code></pre>
 
-<p>Specification of the request / instructions (or defaults) - the <code>precious</code>
+<h2 id="-IN-">{IN}</h2>
+
+<p>Specification of the request / instructions (or else defaults) - the <code>precious</code>
 can take.</p>
 
-<h4 id="data">data</h4>
+<h4 id="data-">data:</h4>
 
 <p>A relative or absolute path to the Swiss Ephemeris data files.</p>
 
-<h4 id="out">out</h4>
+<h4 id="out-">out:</h4>
 
 <p>We get "json" by default anyway (same as null).
 A bit more human-readable output is "pprint".
 Even better is Eden's command line interface.</p>
 
-<h4 id="stuff">stuff</h4>
+<h4 id="stuff-">stuff:</h4>
 
 <p>The kind of stuff to be returned, or null, or empty array(s) [] - mean all the same default equivalent.  The first array <code>[0, 3]</code> respectively yields ecliptic position and speed for each item of interest.  These map directly to results of the <code>swe.calc_ut</code> function.  The second array contains the main kind of things - returned with key of '1'.  The third array contains the minor kind of things - offset by 10,000 and returned with key of '2'.</p>
 
-<h4 id="utc">utc</h4>
+<h4 id="utc-">utc:</h4>
 
 <p>Undefined (or null) <em>utc</em> time - means the current moment will be used.  Otherwise provide a string in <a class="man-ref" href="http://en.wikipedia.org/wiki/ISO_8601">ISO-8601<span class="s">(7)</span></a> format (which must end with a Z).  Seconds are optional, plus even more optional precision after a decimal.  The default is 3 digit precision, i.e. milliseconds.</p>
 
-<h4 id="ut">ut</h4>
+<h4 id="ut-">ut:</h4>
 
 <p>Besides the <em>utc</em> semi-convenience, this <em>ut</em> array of time fragments will be passed on directly to the <code>swe.utc_to_jd</code> function (as its arguments).  It takes precedence over any <em>utc</em> value that it is otherwise derived from.  Such option exists in case an intermediate conversion is not wanted.</p>
 
-<h4 id="geo">geo</h4>
+<h4 id="geo-">geo:</h4>
 
 <p>Given <em>geo</em> location with its <em>lat</em> / <em>lon</em> coordinates such as <code>"geo": { "lat": 43.2166667, "lon": 27.9166667 }</code> means there can and will be angles (e.g. Asc / Mc) keyed as '3'.  These come from the <code>swe.houses</code> function, however there may or may not be house cusps in the final results output - read about the next option.</p>
 
-<h4 id="houses">houses</h4>
+<h4 id="houses-">houses:</h4>
 
 <p>A value of false for the <em>houses</em> means we are not interested in any cusps, rendering any house system irrelevant (for the particular request).  None will be returned, even if the prerequisite geo coordinates are provided.  Check the swiss ephemeris manual for a list of valid house system codes.  Anyway, the 12 cusps array would be keyed as '4'.</p>
 
-<h4 id="extra">extra</h4>
+<h4 id="extra-">extra:</h4>
 
 <p>An object of various predefined <code>what</code> (0 or more) hashed things -
 e.g. <code>"extra": {"&lt;what>": {&lt;with-optional-config>}}</code>.
@@ -142,12 +148,29 @@ directly corresponding to any of the following <code>what</code>(s):</p>
 </ul>
 
 
-<h3 id="Out">Out</h3>
+<h2 id="-OUT-">{OUT}</h2>
 
-<p>The corresponding sample of precious response:</p>
+<p>A hash of (string-numbered) things, the <code>precious</code> yields.</p>
 
-<pre><code>{"1": {"0": {"0": 98.70827783123845}, "1": {"0": 238.13984880619816}}}
-</code></pre>
+<h3 id="0-Object-">0: <code>{&lt;Object>}</code></h3>
+
+<p>what corresponds to the <code>extra</code>(s), for post-processing</p>
+
+<h3 id="1-Object-">1: <code>{&lt;Object>}</code></h3>
+
+<p>major stuff from <code>swe.calc_ut</code> below the 10K items</p>
+
+<h3 id="2-Object-">2: <code>{&lt;Object>}</code></h3>
+
+<p>minor stuff from <code>swe.calc_ut</code> above the 10K items</p>
+
+<h3 id="3-Array-">3: <code>[&lt;Array>]</code></h3>
+
+<p>the angles, also depend on geo-location</p>
+
+<h3 id="4-Array-">4: <code>[&lt;Array>]</code></h3>
+
+<p>the houses, since being handed anyway -- otherwise mostly irrelevant</p>
 
 <h2 id="ALSO">ALSO</h2>
 
@@ -160,7 +183,7 @@ directly corresponding to any of the following <code>what</code>(s):</p>
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>May 2012</li>
+    <li class='tc'>June 2012</li>
     <li class='tr'>precious-json(7)</li>
   </ol>
 
