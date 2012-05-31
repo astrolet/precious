@@ -53,9 +53,12 @@ A value of false for the _houses_ means we are not interested in any cusps, rend
 
 #### extra
 
-An array of various expected things ...
-Asks for extra info (to be keyed as '0'),
-with any of the following:
+An object of various predefined `what` (0 or more) hashed things -
+e.g. `"extra": {"<what>": {<with-optional-config>}}`.
+The config of these is ignored, for now - as if `{}`.
+There could be some with settings later...
+So, this asks for extra info - to be keyed as '0' in the response,
+directly corresponding to any of the following `what`(s):
 
 * "re" - regarding a copy of the current input settings - this request <object>.
 * "times" - to be implemented for performance metrics [<start-time>, <end-time>]

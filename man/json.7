@@ -52,7 +52,7 @@ Given \fIgeo\fR location with its \fIlat\fR / \fIlon\fR coordinates such as \fB"
 A value of false for the \fIhouses\fR means we are not interested in any cusps, rendering any house system irrelevant (for the particular request)\. None will be returned, even if the prerequisite geo coordinates are provided\. Check the swiss ephemeris manual for a list of valid house system codes\. Anyway, the 12 cusps array would be keyed as \'4\'\.
 .
 .P
-An array of various expected things \.\.\. Asks for extra info (to be keyed as \'0\'), with any of the following:
+An object of various predefined \fBwhat\fR (0 or more) hashed things \- e\.g\. \fB"extra": {"<what>": {<with\-optional\-config>}}\fR\. The config of these is ignored, for now \- as if \fB{}\fR\. There could be some with settings later\.\.\. So, this asks for extra info \- to be keyed as \'0\' in the response, directly corresponding to any of the following \fBwhat\fR(s):
 .
 .IP "\(bu" 4
 "re" \- regarding a copy of the current input settings \- this request

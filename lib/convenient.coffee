@@ -1,8 +1,9 @@
-ut = require('upon').ut
+ut    = require('upon').ut
+merge = require('deepmerge')
 
 # Fills in the input with convenient niceties / default settings.
 
-module.exports = (input) ->
+module.exports = (input, further) ->
 
   # Location of the ephemeris data, unless explicitly elsewhere.
   input.data ?= "node_modules/gravity/data"
@@ -25,5 +26,12 @@ module.exports = (input) ->
 
   # No houses, unless both geo-coordinates and house system preference given.
   input.houses ?= false
+
+  # Extra needs to be present, because of the deepmerge below.
+  input.extra ?= {}
+
+  # Keep it here (last), in part because of a deepmerge bug.
+  # Can't merge a key of key that doesn't exist in the first place...
+  input = merge input, further if further?
 
   input

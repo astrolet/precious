@@ -16,7 +16,6 @@ complete   = require('complete')
 convenient = require('../index').convenient
 ephemeris  = require('../index').ephemeris
 JSONStream = require('JSONStream')
-merge      = require('deepmerge')
 json       = require('jsonify')
 colors     = require('colors')
 
@@ -51,7 +50,7 @@ man = (page, status = 0, cb) ->
 # a second implementation method that will not spawn a process at all.
 # Will revist / refactor `fetch` then.
 fetch = (what) ->
-  stream = ephemeris convenient merge what, extra: ["re"]
+  stream = ephemeris convenient what, extra: re: {}
   stream.stderr.on 'data', (error) ->
     console.error '\nSpawned child_process error.\n'.red + error
     process.exit(1)

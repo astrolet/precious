@@ -42,8 +42,8 @@ if __name__ == "__main__":
     # Zero hash for extra data -- useful with post-processing.
     # Preserves the input request if asked for it (with "re").
     # Possibly also debug data, time metrics, etc.
-    if "extra" in re:
-      for add in re["extra"]:
+    if "extra" in re and re["extra"]:
+      for (add, conf) in re["extra"].iteritems():
         if add == "re":
           e["0"][add] = re
     else:
