@@ -3,8 +3,8 @@ node_js:
   - 0.6
 branches:
   only:
-    - master
     - active
+    - master
 notifications:
   email:
     recipients:
