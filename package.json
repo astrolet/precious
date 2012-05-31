@@ -23,6 +23,8 @@
   , "underscore": "*"
   , "upon": "*"
   , "gravity": "*"
+  , "complete": "*"
+  , "JSONStream": "*"
   , "jsonify": "*"
   , "colors": "*"
   }

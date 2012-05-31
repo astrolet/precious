@@ -57,15 +57,15 @@ anything you may wish to contribute for more specialized use-case enablement.
 
 As lazy as possible, fetch ephemeris data with the convenient defaults:
 
-    precious -o {}
+    precious o {}
 
 With specific time, "pprint" for a bit more readable output + names:
 
-    precious -o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+    precious o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
 
 No "utc" for *right now*, it also fetches the angles, given geo-location:
 
-    precious -o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
+    precious o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
 
 Copy & change the `test/io/for/example.json` to fit your use-case preferences.
 See precious-json(7) and eden(1) for further / friendlier options.

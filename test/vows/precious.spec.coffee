@@ -15,16 +15,18 @@ CLIeasy.describe('precious')
 
   .discuss('command')
 
-  .discuss('h, short for help')
-    .arg('-h')
-    .expect('same as `man precious`', matches.man?.precious1)
-  .undiscuss()
-  .arg('--help').discuss('help')
-    .expect('same as `man precious`', matches.man?.precious1)
-  .undiscuss()
-  .arg('--help json').discuss('help json')
-    .expect('is `man precious-json`', matches.man?.json7)
-  .undiscuss()
+    .discuss('?, short for help')
+      .arg('?')
+      .expect('same as `man precious-readme`', matches.man?.readme7)
+    .undiscuss()
+
+    .arg('help').discuss('help')
+      .expect('same as `man precious-readme`', matches.man?.readme7)
+    .undiscuss()
+
+    .arg('help json').discuss('help json')
+      .expect('is `man precious-json`', matches.man?.json7)
+    .undiscuss()
 
   .export(module)
 

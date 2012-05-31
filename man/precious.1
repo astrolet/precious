@@ -10,7 +10,7 @@
 Anything less we couldn\'t do astrology with\.
 .
 .P
-Use eden(1) for a better cli experience\.
+Use eden(1) for a better cli experience\. Better for both precious\-json(7) input options and human\-readable output\. Either of which could be used individually as well\. See \fIstream\fR examples / usage next\.
 .
 .SH "USAGE"
 Running precious from the command line (instead of programming JavaScript) is not the most efficient nor the most convenient, though it\'s ok too\.
@@ -19,33 +19,49 @@ Running precious from the command line (instead of programming JavaScript) is no
 Some precious\-json(7) must be provided in one of three ways:
 .
 .IP "1." 4
-\fB\-s\fR or \fB\-\-stream\fR input though unix pipes \- all the rest can be covered with this approach too, see the double examples for equivalents\.
+\fB\-\fR, \fBs\fR or \fBstream\fR input though unix pipes \- all the rest can be covered with this approach too, see the double examples for equivalents\.
 .
 .IP
-eden pre | precious \-s
+eden pre | precious \-
 .
 .IP "2." 4
-\fB\-f\fR or \fB\-\-file\fR followed by a json file \fB<path>\fR
+\fBf\fR or \fBfile\fR followed by a json file \fB<path>\fR
 .
 .IP
-precious \-f test/io/for/example\.json
+precious f test/io/for/example\.json
 .
 .IP
-cat test/io/for/example\.json | precious \-s
+cat test/io/for/example\.json | precious \-
 .
 .IP "3." 4
-\fB\-o\fR or \fB\-\-object\fR given a json string \fB<\'input\'>\fR, even if just \fB{}\fR
+\fBo\fR or \fBobject\fR given a json string \fB<\'input\'>\fR, even if just \fB{}\fR
 .
 .IP
-precious \-o {}
+precious o {}
 .
 .IP
-echo {} | precious \-s
+echo {} | precious \-
 .
 .IP "" 0
 .
 .P
 The streams way could do it all, with just a few extra characters typing\. Though perhaps not using Windows\.
+.
+.P
+Here is how \fBeden\fR can help by not only piping input, but also making the output more readable, streams are awesome:
+.
+.IP "" 4
+.
+.nf
+
+eden pre | precious \- | eden eat
+.
+.fi
+.
+.IP "" 0
+.
+.P
+This is the equivalent of \fBeden know\fR\. Pipe any of the \fBprecious\fR examples into \fBeden eat\fR \- and feast on what could be seen, at least\.
 .
 .SH "HELP"
 This is also a man\-page and can be read with any one of:
@@ -54,8 +70,9 @@ This is also a man\-page and can be read with any one of:
 .
 .nf
 
+precious
 man precious
-precious [\-h | \-\-help]
+precious ? 1
 .
 .fi
 .
@@ -68,15 +85,15 @@ Help for precious\-json(7) is also available using these:
 .
 .nf
 
-man precious\-json
-precious [\-h | \-\-help] json
+precious help json
+man  precious\-json
 .
 .fi
 .
 .IP "" 0
 .
 .P
-See Index(7) for the precious README \fIhttps://github\.com/astrolet/precious#readme\fR\.
+See Index(7) or \fBprecious ?\fR for the precious README \fIhttps://github\.com/astrolet/precious#readme\fR\.
 .
 .SH "ALSO"
 precious\-json(7), gravity(6), eden(1)

@@ -12,11 +12,22 @@
 # defaults will be used.
 
 
-json       = require('jsonify')
-JSONStream = require('JSONStream')
+complete   = require('complete')
 convenient = require('../index').convenient
 ephemeris  = require('../index').ephemeris
+JSONStream = require('JSONStream')
+json       = require('jsonify')
 colors     = require('colors')
+
+
+# This should be tab-completing the commands, but it ain't...
+complete
+  program: "precious"
+  commands:
+    stream: {}
+    object: {}
+    file: {}
+    help: {}
 
 
 # There are several man pages, reused for help.
@@ -52,7 +63,7 @@ args = process.argv.splice(2)
 if args.length > 0 then switch args[0]
 
   # Stream pipe, unix style.
-  when '-s', '--stream'
+  when '-', 's', 'stream'
     process.stdin.resume()
     process.stdin.setEncoding("utf8")
 
@@ -71,7 +82,7 @@ if args.length > 0 then switch args[0]
 
   # The rest of the options are just for convenience / variety.
 
-  when '-f', '--file'
+  when 'f', 'file'
     unless args[1]?
       console.error "Usage: precious -f <file>".red
       process.exit(1)
@@ -83,16 +94,18 @@ An error has ocurred.  Please double-check the file & path.".red
         process.exit(1)
       else fetch json.parse data
 
-  when '-o', '--object'
+  when 'o', 'object'
     if args[1]? then fetch json.parse args[1]
     else
       console.error "\nNo JSON provided, format instructions follow...".red
       man "precious-json", 1, ->
         console.error "Usage: precious -o '<json>'\n".red
 
-  when '-h', '--help'
-    if args?[1] is "json" then man "precious-json"
-    else man "precious"
+  when '?', 'help'
+    switch args[1]
+      when "1" then man "precious"
+      when "json" then man "precious-json"
+      else man "precious-readme"
 
   else man "precious", 1, ->
     console.error "Usage confusion, see help above.\n".red
