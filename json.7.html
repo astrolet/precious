@@ -129,11 +129,16 @@ Even better is Eden's command line interface.</p>
 
 <h4 id="extra">extra</h4>
 
-<p>Asks for extra info (to be keyed as '0'), including the following:</p>
+<p>An object of various predefined <code>what</code> (0 or more) hashed things -
+e.g. <code>"extra": {"&lt;what>": {&lt;with-optional-config>}}</code>.
+The config of these is ignored, for now - as if <code>{}</code>.
+There could be some with settings later...
+So, this asks for extra info - to be keyed as '0' in the response,
+directly corresponding to any of the following <code>what</code>(s):</p>
 
 <ul>
-<li>'input': copy of the request object</li>
-<li>'timing': ['start-time', '<var>end-time</var>']</li>
+<li>"re" - regarding a copy of the current input settings - this request <object>.</object></li>
+<li>"times" - to be implemented for performance metrics [<var>start-time</var>, <var>end-time</var>]</li>
 </ul>
 
 

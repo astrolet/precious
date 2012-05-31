@@ -82,7 +82,10 @@
 
 <p>Anything less we couldn't do astrology with.</p>
 
-<p>Use <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for a better cli experience.</p>
+<p>Use <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for a better cli experience.
+Better for both <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> input options and human-readable output.
+Either of which could be used individually as well.  See <em>stream</em> examples /
+usage next.</p>
 
 <h2 id="USAGE">USAGE</h2>
 
@@ -92,20 +95,20 @@ is not the most efficient nor the most convenient, though it's ok too.</p>
 <p>Some <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> must be provided in one of three ways:</p>
 
 <ol>
-<li><p><code>-s</code> or <code>--stream</code> input though unix pipes - all the rest can be covered
+<li><p><code>-</code>, <code>s</code> or <code>stream</code> input though unix pipes - all the rest can be covered
 with this approach too, see the double examples for equivalents.</p>
 
-<p>  eden pre | precious -s</p></li>
-<li><p><code>-f</code> or <code>--file</code> followed by a json file <code>&lt;path></code></p>
+<p>  eden pre | precious -</p></li>
+<li><p><code>f</code> or <code>file</code> followed by a json file <code>&lt;path></code></p>
 
-<p> precious -f test/io/for/example.json</p>
+<p> precious f test/io/for/example.json</p>
 
-<p> cat test/io/for/example.json | precious -s</p></li>
-<li><p><code>-o</code> or <code>--object</code> given a json string <code>&lt;'input'></code>, even if just <code>{}</code></p>
+<p> cat test/io/for/example.json | precious -</p></li>
+<li><p><code>o</code> or <code>object</code> given a json string <code>&lt;'input'></code>, even if just <code>{}</code></p>
 
-<p> precious -o {}</p>
+<p> precious o {}</p>
 
-<p> echo {} | precious -s</p></li>
+<p> echo {} | precious -</p></li>
 </ol>
 
 
@@ -113,21 +116,31 @@ with this approach too, see the double examples for equivalents.</p>
 with just a few extra characters typing.
 Though perhaps not using Windows.</p>
 
+<p>Here is how <code>eden</code> can help by not only piping input, but also making the output
+more readable, streams are awesome:</p>
+
+<pre><code>eden pre | precious - | eden eat
+</code></pre>
+
+<p>This is the equivalent of <code>eden know</code>.  Pipe any of the <code>precious</code> examples into
+<code>eden eat</code> - and feast on what could be seen, at least.</p>
+
 <h2 id="HELP">HELP</h2>
 
 <p>This is also a man-page and can be read with any one of:</p>
 
-<pre><code>man precious
-precious [-h | --help]
+<pre><code>precious
+man precious
+precious ? 1
 </code></pre>
 
 <p>Help for <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> is also available using these:</p>
 
-<pre><code>man precious-json
-precious [-h | --help] json
+<pre><code>precious help json
+man  precious-json
 </code></pre>
 
-<p>See <a class="man-ref" href="http://astrolet.github.com/precious">Index<span class="s">(7)</span></a> for the precious
+<p>See <a class="man-ref" href="http://astrolet.github.com/precious">Index<span class="s">(7)</span></a> or <code>precious ?</code> for the precious
 <a href="https://github.com/astrolet/precious#readme">README</a>.</p>
 
 <h2 id="ALSO">ALSO</h2>
