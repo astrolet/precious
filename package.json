@@ -25,6 +25,7 @@
   , "gravity": "*"
   , "complete": "*"
   , "JSONStream": "*"
+  , "deepmerge": "*"
   , "jsonify": "*"
   , "colors": "*"
   }

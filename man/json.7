@@ -52,13 +52,13 @@ Given \fIgeo\fR location with its \fIlat\fR / \fIlon\fR coordinates such as \fB"
 A value of false for the \fIhouses\fR means we are not interested in any cusps, rendering any house system irrelevant (for the particular request)\. None will be returned, even if the prerequisite geo coordinates are provided\. Check the swiss ephemeris manual for a list of valid house system codes\. Anyway, the 12 cusps array would be keyed as \'4\'\.
 .
 .P
-Asks for extra info (to be keyed as \'0\'), including the following:
+An array of various expected things \.\.\. Asks for extra info (to be keyed as \'0\'), with any of the following:
 .
 .IP "\(bu" 4
-\'input\': copy of the request object
+"re" \- regarding a copy of the current input settings \- this request
 .
 .IP "\(bu" 4
-\'timing\': [\'start\-time\', \'\fIend\-time\fR\']
+"times" \- to be implemented for performance metrics [\fIstart\-time\fR, \fIend\-time\fR]
 .
 .IP "" 0
 .

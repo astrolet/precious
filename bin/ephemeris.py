@@ -36,13 +36,23 @@ if "out" in re and re["out"] == "pprint":
 
 if __name__ == "__main__":
 
+    # This is a minimal e[phemeris].
+    e = {"0": {}, "1": {}, "2": {}, "3": [], "4": []}
+
+    # Zero hash for extra data -- useful with post-processing.
+    # Preserves the input request if asked for it (with "re").
+    # Possibly also debug data, time metrics, etc.
+    if "extra" in re:
+      for add in re["extra"]:
+        if add == "re":
+          e["0"][add] = re
+    else:
+      del e["0"]
+
     # The data files, which may not be in the
     # [sin repo](https://github.com/astrolet/sin) /
     # [gravity pakage](http://search.npmjs.org/#/gravity).
     swe.set_ephe_path(re["data"])
-
-    # This is a minimal e[phemeris].
-    e = {"1": {}, "2": {}, "3": [], "4": []}
 
     # Is using the Gregorian calendar flag correct?
     # If calendar type is conditional, is it easier to determine here (with the help of swe)?

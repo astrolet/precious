@@ -53,10 +53,12 @@ A value of false for the _houses_ means we are not interested in any cusps, rend
 
 #### extra
 
-Asks for extra info (to be keyed as '0'), including the following:
+An array of various expected things ...
+Asks for extra info (to be keyed as '0'),
+with any of the following:
 
-* 'input': copy of the request object
-* 'timing': ['start-time', '<end-time>']
+* "re" - regarding a copy of the current input settings - this request <object>.
+* "times" - to be implemented for performance metrics [<start-time>, <end-time>]
 
 
 ### Out
