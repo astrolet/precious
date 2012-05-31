@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "README" "7" "May 2012" "" ""
+.TH "README" "7" "June 2012" "" ""
 .
 .SH "ABOUT"
 Node package distribution of pyswisseph \fIhttp://pypi\.python\.org/pypi/pyswisseph\fR\. Python is just the current method for calling the Swiss Ephemeris\. It has been handy for a rapid prototype / bootstrapping\. Direct JavaScript bindings are preferable and will eventually be implemented\. At that point, the Python code is to be ported and retired\. This module\'s purpose is to make writing astrology apps on \fINode\.JS\fR both possible and straightforward\.
@@ -98,7 +98,7 @@ gravity
 There is a \fBcake install\fR task that is somewhat useful\. It assumes that Python, a C compiler and Node\.js are already installed\.
 .
 .SH "LACKS"
-It\'s unknown how the project should be setup for Windows development / use\. Perhaps it just works flawlessly or with just a bit of extra setup effort? Verification / contribution of such instructions would be great to have\.
+It\'s unknown how the project should be setup for Windows development / use\. Perhaps it just works flawlessly or with just a bit of extra setup effort? While installing the stuff \fIhttp://dailyjs\.com/2012/05/17/windows\-and\-node\-3\fR may be relatively straightforward, I\'m not too sure all my code would run as is\. Verification / contribution of setup instructions would be great to have\. Of\-course, issues are welcome \- just as well\.
 .
 .P
 Spawning a process to run a Python script is kind of slow\. Some day, it would be preferable to have Node\.js bindings directly to the Swiss Ephemeris, without going through Python or FFI\. Either this swisseph \fIhttps://github\.com/mivion/swisseph\fR library or (maybe also) Emscripten \fIhttp://emscripten\.org\fR stand out as possible next steps\.

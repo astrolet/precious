@@ -100,7 +100,10 @@ Python, a C compiler and Node.js are already installed.
 
 It's unknown how the project should be setup for Windows development / use.
 Perhaps it just works flawlessly or with just a bit of extra setup effort?
-Verification / contribution of such instructions would be great to have.
+While [installing the stuff](http://dailyjs.com/2012/05/17/windows-and-node-3)
+may be relatively straightforward, I'm not too sure all my code would run as is.
+Verification / contribution of setup instructions would be great to have.
+Of-course, issues are welcome - just as well.
 
 Spawning a process to run a Python script is kind of slow.
 Some day, it would be preferable to have Node.js bindings directly to
