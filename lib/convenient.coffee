@@ -27,11 +27,7 @@ module.exports = (input, further) ->
   # No houses, unless both geo-coordinates and house system preference given.
   input.houses ?= false
 
-  # Extra needs to be present, because of the deepmerge below.
-  input.extra ?= {}
-
-  # Keep it here (last), in part because of a deepmerge bug.
-  # Can't merge a key of key that doesn't exist in the first place...
+  # Merge some further settings here last.
   input = merge input, further if further?
 
   input
