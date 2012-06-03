@@ -9,6 +9,28 @@ from a Node.js library or the command line.
 
 ## HOW
 
+### lib/
+
+The programming way.
+
+Give the precious ephemeris(3) some precious-json(7)
+and it will return a [stream](http://nodejs.org/api/stream.html)
+of what you asked for.  Here is a CoffeeScript example:
+
+    got = require('precious').ephemeris {}, convenient: true
+    got.stdout.on 'data', (s) -> console.log JSON.parse s
+
+And a JavaScript equivalent:
+
+    var got = require('precious').ephemeris({}, {convenient: true});
+    got.stdout.on('data', function(s) {
+      console.log(JSON.parse(s));
+    });
+
+### bin/
+
+The precious(1) cli.
+
 As lazy as possible, fetch ephemeris data with the convenient defaults:
 
     precious o {}
