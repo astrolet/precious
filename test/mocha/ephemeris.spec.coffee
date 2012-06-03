@@ -7,6 +7,16 @@ json       = require 'jsonify'
 diff       = require('difflet')({ comma: 'first', indent: 2, comment: true })
 
 
+# Call the ephemeris expecting a `(data) -> ...`
+# callback to do something with with its stream of data.
+ephemerisData = (done, input, opts, cb) ->
+  child = ephemeris input, opts
+  child.stderr.on "data", (data) ->
+    console.log data.toString().red
+  child.stdout.on "data", cb
+  child.on "exit", (code) -> done()
+
+
 describe "ephemeris", ->
 
   describe "without precious input", ->
@@ -18,10 +28,8 @@ describe "ephemeris", ->
   describe "with an empty input, and convenient option", ->
     output = {}
     before (done) ->
-      child = ephemeris {}, convenient: true
-      child.stdout.on "data", (data) ->
+      ephemerisData done, {}, convenient: true, (data) ->
         output = json.parse data.toString()
-        done()
 
     it "should produce some results", ->
       output.should.have.keys '1'
@@ -34,13 +42,8 @@ describe "ephemeris", ->
       fs.readFile "test/io/out/nativity.json", (err, data) ->
         expect = json.parse data.toString()
         fs.readFile "test/io/for/nativity.json", (err, data) ->
-          child = ephemeris convenient json.parse data.toString()
-          child.stderr.on "data", (data) ->
-            console.log data.toString().red
-          child.stdout.on "data", (data) ->
+          ephemerisData done, json.parse(data.toString()), convenient: true, (data) ->
             output = json.parse data.toString()
-          child.on "exit", (code) ->
-            done()
 
     it "should match the corresponding out[put] data", ->
       assert.deepEqual output, expect,
