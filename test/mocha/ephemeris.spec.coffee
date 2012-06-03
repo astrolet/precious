@@ -14,6 +14,19 @@ describe "ephemeris", ->
     it "should fail, with some thrown error", ->
       ephemeris().should.throw()
 
+
+  describe "with an empty input, and convenient option", ->
+    output = {}
+    before (done) ->
+      child = ephemeris {}, convenient: true
+      child.stdout.on "data", (data) ->
+        output = json.parse data.toString()
+        done()
+
+    it "should produce some results", ->
+      output.should.have.keys '1'
+
+
   describe "with test json for a nativity", ->
     output = {}
     expect = null
