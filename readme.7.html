@@ -59,9 +59,11 @@
   <div class='mp' id='man'>
 
   <div class='man-navigation' style='display:none'>
-    <a href="#ABOUT">ABOUT</a>
+    <a href="#SAY">SAY</a>
     <a href="#HOW">HOW</a>
+    <a href="#ABOUT">ABOUT</a>
     <a href="#SETUP">SETUP</a>
+    <a href="#TEST">TEST</a>
     <a href="#LACKS">LACKS</a>
     <a href="#LAW">LAW</a>
     <a href="#ALSO">ALSO</a>
@@ -76,6 +78,61 @@
 
   <h1><a href="http://travis-ci.org/astrolet/precious"><img src="https://secure.travis-ci.org/astrolet/precious.png" alt="Build Status" /></a></h1>
 <h1>precious -- the minimum kind of ephemeris</h1>
+
+<h2 id="SAY">SAY</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Ephemeris">Ephemeris</a> data,
+from a Node.js library or the command line.</p>
+
+<h2 id="HOW">HOW</h2>
+
+<h3 id="lib-">lib/</h3>
+
+<p>The programming way.</p>
+
+<p>Give the precious <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a> some <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a>
+and it will return a <a href="http://nodejs.org/api/stream.html">stream</a>
+of what you asked for.  Here is a CoffeeScript example:</p>
+
+<pre><code>got = require('precious').ephemeris {}, convenient: true
+got.stdout.on 'data', (s) -&gt; console.log JSON.parse s
+</code></pre>
+
+<p>And a JavaScript equivalent:</p>
+
+<pre><code>var got = require('precious').ephemeris({}, {convenient: true});
+got.stdout.on('data', function(s) {
+  console.log(JSON.parse(s));
+});
+</code></pre>
+
+<h3 id="bin-">bin/</h3>
+
+<p>The <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
+
+<p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
+
+<pre><code>precious o {}
+</code></pre>
+
+<p>With specific time, "pprint" for a bit more readable output + names:</p>
+
+<pre><code>precious o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+</code></pre>
+
+<p>No "utc" for <em>right now</em>, it also fetches the angles, given geo-location:</p>
+
+<pre><code>precious o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
+</code></pre>
+
+<p>Copy &amp; change the <code>test/io/for/example.json</code> to fit your use-case preferences.
+See <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> and <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for further / friendlier options.</p>
+
+<p>Eden offers convenience and can be used either as a library or as cli interface.
+It also makes precious more useful and readable in many ways.
+Another reason to consider it is for generating <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> settings
+to be used for calling <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>, which is a precious module export,
+or else through the rather limited <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
 
 <h2 id="ABOUT">ABOUT</h2>
 
@@ -127,32 +184,6 @@ It will, however, remain an opinionated subset of what an ephemeris can provide.
 Not everything that's possible is necessary, though be welcome to add
 anything you may wish to contribute for more specialized use-case enablement.</p>
 
-<h2 id="HOW">HOW</h2>
-
-<p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
-
-<pre><code>precious o {}
-</code></pre>
-
-<p>With specific time, "pprint" for a bit more readable output + names:</p>
-
-<pre><code>precious o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
-</code></pre>
-
-<p>No "utc" for <em>right now</em>, it also fetches the angles, given geo-location:</p>
-
-<pre><code>precious o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
-</code></pre>
-
-<p>Copy &amp; change the <code>test/io/for/example.json</code> to fit your use-case preferences.
-See <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> and <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for further / friendlier options.</p>
-
-<p>Eden offers convenience and can be used either as a library or as cli interface.
-It also makes precious more useful and readable in many ways.
-Another reason to consider it is for generating <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> settings
-to be used for calling <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>, which is a precious module export,
-or else through the rather limited <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
-
 <h2 id="SETUP">SETUP</h2>
 
 <p>With the <a href="http://npmjs.org/">npm</a> prerequisite, do <code>npm install -g precious</code>.
@@ -173,6 +204,11 @@ regardless of what the current directory is.</p>
 
 <p>There is a <code>cake install</code> task that is somewhat useful.  It assumes that
 Python, a C compiler and Node.js are already installed.</p>
+
+<h2 id="TEST">TEST</h2>
+
+<pre><code>cake test
+</code></pre>
 
 <h2 id="LACKS">LACKS</h2>
 
