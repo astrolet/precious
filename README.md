@@ -2,6 +2,57 @@
 # precious -- the minimum kind of ephemeris
 
 
+## SAY
+[Ephemeris](http://en.wikipedia.org/wiki/Ephemeris) data,
+from a Node.js library or the command line.
+
+
+## HOW
+
+### lib/
+
+The programming way.
+
+Give the precious ephemeris(3) some precious-json(7)
+and it will return a [stream](http://nodejs.org/api/stream.html)
+of what you asked for.  Here is a CoffeeScript example:
+
+    got = require('precious').ephemeris {}, convenient: true
+    got.stdout.on 'data', (s) -> console.log JSON.parse s
+
+And a JavaScript equivalent:
+
+    var got = require('precious').ephemeris({}, {convenient: true});
+    got.stdout.on('data', function(s) {
+      console.log(JSON.parse(s));
+    });
+
+### bin/
+
+The precious(1) cli.
+
+As lazy as possible, fetch ephemeris data with the convenient defaults:
+
+    precious o {}
+
+With specific time, "pprint" for a bit more readable output + names:
+
+    precious o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
+
+No "utc" for *right now*, it also fetches the angles, given geo-location:
+
+    precious o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
+
+Copy & change the `test/io/for/example.json` to fit your use-case preferences.
+See precious-json(7) and eden(1) for further / friendlier options.
+
+Eden offers convenience and can be used either as a library or as cli interface.
+It also makes precious more useful and readable in many ways.
+Another reason to consider it is for generating precious-json(7) settings
+to be used for calling ephemeris(3), which is a precious module export,
+or else through the rather limited precious(1) cli.
+
+
 ## ABOUT
 
 Node package distribution of
@@ -53,30 +104,6 @@ Not everything that's possible is necessary, though be welcome to add
 anything you may wish to contribute for more specialized use-case enablement.
 
 
-## HOW
-
-As lazy as possible, fetch ephemeris data with the convenient defaults:
-
-    precious o {}
-
-With specific time, "pprint" for a bit more readable output + names:
-
-    precious o '{"utc": "1974-06-30T21:45Z", "out": "pprint"}'
-
-No "utc" for *right now*, it also fetches the angles, given geo-location:
-
-    precious o '{"geo": {"lat": 43.2166667, "lon": 27.9166667}}'
-
-Copy & change the `test/io/for/example.json` to fit your use-case preferences.
-See precious-json(7) and eden(1) for further / friendlier options.
-
-Eden offers convenience and can be used either as a library or as cli interface.
-It also makes precious more useful and readable in many ways.
-Another reason to consider it is for generating precious-json(7) settings
-to be used for calling ephemeris(3), which is a precious module export,
-or else through the rather limited precious(1) cli.
-
-
 ## SETUP
 
 With the [npm](http://npmjs.org/) prerequisite, do `npm install -g precious`.
@@ -94,6 +121,11 @@ regardless of what the current directory is.
 
 There is a `cake install` task that is somewhat useful.  It assumes that
 Python, a C compiler and Node.js are already installed.
+
+
+## TEST
+
+    cake test
 
 
 ## LACKS
