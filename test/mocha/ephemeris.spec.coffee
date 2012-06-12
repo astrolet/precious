@@ -10,7 +10,7 @@ traverse   = require 'traverse'
 
 # Floating point numbers fixed to precision,
 # suitable for testing across architectures.
-precision = 14
+precision = 11
 fixFloats = (obj, digits = precision) ->
   traverse(obj).forEach (val) ->
     if typeof val is 'number' and val % 1 isnt 0
