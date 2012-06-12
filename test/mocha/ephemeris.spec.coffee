@@ -15,7 +15,6 @@ fixFloats = (obj, digits = precision) ->
   traverse(obj).forEach (val) ->
     if typeof val is 'number' and val % 1 isnt 0
       @update val.toFixed(digits)
-  return obj
 
 
 # Call the ephemeris expecting a `(data) -> ...`
