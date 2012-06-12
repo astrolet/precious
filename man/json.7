@@ -1,16 +1,16 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "PRECIOUS\-JSON" "7" "May 2011" "" ""
+.TH "PRECIOUS\-JSON" "7" "June 2012" "" ""
 .
 .SH "NAME"
 \fBprecious\-json\fR \- tells precious what is wanted
 .
-.P
+.SH "WHAT"
 Data format / expectations about what goes in and out of \fBprecious\fR\.
 .
-.SH "DESCRIPTION"
-A precious sample of valid json input\.
+.SS "e\.g\."
+A precious sample of valid json input / request:
 .
 .IP "" 4
 .
@@ -25,10 +25,20 @@ A precious sample of valid json input\.
 .IP "" 0
 .
 .P
-This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would be found, given a moment of time\.
+This query is about where on the ecliptic (0) the Sun (0) and Moon (1) would be found, given a moment of time\. And here is The corresponding sample of precious output / response:
 .
-.SS "REQUEST"
-Specification of the instructions or defaults that \fBprecious\fR takes\.
+.IP "" 4
+.
+.nf
+
+{"1": {"0": {"0": 98\.70827783123845}, "1": {"0": 238\.13984880619816}}}
+.
+.fi
+.
+.IP "" 0
+.
+.SH "{IN}"
+Specification of the request / instructions (or else defaults) \- the \fBprecious\fR can take\.
 .
 .P
 A relative or absolute path to the Swiss Ephemeris data files\.
@@ -52,31 +62,36 @@ Given \fIgeo\fR location with its \fIlat\fR / \fIlon\fR coordinates such as \fB"
 A value of false for the \fIhouses\fR means we are not interested in any cusps, rendering any house system irrelevant (for the particular request)\. None will be returned, even if the prerequisite geo coordinates are provided\. Check the swiss ephemeris manual for a list of valid house system codes\. Anyway, the 12 cusps array would be keyed as \'4\'\.
 .
 .P
-Asks for extra info (to be keyed as \'0\'), including the following:
+An object of various predefined \fBwhat\fR (0 or more) hashed things \- e\.g\. \fB"extra": {"<what>": {<with\-optional\-config>}}\fR\. The config of these is ignored, for now \- as if \fB{}\fR\. There could be some with settings later\.\.\. So, this asks for extra info \- to be keyed as \'0\' in the response, directly corresponding to any of the following \fBwhat\fR(s):
 .
 .IP "\(bu" 4
-\'input\': copy of the request object
+"re" \- regarding a copy of the current input settings \- this request
 .
 .IP "\(bu" 4
-\'timing\': [\'start\-time\', \'\fIend\-time\fR\']
+"times" \- to be implemented for performance metrics [\fIstart\-time\fR, \fIend\-time\fR]
 .
 .IP "" 0
 .
-.SS "RESPONSE"
-The corresponding sample of precious output:
+.SH "{OUT}"
+A hash of (string\-numbered) things, the \fBprecious\fR yields\.
 .
-.IP "" 4
+.SS "0: <code>{<Object>}</code>"
+what corresponds to the \fBextra\fR(s), for post\-processing
 .
-.nf
-
-{"1": {"0": {"0": 98\.70827783123845}, "1": {"0": 238\.13984880619816}}}
+.SS "1: <code>{<Object>}</code>"
+major stuff from \fBswe\.calc_ut\fR below the 10K items
 .
-.fi
+.SS "2: <code>{<Object>}</code>"
+minor stuff from \fBswe\.calc_ut\fR above the 10K items
 .
-.IP "" 0
+.SS "3: <code>[<Array>]</code>"
+the angles, also depend on geo\-location
 .
-.SH "SEE ALSO"
+.SS "4: <code>[<Array>]</code>"
+the houses, since being handed anyway \-\- otherwise mostly irrelevant
+.
+.SH "ALSO"
 precious(1), JSON(7), ISO\-8601(7)
 .
-.SH "NAVIGATE"
-Index(7), Home(7)
+.SH "HOME"
+Index(7), Base(7)

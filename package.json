@@ -20,9 +20,14 @@
 , "main": "index"
 , "dependencies":
   { "coffee-script": "*"
+  , "underscore": "*"
   , "upon": "*"
   , "gravity": "*"
+  , "complete": "*"
+  , "JSONStream": "*"
+  , "deepmerge": "*"
   , "jsonify": "*"
+  , "colors": "*"
   }
 , "devDependencies":
   { "eyes": "*"
@@ -30,10 +35,17 @@
   , "docco": "*"
   , "async": "*"
   , "police": "*"
+  , "mocha": "*"
+  , "should": "*"
+  , "difflet": "*"
+  , "vows": "*"
+  , "cli-easy": "*"
+  , "traverse": "*"
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
   , "postinstall": "coffee ./bin/post-install.coffee"
+  , "test": "cake -s test"
   }
 , "bin": { "precious" : "./bin/precious.js" }
 , "os" : [ "aix", "freebsd", "linux", "macos", "solaris" ]

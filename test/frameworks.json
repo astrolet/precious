@@ -1,0 +1,18 @@
+{ "mocha":
+  { "alias":
+    { "silent": "--reporter dot"
+    , "verbose": "--reporter spec"
+    }
+  , "paths": ["mocha"]
+  , "extension": ".spec.coffee"
+  }
+, "vows":
+  { "alias":
+    { "silent": "--silent"
+    , "neutral": ""
+    , "verbose": "--spec"
+    }
+  , "paths": ["vows"]
+  , "extension": ".spec.coffee"
+  }
+}
