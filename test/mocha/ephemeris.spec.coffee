@@ -5,6 +5,17 @@ assert     = require 'assert'
 colors     = require 'colors'
 json       = require 'jsonify'
 diff       = require('difflet')({ comma: 'first', indent: 2, comment: true })
+traverse   = require 'traverse'
+
+
+# Floating point numbers fixed to precision,
+# suitable for testing across architectures.
+precision = 14
+fixFloats = (obj, digits = precision) ->
+  traverse(obj).forEach (val) ->
+    if typeof val is 'number' and val % 1 isnt 0
+      @update val.toFixed(digits)
+  return obj
 
 
 # Call the ephemeris expecting a `(data) -> ...`
@@ -40,10 +51,10 @@ describe "ephemeris", ->
     expect = null
     before (done) ->
       fs.readFile "test/io/out/nativity.json", (err, data) ->
-        expect = json.parse data.toString()
+        expect = fixFloats (json.parse data.toString())
         fs.readFile "test/io/for/nativity.json", (err, data) ->
           ephemerisData done, json.parse(data.toString()), convenient: true, (data) ->
-            output = json.parse data.toString()
+            output = fixFloats (json.parse data.toString())
 
     it "should match the corresponding out[put] data", ->
       assert.deepEqual output, expect,

@@ -40,6 +40,7 @@
   , "difflet": "*"
   , "vows": "*"
   , "cli-easy": "*"
+  , "traverse": "*"
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
