@@ -1,7 +1,7 @@
 { "name": "precious"
 , "description": "the minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.1.0"
+, "version": "0.1.1"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
