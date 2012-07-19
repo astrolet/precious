@@ -20,7 +20,7 @@ json       = require('jsonify')
 colors     = require('colors')
 
 
-# This should be tab-completing the commands, but it ain't...
+# The precious commands do complete on tab.
 complete
   program: "precious"
   commands:

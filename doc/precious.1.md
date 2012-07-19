@@ -15,6 +15,7 @@ usage next.
 
 Running precious from the command line (instead of programming JavaScript)
 is not the most efficient nor the most convenient, though it's ok too.
+The commands can tab-complete.
 
 Some precious-json(7) must be provided in one of three ways:
 
