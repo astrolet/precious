@@ -212,7 +212,9 @@ be able to convert to float (e.g. from string or perhaps int).</p>
 None (null) or false means no houses wanted.</p>
     </div>
     <div class='code'>
-      <div class="highlight"><pre>      <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]:</span>
+      <div class="highlight"><pre>      <span class="k">if</span> <span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">]:</span>
+        <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s">&quot;houses&quot;</span><span class="p">],)</span>
+      <span class="k">else</span><span class="p">:</span>
         <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;4&quot;</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="k">del</span> <span class="n">e</span><span class="p">[</span><span class="s">&quot;3&quot;</span><span class="p">]</span>
