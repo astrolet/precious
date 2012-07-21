@@ -48,6 +48,9 @@ more readable, streams are awesome:
 This is the equivalent of `eden know`.  Pipe any of the `precious` examples into
 `eden eat` - and feast on what could be seen, at least.
 
+A global eden is automatically available through `postinstall`.
+Go ahead and try it.
+
 
 ## HELP
 
