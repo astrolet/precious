@@ -44,7 +44,7 @@
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
-  , "postinstall": "coffee ./bin/post-install.coffee"
+  , "postinstall": "npm install -g eden && coffee ./bin/post-install.coffee"
   , "test": "cake -s test"
   }
 , "bin": { "precious" : "./bin/precious.js" }
