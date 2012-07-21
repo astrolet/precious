@@ -15,6 +15,7 @@ usage next.
 
 Running precious from the command line (instead of programming JavaScript)
 is not the most efficient nor the most convenient, though it's ok too.
+The commands can tab-complete.
 
 Some precious-json(7) must be provided in one of three ways:
 
@@ -46,6 +47,9 @@ more readable, streams are awesome:
 
 This is the equivalent of `eden know`.  Pipe any of the `precious` examples into
 `eden eat` - and feast on what could be seen, at least.
+
+A global eden is automatically available through `postinstall`.
+Go ahead and try it.
 
 
 ## HELP

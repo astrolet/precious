@@ -101,7 +101,9 @@ if __name__ == "__main__":
                                   str(re["houses"] or "W"))
       # The Whole Sign default wasn't asked for.
       # None (null) or false means no houses wanted.
-      if not re["houses"]:
+      if re["houses"]:
+        e["4"] += (re["houses"],)
+      else:
         del e["4"]
     else:
       del e["3"]
