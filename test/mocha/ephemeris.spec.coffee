@@ -1,10 +1,10 @@
 ephemeris  = require('../../index').ephemeris
 convenient = require('../../index').convenient
 fs         = require 'fs'
-assert     = require 'assert'
 colors     = require 'colors'
 json       = require 'jsonify'
 traverse   = require 'traverse'
+inspect    = require('eyes').inspector({maxLength: null})
 
 mapExec    = require '../helpers/map_exec'
 assertSame = require '../helpers/assert_same'
@@ -78,5 +78,6 @@ describe "cli", ->
           done()
 
     it "yields the same results", ->
+      inspect results
       assertSame results[0], results[1]
 
