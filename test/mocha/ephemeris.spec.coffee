@@ -70,12 +70,14 @@ describe "cli", ->
       beginning = "precious f test/io/for/nativity.json
  | node_modules/jsontool/lib/jsontool.js"
       mapExec [
-        "#{beginning}"
-        "#{beginning} 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
+        "#{beginning} -o json"
+        "#{beginning} 0.re | precious -
+ | node_modules/jsontool/lib/jsontool.js -o json"
         ], (err, stdouts) ->
           for result in stdouts
-            console.log result
             results.push json.parse result
+            # Properties get reordered for some reason.
+            # delete results[results.length-1]["0"]["re"]
           done()
 
     it "yields the same results", ->
