@@ -66,13 +66,16 @@ describe "cli", ->
 
   describe 're-run with the extra [0]["re"]', ->
     results = []
-    before (done) -> mapExec [
-      "precious f test/io/for/nativity.json | node_modules/jsontool/lib/jsontool.js"
-      "precious f test/io/for/nativity.json | node_modules/jsontool/lib/jsontool.js 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
-      ], (err, stdouts) ->
-        for result in stdouts
-          results.push json.parse result
-        done()
+    before (done) ->
+      beginning = "precious f test/io/for/nativity.json
+ | node_modules/jsontool/lib/jsontool.js"
+      mapExec [
+        "#{beginning}"
+        "#{beginning} 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
+        ], (err, stdouts) ->
+          for result in stdouts
+            results.push json.parse result
+          done()
 
     it "yields the same results", ->
       assertSame results[0], results[1]
