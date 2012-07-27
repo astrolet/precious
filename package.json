@@ -41,6 +41,7 @@
   , "vows": "*"
   , "cli-easy": "*"
   , "traverse": "*"
+  , "jsontool": "*"
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"

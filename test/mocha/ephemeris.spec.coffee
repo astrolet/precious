@@ -4,8 +4,10 @@ fs         = require 'fs'
 assert     = require 'assert'
 colors     = require 'colors'
 json       = require 'jsonify'
-diff       = require('difflet')({ comma: 'first', indent: 2, comment: true })
 traverse   = require 'traverse'
+
+mapExec    = require '../helpers/map_exec'
+assertSame = require '../helpers/assert_same'
 
 
 # Floating point numbers fixed to precision,
@@ -57,6 +59,21 @@ describe "ephemeris", ->
             output = fixFloats (json.parse data.toString())
 
     it "should match the corresponding out[put] data", ->
-      assert.deepEqual output, expect,
-        "output not as expected, see diff below\n" + diff.compare output, expect
+      assertSame output, expect
+
+
+describe "cli", ->
+
+  describe 're-run with the extra [0]["re"]', ->
+    results = []
+    before (done) -> mapExec [
+      "precious f test/io/for/nativity.json | node_modules/jsontool/lib/jsontool.js"
+      "precious f test/io/for/nativity.json | node_modules/jsontool/lib/jsontool.js 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
+      ], (err, stdouts) ->
+        for result in stdouts
+          results.push JSON.parse result
+        done()
+
+    it "yields the same results", ->
+      assertSame results[0], results[1]
 
