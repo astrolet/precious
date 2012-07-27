@@ -67,11 +67,11 @@ describe "cli", ->
   describe 're-run with the extra [0]["re"]', ->
     results = []
     before (done) ->
-      beginning = "precious f test/io/for/nativity.json
+      beginning = "bin/precious.js f test/io/for/nativity.json
  | node_modules/jsontool/lib/jsontool.js"
       mapExec [
         "#{beginning} -o json-0"
-        "#{beginning} 0.re | precious -
+        "#{beginning} 0.re | bin/precious.js -
  | node_modules/jsontool/lib/jsontool.js -o json-0"
         ], (err, stdouts) ->
           for result in stdouts
