@@ -74,10 +74,10 @@ describe "cli", ->
         "#{beginning} 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
         ], (err, stdouts) ->
           for result in stdouts
+            console.log result
             results.push json.parse result
           done()
 
     it "yields the same results", ->
-      inspect results
       assertSame results[0], results[1]
 
