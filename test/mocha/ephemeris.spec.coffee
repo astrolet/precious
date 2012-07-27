@@ -71,7 +71,7 @@ describe "cli", ->
       "precious f test/io/for/nativity.json | node_modules/jsontool/lib/jsontool.js 0.re | precious - | node_modules/jsontool/lib/jsontool.js"
       ], (err, stdouts) ->
         for result in stdouts
-          results.push JSON.parse result
+          results.push json.parse result
         done()
 
     it "yields the same results", ->
