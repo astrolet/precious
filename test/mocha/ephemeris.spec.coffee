@@ -75,7 +75,6 @@ describe "cli", ->
  | node_modules/jsontool/lib/jsontool.js -o json-0"
         ], (err, stdouts) ->
           for result in stdouts
-            console.log result
             results.push JSON.parse result
             # Properties get reordered for some reason.
             delete results[results.length-1]["0"]["re"]
