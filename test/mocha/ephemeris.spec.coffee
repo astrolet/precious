@@ -68,11 +68,12 @@ describe "cli", ->
     results = []
     before (done) ->
       jsontool = "node_modules/jsontool/lib/jsontool.js"
-      beginning = "bin/precious.js f test/io/for/nativity.json | #{jsontool}"
+      jsontool0 = "#{jsontool} -o json-0"
+      beginning = "bin/precious.js f test/io/for/nativity.json"
       mapExec [
-        "#{beginning} -o json-0"
-        "#{beginning} 0 | #{jsontool} re | #{jsontool} -o json-0
- | bin/precious.js - | #{jsontool} -o json-0"
+        "#{beginning} | #{jsontool0}"
+        "#{beginning} | #{jsontool} 0 | #{jsontool} re | #{jsontool0}
+        | bin/precious.js - | #{jsontool0}"
         ], (err, stdouts) ->
           for result in stdouts
             results.push JSON.parse result
