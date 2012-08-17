@@ -71,8 +71,8 @@ describe "cli", ->
       beginning = "bin/precious.js f test/io/for/nativity.json | #{jsontool}"
       mapExec [
         "#{beginning} -o json-0"
-        "#{beginning} 0 | #{jsontool} re | bin/precious.js -
-        | #{jsontool} -o json-0"
+        "#{beginning} 0 | #{jsontool} re | #{jsontool} -o json-0
+ | bin/precious.js - | #{jsontool} -o json-0"
         ], (err, stdouts) ->
           for result in stdouts
             results.push JSON.parse result
