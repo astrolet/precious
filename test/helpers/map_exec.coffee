@@ -8,7 +8,9 @@ module.exports = mapExec = (calls = [], cb) ->
     exec item, (err, stdout, stderr) ->
       console.log "ran: #{item}"
       console.log "got: #{stdout}"
-      console.log err if err?
+      if err?
+        console.log "STDERR: #{stderr}"
+        console.log err
       cbk err, stdout
 
   async.map calls, iterator, cb
