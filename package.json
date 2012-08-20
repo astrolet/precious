@@ -24,7 +24,7 @@
   , "upon": "*"
   , "gravity": "*"
   , "complete": "*"
-  , "JSONStream": "*"
+  , "JSONStream": "0.3.0"
   , "deepmerge": "*"
   , "jsonify": "*"
   , "colors": "*"
