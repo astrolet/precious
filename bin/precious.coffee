@@ -68,7 +68,7 @@ if args.length > 0 then switch args[0]
     process.stdin.setEncoding("utf8")
 
     # A good parser.
-    parser = JSONStream.parse /./
+    parser = JSONStream.parse true
     process.stdin.pipe parser
 
     parser.on "error", (err) ->

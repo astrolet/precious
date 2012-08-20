@@ -76,7 +76,7 @@ describe "cli", ->
         | bin/precious.js - | #{jsontool0}"
         ], (err, stdouts) ->
           for result in stdouts
-            results.push JSON.parse result
+            results.push json.parse result
             # Properties get reordered for some reason.
             delete results[results.length-1]["0"]["re"]
           done()
