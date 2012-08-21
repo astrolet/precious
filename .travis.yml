@@ -3,7 +3,6 @@ node_js:
   - 0.8
 branches:
   only:
-    - travis
     - active
     - master
 notifications:
