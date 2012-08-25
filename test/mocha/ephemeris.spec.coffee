@@ -5,8 +5,6 @@ colors     = require 'colors'
 json       = require 'jsonify'
 traverse   = require 'traverse'
 inspect    = require('eyes').inspector({maxLength: null})
-
-mapExec    = require '../helpers/map_exec'
 assertSame = require '../helpers/assert_same'
 
 
@@ -60,27 +58,4 @@ describe "ephemeris", ->
 
     it "should match the corresponding out[put] data", ->
       assertSame output, expect
-
-
-describe "cli", ->
-
-  describe 're-run with the extra [0]["re"]', ->
-    results = []
-    before (done) ->
-      jsontool = "node_modules/jsontool/lib/jsontool.js"
-      jsontool0 = "#{jsontool} -o json-0"
-      beginning = "bin/precious.js f test/io/for/nativity.json"
-      mapExec [
-        "#{beginning} | #{jsontool0}"
-        "#{beginning} | #{jsontool} 0 | #{jsontool} re | #{jsontool0}
-        | bin/precious.js - | #{jsontool0}"
-        ], (err, stdouts) ->
-          for result in stdouts
-            results.push json.parse result
-            # Properties get reordered for some reason.
-            delete results[results.length-1]["0"]["re"]
-          done()
-
-    it "yields the same results", ->
-      assertSame results[0], results[1]
 
