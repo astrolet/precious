@@ -18,6 +18,7 @@ ephemeris  = require('../index').ephemeris
 JSONStream = require('JSONStream')
 json       = require('jsonify')
 colors     = require('colors')
+man        = require('../lib/man')
 
 
 # The precious commands do complete on tab.
@@ -28,20 +29,6 @@ complete
     object: {}
     file: {}
     help: {}
-
-
-# There are several man pages, reused for help.
-# Sometimes help is given together with a non-zero exit status, aka _error_.
-man = (page, status = 0, cb) ->
-  require('child_process').exec "man man/#{page}", (err, out) ->
-    if err
-      console.error "Can't get: `man #{page}`.".red
-      console.error "Go to http://astrolet.github.com/precious/ for help."
-      process.exit(1)
-    else
-      console.log "\n" + out
-      cb() if cb?
-      process.exit(status)
 
 
 # This is the call.  Not too efficient for the sake of easy cli

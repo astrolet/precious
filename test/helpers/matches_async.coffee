@@ -1,15 +1,8 @@
-exec     = require('child_process').exec
 parallel = require('async').parallel
-Stream   = require("stream").Stream
+Stream   = require('stream').Stream
+man      = require '../../lib/man'
 
 module.exports = new Stream
-
-man = (page, cb) ->
-  exec "man man/#{page}", (err, stdout, stderr) ->
-    if err?
-      cb err, stderr.toString()
-    else
-      cb null, "\n#{stdout}\n"
 
 parallel {
   man: (cb) ->
