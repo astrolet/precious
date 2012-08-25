@@ -36,10 +36,10 @@
   , "async": "*"
   , "police": "*"
   , "mocha": "*"
+  , "mocha-as-promised": "*"
+  , "q": "*"
   , "should": "*"
   , "difflet": "*"
-  , "vows": "*"
-  , "cli-easy": "*"
   , "traverse": "*"
   , "jsontool": "*"
   }

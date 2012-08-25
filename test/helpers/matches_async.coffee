@@ -15,6 +15,7 @@ parallel {
   man: (cb) ->
     parallel {
       precious1: (cb) -> man 'precious', cb
+      readme7: (cb) -> man 'precious-readme', cb
       json7: (cb) -> man 'precious-json', cb
     }, (err, pages) ->
       cb null, pages
