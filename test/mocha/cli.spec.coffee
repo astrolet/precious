@@ -20,22 +20,22 @@ describe "$ `precious", ->
   describe "` by itself, with no arguments", ->
     it "returns `man precious`", ->
       (proExec "#{precious}").then (result) ->
-        result.should.eql matches.man.precious1
+        assertSame result, matches.man.precious1
 
   describe "?`, short for help", ->
     it "is same as `man precious-readme`", ->
       (proExec "#{precious} ?").then (result) ->
-        result.should.eql matches.man.readme7
+        assertSame result, matches.man.readme7
 
   describe "help`", ->
     it "is same as `man precious-readme`", ->
       (proExec "#{precious} help").then (result) ->
-        result.should.eql matches.man.readme7
+        assertSame result, matches.man.readme7
 
   describe "help json`", ->
     it "is `man precious-json`", ->
       (proExec "#{precious} help json").then (result) ->
-        result.should.eql matches.man.json7
+        assertSame result, matches.man.json7
 
 
   # Consistency

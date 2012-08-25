@@ -33,7 +33,7 @@ complete
 # There are several man pages, reused for help.
 # Sometimes help is given together with a non-zero exit status, aka _error_.
 man = (page, status = 0, cb) ->
-  require('child_process').exec "man #{page}", (err, out) ->
+  require('child_process').exec "man man/#{page}", (err, out) ->
     if err
       console.error "Can't get: `man #{page}`.".red
       console.error "Go to http://astrolet.github.com/precious/ for help."
@@ -98,19 +98,19 @@ An error has ocurred.  Please double-check the file & path.".red
     if args[1]? then fetch json.parse args[1]
     else
       console.error "\nNo JSON provided, format instructions follow...".red
-      man "precious-json", 1, ->
+      man "json.7", 1, ->
         console.error "Usage: precious -o '<json>'\n".red
 
   when '?', 'help'
     switch args[1]
-      when "1" then man "precious"
-      when "json" then man "precious-json"
-      else man "precious-readme"
+      when "1" then man "precious.1"
+      when "json" then man "json.7"
+      else man "readme.7"
 
   else man "precious", 1, ->
     console.error "Usage confusion, see help above.\n".red
 
 # Another way to get help.
 # It's common to type a command by itself and expect some usage info.
-else man "precious"
+else man "precious.1"
 

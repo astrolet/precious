@@ -5,7 +5,7 @@ Stream   = require("stream").Stream
 module.exports = new Stream
 
 man = (page, cb) ->
-  exec "man #{page}", (err, stdout, stderr) ->
+  exec "man man/#{page}", (err, stdout, stderr) ->
     if err?
       cb err, stderr.toString()
     else
@@ -14,9 +14,9 @@ man = (page, cb) ->
 parallel {
   man: (cb) ->
     parallel {
-      precious1: (cb) -> man 'precious', cb
-      readme7: (cb) -> man 'precious-readme', cb
-      json7: (cb) -> man 'precious-json', cb
+      precious1: (cb) -> man 'precious.1', cb # man precious
+      readme7: (cb) -> man 'readme.7', cb # man precious-readme
+      json7: (cb) -> man 'json.7', cb # man precious-json
     }, (err, pages) ->
       cb null, pages
   # there could be other stuff to load in parallel to man-pages
