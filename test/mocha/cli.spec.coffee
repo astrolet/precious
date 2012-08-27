@@ -66,6 +66,18 @@ describe "$ `precious", ->
               fixFloats: true
 
 
+  # Object
+  describe "o[bject]`, given a spec-conforming json string", ->
+    it "produces the expected output", ->
+      (proExec "cat test/io/for/nativity.json").then (input) ->
+        (proExec "#{precious} o '#{input}'").then (result) ->
+          (proExec "#{precious} object '#{input}'").then (also) ->
+            (proExec "cat test/io/out/nativity.json").then (expected) ->
+              assertSame [result, also, expected],
+                parse: true
+                fixFloats: true
+
+
   # Consistency
 
   describe '{*}` re-run with the extra [0]["re"]', ->
