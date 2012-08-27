@@ -43,13 +43,14 @@ describe "$ `precious", ->
 
   # File
 
-  describe "f {file}`, given path to a spec-conforming json file", ->
+  describe "f[ile]`, given path to a spec-conforming json", ->
     it "produces the expected output", ->
       (proExec "#{precious} f test/io/for/nativity.json").then (result) ->
-        (proExec "cat test/io/out/nativity.json").then (expected) ->
-          assertSame [result, expected],
-            parse: true
-            fixFloats: true
+        (proExec "#{precious} file test/io/for/nativity.json").then (also) ->
+          (proExec "cat test/io/out/nativity.json").then (expected) ->
+            assertSame [result, also, expected],
+              parse: true
+              fixFloats: true
 
 
   # Consistency
