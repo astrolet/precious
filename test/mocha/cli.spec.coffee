@@ -41,6 +41,19 @@ describe "$ `precious", ->
         assertSame [result, matches.man.json7]
 
 
+  # Stream
+
+  describe "-`, being piped a stream of spec-conforming json", ->
+    it "produces the expected output", ->
+      (proExec "cat test/io/for/nativity.json | #{precious} -").then (dash) ->
+        (proExec "cat test/io/for/nativity.json | #{precious} stream").then (stream) ->
+          (proExec "cat test/io/for/nativity.json | #{precious} s").then (s) ->
+            (proExec "cat test/io/out/nativity.json").then (expected) ->
+                assertSame [dash, stream, s, expected],
+                  parse: true
+                  fixFloats: true
+
+
   # File
 
   describe "f[ile]`, given path to a spec-conforming json", ->
