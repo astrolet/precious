@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "PRECIOUS\-JSON" "7" "June 2012" "" ""
+.TH "PRECIOUS\-JSON" "7" "August 2012" "" ""
 .
 .SH "NAME"
 \fBprecious\-json\fR \- tells precious what is wanted
@@ -62,15 +62,18 @@ Given \fIgeo\fR location with its \fIlat\fR / \fIlon\fR coordinates such as \fB"
 A value of false for the \fIhouses\fR means we are not interested in any cusps, rendering any house system irrelevant (for the particular request)\. None will be returned, even if the prerequisite geo coordinates are provided\. Check the swiss ephemeris manual for a list of valid house system codes\. Anyway, the 12 cusps array would be keyed as \'4\'\.
 .
 .P
-An object of various predefined \fBwhat\fR (0 or more) hashed things \- e\.g\. \fB"extra": {"<what>": {<with\-optional\-config>}}\fR\. The config of these is ignored, for now \- as if \fB{}\fR\. There could be some with settings later\.\.\. So, this asks for extra info \- to be keyed as \'0\' in the response, directly corresponding to any of the following \fBwhat\fR(s):
+An object of various predefined \fBwhat\fR (0 or more) hashed things \- e\.g\. \fB"extra": {"<what>": {<with\-optional\-config>}}\fR\. So, this asks for extra info \- to be keyed as \fB"0"\fR in the response, directly corresponding to any of the following \fBwhat\fR(s), with possible config settings:
+.
+.P
+\fB"re"\fR: preserves a copy of the json input, i\.e\. the request \fB{object}\fR
 .
 .IP "\(bu" 4
-"re" \- regarding a copy of the current input settings \- this request
-.
-.IP "\(bu" 4
-"times" \- to be implemented for performance metrics [\fIstart\-time\fR, \fIend\-time\fR]
+\fB"except"\fR: an array of keys to be deleted, e\.g\. \fB{"except": ["data"]}\fR would exclude the usually system\-specific ephemeris data path
 .
 .IP "" 0
+.
+.P
+\fB"time"\fR: (to be implemented) time stamps / performance metrics, e\.g\. includes \fB[<start\-time>, <end\-time>]\fR
 .
 .SH "{OUT}"
 A hash of (string\-numbered) things, the \fBprecious\fR yields\.

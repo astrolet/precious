@@ -39,16 +39,6 @@ if __name__ == "__main__":
     # This is a minimal e[phemeris].
     e = {"0": {}, "1": {}, "2": {}, "3": [], "4": []}
 
-    # Zero hash for extra data -- useful with post-processing.
-    # Preserves the input request if asked for it (with "re").
-    # Possibly also debug data, time metrics, etc.
-    if "extra" in re and re["extra"]:
-      for (add, conf) in re["extra"].iteritems():
-        if add == "re":
-          e["0"][add] = re
-    else:
-      del e["0"]
-
     # The data files, which may not be in the
     # [sin repo](https://github.com/astrolet/sin) /
     # [gravity pakage](http://search.npmjs.org/#/gravity).
@@ -108,6 +98,19 @@ if __name__ == "__main__":
     else:
       del e["3"]
       del e["4"]
+
+    # Zero hash for extra data -- useful with post-processing.
+    # Preserves the input request if asked for it (with "re").
+    # Possibly also debug data, time metrics, etc.
+    if "extra" in re and re["extra"]:
+      for (add, conf) in re["extra"].iteritems():
+        if add == "re":
+          e["0"][add] = re
+          if "except" in re["extra"][add]:
+            for minus in re["extra"][add]["except"]:
+              del e["0"][add][minus]
+    else:
+      del e["0"]
 
     # Print to STDOUT.
     # JSON is the default (not even checked).

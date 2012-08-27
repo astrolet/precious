@@ -59,13 +59,17 @@ A value of false for the _houses_ means we are not interested in any cusps, rend
 
 An object of various predefined `what` (0 or more) hashed things -
 e.g. `"extra": {"<what>": {<with-optional-config>}}`.
-The config of these is ignored, for now - as if `{}`.
-There could be some with settings later...
-So, this asks for extra info - to be keyed as '0' in the response,
-directly corresponding to any of the following `what`(s):
+So, this asks for extra info - to be keyed as `"0"` in the response,
+directly corresponding to any of the following `what`(s), with possible
+config settings:
 
-* "re" - regarding a copy of the current input settings - this request <object>.
-* "times" - to be implemented for performance metrics [<start-time>, <end-time>]
+`"re"`: preserves a copy of the json input, i.e. the request `{object}`
+
+  * `"except"`: an array of keys to be deleted, e.g. `{"except": ["data"]}`
+would exclude the usually system-specific ephemeris data path
+
+`"time"`: (to be implemented) time stamps / performance metrics,
+e.g. includes `[<start-time>, <end-time>]`
 
 
 ## {OUT}
