@@ -27,13 +27,9 @@ describe "$ `precious", ->
 
   describe "?`, short for help", ->
     it "is same as `man precious-readme`", ->
-      (proExec "#{precious} ?").then (result) ->
-        assertSame [result, matches.man.readme7]
-
-  describe "help`", ->
-    it "is same as `man precious-readme`", ->
-      (proExec "#{precious} help").then (result) ->
-        assertSame [result, matches.man.readme7]
+      (proExec "#{precious} ?").then (shorthand) ->
+        (proExec "#{precious} help").then (help) ->
+          assertSame [shorthand, help, matches.man.readme7]
 
   describe "help json`", ->
     it "is `man precious-json`", ->
