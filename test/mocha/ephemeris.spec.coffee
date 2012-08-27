@@ -5,7 +5,6 @@ colors     = require 'colors'
 json       = require 'jsonify'
 inspect    = require('eyes').inspector({maxLength: null})
 assertSame = require '../helpers/assert_same'
-fixFloats  = require '../helpers/fix_floats'
 
 
 # Call the ephemeris expecting a `(data) -> ...`
@@ -41,11 +40,12 @@ describe "ephemeris", ->
     expect = null
     before (done) ->
       fs.readFile "test/io/out/nativity.json", (err, data) ->
-        expect = fixFloats (json.parse data.toString())
+        expect = json.parse data.toString()
         fs.readFile "test/io/for/nativity.json", (err, data) ->
           ephemerisData done, json.parse(data.toString()), convenient: true, (data) ->
-            output = fixFloats (json.parse data.toString())
+            output = json.parse data.toString()
 
     it "should match the corresponding out[put] data", ->
-      assertSame output, expect
+      assertSame [output, expect],
+        fixFloats: true
 

@@ -1,5 +1,4 @@
 assertSame = require "../helpers/assert_same"
-fixFloats = require "../helpers/fix_floats"
 doMatch = require "../helpers/matches_async"
 proExec = require "../helpers/promise_exec"
 mapExec = require "../helpers/map_exec"
@@ -24,22 +23,22 @@ describe "$ `precious", ->
   describe "` by itself, with no arguments", ->
     it "returns `man precious`", ->
       (proExec "#{precious}").then (result) ->
-        assertSame result, matches.man.precious1
+        assertSame [result, matches.man.precious1]
 
   describe "?`, short for help", ->
     it "is same as `man precious-readme`", ->
       (proExec "#{precious} ?").then (result) ->
-        assertSame result, matches.man.readme7
+        assertSame [result, matches.man.readme7]
 
   describe "help`", ->
     it "is same as `man precious-readme`", ->
       (proExec "#{precious} help").then (result) ->
-        assertSame result, matches.man.readme7
+        assertSame [result, matches.man.readme7]
 
   describe "help json`", ->
     it "is `man precious-json`", ->
       (proExec "#{precious} help json").then (result) ->
-        assertSame result, matches.man.json7
+        assertSame [result, matches.man.json7]
 
 
   # File
@@ -48,7 +47,9 @@ describe "$ `precious", ->
     it "produces the expected output", ->
       (proExec "#{precious} f test/io/for/nativity.json").then (result) ->
         (proExec "cat test/io/out/nativity.json").then (expected) ->
-          assertSame fixFloats(result), fixFloats(expected), true
+          assertSame [result, expected],
+            parse: true
+            fixFloats: true
 
 
   # Consistency
@@ -69,5 +70,5 @@ describe "$ `precious", ->
           done()
 
     it "yields the same results", ->
-      assertSame results[0], results[1]
+      assertSame [results[0], results[1]]
 
