@@ -7,6 +7,9 @@ json    = require "jsonify"
 
 
 precious = "bin/precious.js"
+jsontool = "node_modules/jsontool/lib/jsontool.js"
+jsontool0 = "#{jsontool} -o json-0"
+
 describe "$ `precious", ->
 
   matches = {}
@@ -38,14 +41,21 @@ describe "$ `precious", ->
         assertSame result, matches.man.json7
 
 
+  # File
+
+  describe "f {file}`, given path to a spec-conforming json file", ->
+    it "produces the expected output", ->
+      (proExec "#{precious} f test/io/for/nativity.json").then (result) ->
+        (proExec "cat test/io/out/nativity.json").then (expected) ->
+          assertSame result, expected, true
+
+
   # Consistency
 
-  describe '{~}` re-run with the extra [0]["re"]', ->
+  describe '{*}` re-run with the extra [0]["re"]', ->
     results = []
     before (done) ->
-      jsontool = "node_modules/jsontool/lib/jsontool.js"
-      jsontool0 = "#{jsontool} -o json-0"
-      beginning = "bin/precious.js f test/io/for/nativity.json"
+      beginning = "#{precious} f test/io/for/nativity.json"
       mapExec [
         "#{beginning} | #{jsontool0}"
         "#{beginning} | #{jsontool} 0 | #{jsontool} re | #{jsontool0}
