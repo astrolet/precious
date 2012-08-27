@@ -1,4 +1,5 @@
 assertSame = require "../helpers/assert_same"
+fixFloats = require "../helpers/fix_floats"
 doMatch = require "../helpers/matches_async"
 proExec = require "../helpers/promise_exec"
 mapExec = require "../helpers/map_exec"
@@ -47,7 +48,7 @@ describe "$ `precious", ->
     it "produces the expected output", ->
       (proExec "#{precious} f test/io/for/nativity.json").then (result) ->
         (proExec "cat test/io/out/nativity.json").then (expected) ->
-          assertSame result, expected, true
+          assertSame fixFloats(result), fixFloats(expected), true
 
 
   # Consistency

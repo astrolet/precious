@@ -3,19 +3,9 @@ convenient = require('../../index').convenient
 fs         = require 'fs'
 colors     = require 'colors'
 json       = require 'jsonify'
-traverse   = require 'traverse'
 inspect    = require('eyes').inspector({maxLength: null})
 assertSame = require '../helpers/assert_same'
-
-
-# Floating point numbers fixed to precision,
-# suitable for testing across architectures.
-precision = 7
-fixFloats = (obj, digits = precision) ->
-  traverse(obj).forEach (val) ->
-    if typeof val is 'number' and val % 1 isnt 0
-      @update val.toFixed(digits)
-  return obj
+fixFloats  = require '../helpers/fix_floats'
 
 
 # Call the ephemeris expecting a `(data) -> ...`
