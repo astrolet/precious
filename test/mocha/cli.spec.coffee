@@ -1,6 +1,7 @@
 assertSame = require "../helpers/assert_same"
 doMatch = require "../helpers/matches_async"
 proExec = require "../helpers/promise_exec"
+proVals = require "../helpers/promises_values"
 mapExec = require "../helpers/map_exec"
 require("mocha-as-promised")()
 json    = require "jsonify"
@@ -41,37 +42,40 @@ describe "$ `precious", ->
 
   describe "-`, being piped a stream of spec-conforming json", ->
     it "produces the expected output", ->
-      (proExec "cat test/io/for/nativity.json | #{precious} -").then (dash) ->
-        (proExec "cat test/io/for/nativity.json | #{precious} stream").then (stream) ->
-          (proExec "cat test/io/for/nativity.json | #{precious} s").then (s) ->
-            (proExec "cat test/io/out/nativity.json").then (expected) ->
-                assertSame [dash, stream, s, expected],
-                  parse: true
-                  fixFloats: true
+      proVals (proExec "cat test/io/for/nativity.json | #{precious} -")
+            , (proExec "cat test/io/for/nativity.json | #{precious} stream")
+            , (proExec "cat test/io/for/nativity.json | #{precious} s")
+            , (proExec "cat test/io/out/nativity.json")
+            , (results) ->
+              assertSame results,
+                parse: true
+                fixFloats: true
 
 
   # File
 
   describe "f[ile]`, given path to a spec-conforming json", ->
     it "produces the expected output", ->
-      (proExec "#{precious} f test/io/for/nativity.json").then (result) ->
-        (proExec "#{precious} file test/io/for/nativity.json").then (also) ->
-          (proExec "cat test/io/out/nativity.json").then (expected) ->
-            assertSame [result, also, expected],
-              parse: true
-              fixFloats: true
+      proVals (proExec "#{precious} f test/io/for/nativity.json")
+            , (proExec "#{precious} file test/io/for/nativity.json")
+            , (proExec "cat test/io/out/nativity.json")
+            , (results) ->
+              assertSame results,
+                parse: true
+                fixFloats: true
 
 
   # Object
   describe "o[bject]`, given a spec-conforming json string", ->
     it "produces the expected output", ->
       (proExec "cat test/io/for/nativity.json").then (input) ->
-        (proExec "#{precious} o '#{input}'").then (result) ->
-          (proExec "#{precious} object '#{input}'").then (also) ->
-            (proExec "cat test/io/out/nativity.json").then (expected) ->
-              assertSame [result, also, expected],
-                parse: true
-                fixFloats: true
+        proVals (proExec "#{precious} o '#{input}'")
+              , (proExec "#{precious} object '#{input}'")
+              , (proExec "cat test/io/out/nativity.json")
+              , (results) ->
+                assertSame results,
+                  parse: true
+                  fixFloats: true
 
 
   # Consistency

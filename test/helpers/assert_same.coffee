@@ -2,7 +2,7 @@ assert = require 'assert'
 diff   = require('difflet')({ comma: 'first', indent: 2, comment: true })
 json   = require 'jsonify'
 
-fixFloats = require '../helpers/fix_floats'
+fixFloats = require './fix_floats'
 
 module.exports = assertSame = (vals, options = {}) ->
 
