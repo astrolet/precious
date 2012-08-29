@@ -36,7 +36,6 @@
   , "async": "*"
   , "police": "*"
   , "mocha": "*"
-  , "mocha-as-promised": "*"
   , "q": "*"
   , "should": "*"
   , "difflet": "*"
