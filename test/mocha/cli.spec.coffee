@@ -6,9 +6,14 @@ proVals = require "../helpers/promises_values"
 assertSame = require "../helpers/assert_same"
 
 
+# Paths to commands and data files.
+
 precious = "bin/precious.js"
+tis = "test/io/for/nativity.json"
+its = "test/io/out/nativity.json"
 jsontool = "node_modules/jsontool/lib/jsontool.js"
 jsontool0 = "#{jsontool} -o json-0"
+
 
 describe "$ `precious", ->
 
@@ -41,10 +46,10 @@ describe "$ `precious", ->
 
   describe "-`, being piped a stream of spec-conforming json", ->
     it "produces the expected output", ->
-      proVals (proExec "cat test/io/for/nativity.json | #{precious} -")
-            , (proExec "cat test/io/for/nativity.json | #{precious} stream")
-            , (proExec "cat test/io/for/nativity.json | #{precious} s")
-            , (proExec "cat test/io/out/nativity.json")
+      proVals (proExec "cat #{tis} | #{precious} -")
+            , (proExec "cat #{tis} | #{precious} stream")
+            , (proExec "cat #{tis} | #{precious} s")
+            , (proExec "cat #{its}")
             , (results) ->
               assertSame results,
                 parse: true
@@ -55,9 +60,9 @@ describe "$ `precious", ->
 
   describe "f[ile]`, given path to a spec-conforming json", ->
     it "produces the expected output", ->
-      proVals (proExec "#{precious} f test/io/for/nativity.json")
-            , (proExec "#{precious} file test/io/for/nativity.json")
-            , (proExec "cat test/io/out/nativity.json")
+      proVals (proExec "#{precious} f cat #{tis}")
+            , (proExec "#{precious} file cat #{tis}")
+            , (proExec "cat #{its}")
             , (results) ->
               assertSame results,
                 parse: true
@@ -67,10 +72,10 @@ describe "$ `precious", ->
   # Object
   describe "o[bject]`, given a spec-conforming json string", ->
     it "produces the expected output", ->
-      (proExec "cat test/io/for/nativity.json").then (input) ->
+      (proExec "cat #{tis}").then (input) ->
         proVals (proExec "#{precious} o '#{input}'")
               , (proExec "#{precious} object '#{input}'")
-              , (proExec "cat test/io/out/nativity.json")
+              , (proExec "cat #{its}")
               , (results) ->
                 assertSame results,
                   parse: true
@@ -82,7 +87,7 @@ describe "$ `precious", ->
   describe '{*}` re-run with the extra [0]["re"]', ->
     results = []
     before (done) ->
-      beginning = "#{precious} f test/io/for/nativity.json"
+      beginning = "#{precious} f #{tis}"
       mapExec [
         "#{beginning} | #{jsontool0}"
         "#{beginning} | #{jsontool} 0 | #{jsontool} re | #{jsontool0}
