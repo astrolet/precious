@@ -2,7 +2,7 @@ parallel = require('async').parallel
 Stream   = require('stream').Stream
 man      = require '../../lib/man'
 
-module.exports = new Stream
+module.exports = matchesAsync = new Stream
 
 parallel {
   man: (cb) ->

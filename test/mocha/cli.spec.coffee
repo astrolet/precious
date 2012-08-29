@@ -1,5 +1,5 @@
 assertSame = require "../helpers/assert_same"
-doMatch = require "../helpers/matches_async"
+doMatch = require "../helpers/async_man"
 proExec = require "../helpers/promise_exec"
 proVals = require "../helpers/promises_values"
 mapExec = require "../helpers/map_exec"
