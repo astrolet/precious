@@ -1,10 +1,9 @@
-assertSame = require "../helpers/assert_same"
+json    = require "jsonify"
+mapExec = require "../helpers/map_exec"
 doMatch = require "../helpers/async_man"
 proExec = require "../helpers/promise_exec"
 proVals = require "../helpers/promises_values"
-mapExec = require "../helpers/map_exec"
-require("mocha-as-promised")()
-json    = require "jsonify"
+assertSame = require "../helpers/assert_same"
 
 
 precious = "bin/precious.js"

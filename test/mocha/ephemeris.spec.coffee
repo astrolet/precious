@@ -1,9 +1,7 @@
 ephemeris  = require('../../index').ephemeris
 convenient = require('../../index').convenient
 fs         = require 'fs'
-colors     = require 'colors'
 json       = require 'jsonify'
-inspect    = require('eyes').inspector({maxLength: null})
 assertSame = require '../helpers/assert_same'
 
 
