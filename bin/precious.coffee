@@ -38,10 +38,10 @@ complete
 # Will revist / refactor `fetch` then.
 fetch = (what) ->
   stream = ephemeris convenient what, extra: re: {}
-  stream.stderr.on 'data', (error) ->
+  stream.on 'error', (error) ->
     console.error '\nSpawned child_process error.\n'.red + error
     process.exit(1)
-  stream.stdout.pipe process.stdout
+  stream.pipe process.stdout
 
 
 # Processing of command-line args.  Minimal on purpose.
