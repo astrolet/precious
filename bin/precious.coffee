@@ -18,6 +18,7 @@ ephemeris  = require('../index').ephemeris
 JSONStream = require('JSONStream')
 json       = require('jsonify')
 colors     = require('colors')
+errs       = require('../lib/errs')
 man        = require('../lib/man')
 
 
@@ -31,16 +32,21 @@ complete
     help: {}
 
 
+# When something goes wrong, let's know what it is.
+preciousError = (msg, err, code) ->
+  console.log "\n#{msg}\n".red
+  console.log errs.merge(err, 'precious').stack + '\n' if err?
+  process.exit(code) if code?
+
+
 # This is the call.  Not too efficient for the sake of easy cli
 # defaults / convenience.  For something better use precious as a module lib.
-# Waiting for Node's new child_process streams interface, as well as
-# a second implementation method that will not spawn a process at all.
-# Will revist / refactor `fetch` then.
+# A future implementation method will not spawn a process at all.
+# This `fetch` however will probably stay as it is.
 fetch = (what) ->
   stream = ephemeris convenient what, extra: re: {}
-  stream.on 'error', (error) ->
-    console.error '\nSpawned child_process error.\n'.red + error
-    process.exit(1)
+  stream.on 'error', (err) ->
+    preciousError 'Precious ephemeris stream error event.', err, 1
   stream.pipe process.stdout
 
 
@@ -59,8 +65,7 @@ if args.length > 0 then switch args[0]
     process.stdin.pipe parser
 
     parser.on "error", (err) ->
-      console.error "Bad JSON, parser error: ".red + err.message
-      process.exit(1)
+      preciousError 'Bad JSON, parser error: ', err, 1
 
     parser.on "data", (data) ->
       data ?= {} # because empty objects parse to undefined data
@@ -71,22 +76,19 @@ if args.length > 0 then switch args[0]
 
   when 'f', 'file'
     unless args[1]?
-      console.error "Usage: precious -f <file>".red
-      process.exit(1)
+      preciousError 'Usage: precious -f <file>', null, 1
     require('fs').readFile "./#{args[1]}", "utf8", (err, data) ->
       if err
-        console.error "
-An error has ocurred.  Please double-check the file & path.".red
-        console.error err
-        process.exit(1)
+        preciousError 'Please double-check the file & path.', err, 1
       else fetch json.parse data
 
   when 'o', 'object'
     if args[1]? then fetch json.parse args[1]
     else
-      console.error "\nNo JSON provided, format instructions follow...".red
-      man "json.7", 1, ->
-        console.error "Usage: precious -o '<json>'\n".red
+      console.log '\nNo JSON provided, format instructions follow...'.red
+      man "json.7", (err, text) ->
+        console.log text + "Usage: precious -o '<json>'\n".red
+        process.exit(1)
 
   when '?', 'help'
     switch args[1]
@@ -94,8 +96,9 @@ An error has ocurred.  Please double-check the file & path.".red
       when "json" then man "json.7"
       else man "readme.7"
 
-  else man "precious", 1, ->
-    console.error "Usage confusion, see help above.\n".red
+  else man "precious.1", (err, text) ->
+    console.log text + "Usage confusion, see help above.\n".red
+    process.exit(1)
 
 # Another way to get help.
 # It's common to type a command by itself and expect some usage info.
