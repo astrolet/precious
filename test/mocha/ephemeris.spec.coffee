@@ -9,7 +9,7 @@ assertSame = require '../helpers/assert_same'
 # Reports any errors.  Also calls done upon end-of-stream.
 ephemerisObject = (stream, done, callback) ->
   stream.on "data", (data) -> callback json.parse data.toString()
-  stream.on "error", (err) -> console.error err
+  stream.on "error", (err) -> console.error err.stack
   stream.on "end", -> done()
 
 

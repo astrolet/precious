@@ -3,7 +3,7 @@ nice   = require('./convenient')
 Stream = require('stream').Stream
 spawn  = require('child_process').spawn
 json   = require('jsonify')
-errs   = require('errs')
+errs   = require('./errs')
 
 # A node implementation may be added straight here in this module.
 
@@ -31,11 +31,11 @@ module.exports = (input = {}, opts = {}) ->
     stream.emit 'data', stdout
 
   source.stderr.on 'data', (stderr) ->
-    stream.emit 'error', errs.create message: stderr
+    stream.emit 'error', errs.create 'ephemeris', message: stderr.toString()
 
   source.on 'exit', (code) ->
     if code isnt 0
-      stream.emit 'error', errs.create
+      stream.emit 'error', errs.create 'ephemeris',
         message: "Spawned child_process exited with code #{code}!"
     stream.emit 'end'
 
