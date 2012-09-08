@@ -137,16 +137,20 @@ Even better is Eden's command line interface.</p>
 
 <p>An object of various predefined <code>what</code> (0 or more) hashed things -
 e.g. <code>"extra": {"&lt;what>": {&lt;with-optional-config>}}</code>.
-The config of these is ignored, for now - as if <code>{}</code>.
-There could be some with settings later...
-So, this asks for extra info - to be keyed as '0' in the response,
-directly corresponding to any of the following <code>what</code>(s):</p>
+So, this asks for extra info - to be keyed as <code>"0"</code> in the response,
+directly corresponding to any of the following <code>what</code>(s), with possible
+config settings:</p>
+
+<p><code>"re"</code>: preserves a copy of the json input, i.e. the request <code>{object}</code></p>
 
 <ul>
-<li>"re" - regarding a copy of the current input settings - this request <object>.</object></li>
-<li>"times" - to be implemented for performance metrics [<var>start-time</var>, <var>end-time</var>]</li>
+<li><code>"except"</code>: an array of keys to be deleted, e.g. <code>{"except": ["data"]}</code>
+would exclude the usually system-specific ephemeris data path</li>
 </ul>
 
+
+<p><code>"time"</code>: (to be implemented) time stamps / performance metrics,
+e.g. includes <code>[&lt;start-time>, &lt;end-time>]</code></p>
 
 <h2 id="-OUT-">{OUT}</h2>
 
@@ -183,7 +187,7 @@ directly corresponding to any of the following <code>what</code>(s):</p>
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>June 2012</li>
+    <li class='tc'>September 2012</li>
     <li class='tr'>precious-json(7)</li>
   </ol>
 
