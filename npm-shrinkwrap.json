@@ -1,0 +1,277 @@
+{
+  "name": "precious",
+  "version": "0.2.0-1",
+  "dependencies": {
+    "coffee-script": {
+      "version": "1.4.0"
+    },
+    "underscore": {
+      "version": "1.4.3"
+    },
+    "upon": {
+      "version": "0.0.3",
+      "dependencies": {
+        "underscore": {
+          "version": "1.4.3"
+        },
+        "async": {
+          "version": "0.1.18"
+        },
+        "coffee-script": {
+          "version": "1.3.1"
+        },
+        "docco": {
+          "version": "0.3.0"
+        },
+        "eyes": {
+          "version": "0.1.7"
+        },
+        "jsonify": {
+          "version": "0.0.0"
+        },
+        "should": {
+          "version": "0.6.1"
+        },
+        "mocha": {
+          "version": "1.0.1",
+          "dependencies": {
+            "commander": {
+              "version": "0.5.2"
+            },
+            "growl": {
+              "version": "1.5.1"
+            },
+            "jade": {
+              "version": "0.20.3",
+              "dependencies": {
+                "mkdirp": {
+                  "version": "0.3.1"
+                }
+              }
+            },
+            "diff": {
+              "version": "1.0.2"
+            },
+            "debug": {
+              "version": "0.6.0"
+            }
+          }
+        },
+        "police": {
+          "version": "0.2.3",
+          "dependencies": {
+            "moment": {
+              "version": "1.5.1"
+            },
+            "request": {
+              "version": "2.9.202"
+            },
+            "prompt": {
+              "version": "0.1.12",
+              "dependencies": {
+                "colors": {
+                  "version": "0.6.0-1"
+                }
+              }
+            },
+            "winston": {
+              "version": "0.5.11",
+              "dependencies": {
+                "colors": {
+                  "version": "0.6.0-1"
+                },
+                "loggly": {
+                  "version": "0.3.11",
+                  "dependencies": {
+                    "timespan": {
+                      "version": "2.2.0"
+                    }
+                  }
+                },
+                "stack-trace": {
+                  "version": "0.0.6"
+                }
+              }
+            },
+            "optimist": {
+              "version": "0.3.1",
+              "dependencies": {
+                "wordwrap": {
+                  "version": "0.0.2"
+                }
+              }
+            },
+            "nconf": {
+              "version": "0.5.1",
+              "dependencies": {
+                "ini": {
+                  "version": "1.0.2"
+                }
+              }
+            },
+            "semver": {
+              "version": "1.0.13"
+            },
+            "pkginfo": {
+              "version": "0.2.3"
+            }
+          }
+        }
+      }
+    },
+    "gravity": {
+      "version": "0.0.1-4"
+    },
+    "complete": {
+      "version": "0.3.1"
+    },
+    "JSONStream": {
+      "version": "0.3.0",
+      "dependencies": {
+        "jsonparse": {
+          "version": "0.0.1"
+        }
+      }
+    },
+    "deepmerge": {
+      "version": "0.2.5"
+    },
+    "jsonify": {
+      "version": "0.0.0"
+    },
+    "errs": {
+      "version": "0.2.3"
+    },
+    "colors": {
+      "version": "0.6.0-1"
+    },
+    "async": {
+      "version": "0.1.6"
+    },
+    "docco": {
+      "version": "0.3.0"
+    },
+    "eyes": {
+      "version": "0.1.7"
+    },
+    "jsontool": {
+      "version": "4.0.1"
+    },
+    "q": {
+      "version": "0.8.8"
+    },
+    "should": {
+      "version": "0.6.3"
+    },
+    "traverse": {
+      "version": "0.6.1"
+    },
+    "difflet": {
+      "version": "0.2.1",
+      "dependencies": {
+        "traverse": {
+          "version": "0.6.1"
+        },
+        "charm": {
+          "version": "0.0.8"
+        },
+        "deep-equal": {
+          "version": "0.0.0"
+        }
+      }
+    },
+    "ronn": {
+      "version": "0.3.8",
+      "dependencies": {
+        "opts": {
+          "version": "1.2.2"
+        }
+      }
+    },
+    "mocha": {
+      "version": "1.0.3",
+      "dependencies": {
+        "commander": {
+          "version": "0.5.2"
+        },
+        "growl": {
+          "version": "1.5.1"
+        },
+        "jade": {
+          "version": "0.20.3",
+          "dependencies": {
+            "mkdirp": {
+              "version": "0.3.2"
+            }
+          }
+        },
+        "diff": {
+          "version": "1.0.2"
+        },
+        "debug": {
+          "version": "0.7.0"
+        }
+      }
+    },
+    "police": {
+      "version": "0.2.3",
+      "dependencies": {
+        "moment": {
+          "version": "1.5.1"
+        },
+        "request": {
+          "version": "2.9.202"
+        },
+        "prompt": {
+          "version": "0.1.12",
+          "dependencies": {
+            "colors": {
+              "version": "0.6.0-1"
+            }
+          }
+        },
+        "winston": {
+          "version": "0.5.11",
+          "dependencies": {
+            "colors": {
+              "version": "0.6.0-1"
+            },
+            "loggly": {
+              "version": "0.3.11",
+              "dependencies": {
+                "timespan": {
+                  "version": "2.2.0"
+                }
+              }
+            },
+            "stack-trace": {
+              "version": "0.0.6"
+            }
+          }
+        },
+        "optimist": {
+          "version": "0.3.1",
+          "dependencies": {
+            "wordwrap": {
+              "version": "0.0.2"
+            }
+          }
+        },
+        "nconf": {
+          "version": "0.5.1",
+          "dependencies": {
+            "ini": {
+              "version": "1.0.2"
+            }
+          }
+        },
+        "semver": {
+          "version": "1.0.13"
+        },
+        "pkginfo": {
+          "version": "0.2.3"
+        }
+      }
+    }
+  }
+}

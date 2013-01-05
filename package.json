@@ -1,7 +1,7 @@
 { "name": "precious"
 , "description": "the minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.2.0"
+, "version": "0.2.0-1"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
@@ -45,7 +45,7 @@
   }
 , "scripts":
   { "install" : "python ./swe/setup.py build --build-lib ../bin"
-  , "postinstall": "npm install -g eden && coffee ./bin/post-install.coffee"
+  , "postinstall": "coffee ./bin/post-install.coffee"
   , "test": "cake -s test"
   }
 , "bin": { "precious" : "./bin/precious.js" }
