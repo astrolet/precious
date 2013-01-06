@@ -163,5 +163,5 @@ ephemeris(3), ephemeris-py(3), eden(1)
 Base(7)
 
 
-[precious.1]: http://astrolet.github.com/precious/precious.1.html
+[precious.1]: https://github.com/astrolet/precious/blob/active/doc/precious.1.md
 
