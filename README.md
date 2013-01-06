@@ -14,7 +14,7 @@ from a Node.js library or the command line.
 The programming way.
 
 Give the precious ephemeris(3) some precious-json(7)
-and it will return a [stream](http://nodejs.org/api/stream.html)
+and it will return a [stream](https://github.com/substack/stream-handbook)
 of what you asked for.  Here is a CoffeeScript example:
 
     got = require('precious').ephemeris {}, convenient: true
@@ -29,7 +29,7 @@ And a JavaScript equivalent:
 
 ### bin/
 
-The precious(1) cli.
+The precious(1) [cli][precious.1].
 
 As lazy as possible, fetch ephemeris data with the convenient defaults:
 
@@ -46,11 +46,10 @@ No "utc" for *right now*, it also fetches the angles, given geo-location:
 Copy & change the `test/io/for/example.json` to fit your use-case preferences.
 See precious-json(7) and eden(1) for further / friendlier options.
 
-Eden offers convenience and can be used either as a library or as cli interface.
-It also makes precious more useful and readable in many ways.
-Another reason to consider it is for generating precious-json(7) settings
-to be used for calling ephemeris(3), which is a precious module export,
-or else through the rather limited precious(1) cli.
+Eden will be the obvious, very convenient way for working with `precious`.
+Whether it's for a more usable command-line-interface, exposing the ephemeris(3)
+library / stream through various transports, generating precious-json(7) -
+or other, beyond the scope of this page, uses.
 
 
 ## ABOUT
@@ -64,8 +63,8 @@ At that point, the Python code is to be ported and retired.
 This module's purpose is to make writing astrology apps on _Node.JS_
 both possible and straightforward.
 
-[Eden](http://www.astrolin.com/to/eden) depends on it.
-As may other libs / interfaces too.
+[Eden](http://www.astrolin.com/to/eden) depends on it as a matter of personal
+choice. As may other libs / interfaces too.
 
 Think of `precious` as a language-neutral, decoupled way to get data from
 the Swiss Ephemeris.  Or from any kind of ephemeris for that matter.
@@ -162,3 +161,7 @@ ephemeris(3), ephemeris-py(3), eden(1)
 ## HOME
 
 Base(7)
+
+
+[precious.1]: [http://astrolet.github.com/precious/precious.1.html]
+
