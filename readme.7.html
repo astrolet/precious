@@ -91,7 +91,7 @@ from a Node.js library or the command line.</p>
 <p>The programming way.</p>
 
 <p>Give the precious <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a> some <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a>
-and it will return a <a href="http://nodejs.org/api/stream.html">stream</a>
+and it will return a <a href="https://github.com/substack/stream-handbook">stream</a>
 of what you asked for.  Here is a CoffeeScript example:</p>
 
 <pre><code>got = require('precious').ephemeris {}, convenient: true
@@ -108,7 +108,7 @@ got.stdout.on('data', function(s) {
 
 <h3 id="bin-">bin/</h3>
 
-<p>The <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
+<p>The <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> <a href="https://github.com/astrolet/precious/blob/active/doc/precious.1.md">command-line-interface</a>.</p>
 
 <p>As lazy as possible, fetch ephemeris data with the convenient defaults:</p>
 
@@ -128,11 +128,10 @@ got.stdout.on('data', function(s) {
 <p>Copy &amp; change the <code>test/io/for/example.json</code> to fit your use-case preferences.
 See <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> and <a class="man-ref" href="http://astrolet.github.com/eden/eden.1.html">eden<span class="s">(1)</span></a> for further / friendlier options.</p>
 
-<p>Eden offers convenience and can be used either as a library or as cli interface.
-It also makes precious more useful and readable in many ways.
-Another reason to consider it is for generating <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> settings
-to be used for calling <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>, which is a precious module export,
-or else through the rather limited <a class="man-ref" href="precious.1.html">precious<span class="s">(1)</span></a> cli.</p>
+<p>Eden will be the obvious, very convenient way for working with <code>precious</code>.
+Whether it's for a more usable command-line-interface, exposing the <a class="man-ref" href="annotations/ephemeris.html">ephemeris<span class="s">(3)</span></a>
+library / stream through various transports, generating <a class="man-ref" href="json.7.html">precious-json<span class="s">(7)</span></a> -
+or other, beyond the scope of this page, uses.</p>
 
 <h2 id="ABOUT">ABOUT</h2>
 
@@ -145,8 +144,8 @@ At that point, the Python code is to be ported and retired.
 This module's purpose is to make writing astrology apps on <em>Node.JS</em>
 both possible and straightforward.</p>
 
-<p><a href="http://www.astrolin.com/to/eden">Eden</a> depends on it.
-As may other libs / interfaces too.</p>
+<p><a href="http://www.astrolin.com/to/eden">Eden</a> depends on it as a matter of personal
+choice. As may other libs / interfaces too.</p>
 
 <p>Think of <code>precious</code> as a language-neutral, decoupled way to get data from
 the Swiss Ephemeris.  Or from any kind of ephemeris for that matter.
@@ -245,7 +244,7 @@ and its conditions (located in swe/src).</p>
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>June 2012</li>
+    <li class='tc'>January 2013</li>
     <li class='tr'>readme(7)</li>
   </ol>
 
