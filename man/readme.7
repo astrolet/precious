@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "README" "7" "June 2012" "" ""
+.TH "README" "7" "January 2013" "" ""
 .
 .SH "SAY"
 Ephemeris \fIhttp://en\.wikipedia\.org/wiki/Ephemeris\fR data, from a Node\.js library or the command line\.
@@ -12,7 +12,7 @@ Ephemeris \fIhttp://en\.wikipedia\.org/wiki/Ephemeris\fR data, from a Node\.js l
 The programming way\.
 .
 .P
-Give the precious ephemeris(3) some precious\-json(7) and it will return a stream \fIhttp://nodejs\.org/api/stream\.html\fR of what you asked for\. Here is a CoffeeScript example:
+Give the precious ephemeris(3) some precious\-json(7) and it will return a stream \fIhttps://github\.com/substack/stream\-handbook\fR of what you asked for\. Here is a CoffeeScript example:
 .
 .IP "" 4
 .
@@ -42,7 +42,7 @@ got\.stdout\.on(\'data\', function(s) {
 .IP "" 0
 .
 .SS "bin/"
-The precious(1) cli\.
+The precious(1) command\-line\-interface \fIhttps://github\.com/astrolet/precious/blob/active/doc/precious\.1\.md\fR\.
 .
 .P
 As lazy as possible, fetch ephemeris data with the convenient defaults:
@@ -87,13 +87,13 @@ precious o \'{"geo": {"lat": 43\.2166667, "lon": 27\.9166667}}\'
 Copy & change the \fBtest/io/for/example\.json\fR to fit your use\-case preferences\. See precious\-json(7) and eden(1) for further / friendlier options\.
 .
 .P
-Eden offers convenience and can be used either as a library or as cli interface\. It also makes precious more useful and readable in many ways\. Another reason to consider it is for generating precious\-json(7) settings to be used for calling ephemeris(3), which is a precious module export, or else through the rather limited precious(1) cli\.
+Eden will be the obvious, very convenient way for working with \fBprecious\fR\. Whether it\'s for a more usable command\-line\-interface, exposing the ephemeris(3) library / stream through various transports, generating precious\-json(7) \- or other, beyond the scope of this page, uses\.
 .
 .SH "ABOUT"
 Node package distribution of pyswisseph \fIhttp://pypi\.python\.org/pypi/pyswisseph\fR\. Python is just the current method for calling the Swiss Ephemeris\. It has been handy for a rapid prototype / bootstrapping\. Direct JavaScript bindings are preferable and will eventually be implemented\. At that point, the Python code is to be ported and retired\. This module\'s purpose is to make writing astrology apps on \fINode\.JS\fR both possible and straightforward\.
 .
 .P
-Eden \fIhttp://www\.astrolin\.com/to/eden\fR depends on it\. As may other libs / interfaces too\.
+Eden \fIhttp://www\.astrolin\.com/to/eden\fR depends on it as a matter of personal choice\. As may other libs / interfaces too\.
 .
 .P
 Think of \fBprecious\fR as a language\-neutral, decoupled way to get data from the Swiss Ephemeris\. Or from any kind of ephemeris for that matter\. For example someone may choose to implement a Moshier substitute, whether for the sake of using a different license or whatever the reason\.
