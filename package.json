@@ -1,7 +1,7 @@
 { "name": "precious"
 , "description": "the minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.2.0-1"
+, "version": "0.2.0-2"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
@@ -9,7 +9,7 @@
   }
 , "bugs":
   { "mail": "support@astrolet.net"
-  , "url" : "https://www.pivotaltracker.com/projects/203533"
+  , "url" : "https://github.com/astrolet/precious/issues"
   }
 , "author": "Orlin M Bozhinov <orlin@astrolet.net> (http://soundsapiens.com)"
 , "contributors": []
@@ -24,7 +24,7 @@
   , "upon": "*"
   , "gravity": "*"
   , "complete": "*"
-  , "JSONStream": "0.3.0"
+  , "JSONStream": "*"
   , "deepmerge": "*"
   , "jsonify": "*"
   , "errs": "*"
