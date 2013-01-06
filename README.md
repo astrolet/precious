@@ -29,7 +29,7 @@ And a JavaScript equivalent:
 
 ### bin/
 
-The precious(1) [cli][precious.1].
+The precious(1) [command-line-interface][precious.1].
 
 As lazy as possible, fetch ephemeris data with the convenient defaults:
 
@@ -163,5 +163,5 @@ ephemeris(3), ephemeris-py(3), eden(1)
 Base(7)
 
 
-[precious.1]: [http://astrolet.github.com/precious/precious.1.html]
+[precious.1]: http://astrolet.github.com/precious/precious.1.html
 
