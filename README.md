@@ -154,7 +154,7 @@ and its conditions (located in swe/src).
 
 ## ALSO
 
-precious(1), precious-coffee(1), precious-json(7), upon(7), gravity(6),
+precious-coffee(1), precious-json(7), upon(7), gravity(6),
 ephemeris(3), ephemeris-py(3), eden(1)
 
 
