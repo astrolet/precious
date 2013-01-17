@@ -11,12 +11,6 @@
     "upon": {
       "version": "0.1.0",
       "dependencies": {
-        "coffee-script": {
-          "version": "1.4.0"
-        },
-        "underscore": {
-          "version": "1.4.3"
-        },
         "underscore.string": {
           "version": "2.3.1"
         },
@@ -26,14 +20,8 @@
         "async": {
           "version": "0.1.18"
         },
-        "docco": {
-          "version": "0.3.0"
-        },
         "eyes": {
           "version": "0.1.7"
-        },
-        "jsonify": {
-          "version": "0.0.0"
         },
         "should": {
           "version": "0.6.1"
@@ -87,19 +75,11 @@
               "version": "2.9.202"
             },
             "prompt": {
-              "version": "0.1.12",
-              "dependencies": {
-                "colors": {
-                  "version": "0.6.0-1"
-                }
-              }
+              "version": "0.1.12"
             },
             "winston": {
               "version": "0.5.11",
               "dependencies": {
-                "colors": {
-                  "version": "0.6.0-1"
-                },
                 "loggly": {
                   "version": "0.3.11",
                   "dependencies": {
@@ -146,10 +126,10 @@
       "version": "0.3.1"
     },
     "JSONStream": {
-      "version": "0.4.3",
+      "version": "0.4.2",
       "dependencies": {
         "jsonparse": {
-          "version": "0.0.4"
+          "version": "0.0.2"
         }
       }
     },
@@ -166,32 +146,29 @@
       "version": "0.6.0-1"
     },
     "async": {
-      "version": "0.1.6"
+      "version": "0.1.22"
     },
     "docco": {
       "version": "0.3.0"
     },
     "eyes": {
-      "version": "0.1.7"
+      "version": "0.1.8"
     },
     "jsontool": {
-      "version": "4.0.1"
+      "version": "5.1.2"
     },
     "q": {
-      "version": "0.8.8"
+      "version": "0.8.12"
     },
     "should": {
-      "version": "0.6.3"
+      "version": "1.2.1"
     },
     "traverse": {
-      "version": "0.6.1"
+      "version": "0.6.3"
     },
     "difflet": {
-      "version": "0.2.1",
+      "version": "0.2.3",
       "dependencies": {
-        "traverse": {
-          "version": "0.6.1"
-        },
         "charm": {
           "version": "0.0.8"
         },
@@ -209,13 +186,13 @@
       }
     },
     "mocha": {
-      "version": "1.7.4",
+      "version": "1.8.1",
       "dependencies": {
         "commander": {
           "version": "0.6.1"
         },
         "growl": {
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         "jade": {
           "version": "0.26.3",
@@ -240,35 +217,55 @@
       }
     },
     "police": {
-      "version": "0.2.3",
+      "version": "0.3.1",
       "dependencies": {
         "moment": {
-          "version": "1.5.1"
+          "version": "1.7.2"
         },
         "request": {
-          "version": "2.9.202"
+          "version": "2.9.203"
         },
         "prompt": {
-          "version": "0.1.12",
+          "version": "0.2.9",
           "dependencies": {
-            "colors": {
-              "version": "0.6.0-1"
+            "read": {
+              "version": "1.0.4",
+              "dependencies": {
+                "mute-stream": {
+                  "version": "0.0.3"
+                }
+              }
+            },
+            "revalidator": {
+              "version": "0.1.5"
+            },
+            "utile": {
+              "version": "0.1.7",
+              "dependencies": {
+                "deep-equal": {
+                  "version": "0.0.0"
+                },
+                "i": {
+                  "version": "0.3.1"
+                },
+                "mkdirp": {
+                  "version": "0.3.4"
+                },
+                "ncp": {
+                  "version": "0.2.6"
+                },
+                "rimraf": {
+                  "version": "1.0.9"
+                }
+              }
             }
           }
         },
         "winston": {
-          "version": "0.5.11",
+          "version": "0.6.2",
           "dependencies": {
-            "colors": {
-              "version": "0.6.0-1"
-            },
-            "loggly": {
-              "version": "0.3.11",
-              "dependencies": {
-                "timespan": {
-                  "version": "2.2.0"
-                }
-              }
+            "cycle": {
+              "version": "1.0.1"
             },
             "stack-trace": {
               "version": "0.0.6"
@@ -276,7 +273,7 @@
           }
         },
         "optimist": {
-          "version": "0.3.1",
+          "version": "0.3.5",
           "dependencies": {
             "wordwrap": {
               "version": "0.0.2"
@@ -284,15 +281,15 @@
           }
         },
         "nconf": {
-          "version": "0.5.1",
+          "version": "0.6.7",
           "dependencies": {
             "ini": {
-              "version": "1.0.2"
+              "version": "1.0.5"
             }
           }
         },
         "semver": {
-          "version": "1.0.13"
+          "version": "1.0.14"
         },
         "pkginfo": {
           "version": "0.2.3"
