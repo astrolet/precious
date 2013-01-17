@@ -1,7 +1,7 @@
 { "name": "precious"
 , "description": "the minimum kind of ephemeris"
 , "keywords": [ "astrology", "ephemeris", "pyswisseph" ]
-, "version": "0.2.0-2"
+, "version": "0.2.0-3"
 , "homepage": "http://astrolin.com/to/precious"
 , "repository":
   { "type": "git"
@@ -24,7 +24,7 @@
   , "upon": "*"
   , "gravity": "*"
   , "complete": "*"
-  , "JSONStream": "*"
+  , "JSONStream": "0.4.2"
   , "deepmerge": "*"
   , "jsonify": "*"
   , "errs": "*"
@@ -33,10 +33,10 @@
 , "devDependencies":
   { "eyes": "*"
   , "ronn": "*"
-  , "docco": "*"
+  , "docco": "0.3.0"
   , "async": "*"
   , "police": "*"
-  , "mocha": "*"
+  , "mocha": ""
   , "q": "*"
   , "should": "*"
   , "difflet": "*"
